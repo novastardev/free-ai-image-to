@@ -1,0 +1,50 @@
+[
+  {
+    "id": "job_0001",
+    "status": "completed",
+    "created_at": "2026-08-12T04:05:12.764Z",
+    "started_at": "2026-08-12T04:05:12.816Z",
+    "finished_at": "2026-08-12T04:05:23.208Z",
+    "payload": {
+      "tool": "generate",
+      "prompt": "a cute dog surfing",
+      "model": "flux2-klein",
+      "output": "dog_surf_3.png"
+    },
+    "result": "\n🎨 AI Art: \"a cute dog surfing\"\n   flux2-klein | 1x | 1:1 | vibrant\n\n   ⏳ Submitting...\n   ⏳ Waiting...\n   ✅ Response received after 0s\n   ✅ Saved: dog_surf_3.png\n",
+    "output_file": "dog_surf_3.png",
+    "error": null
+  },
+  {
+    "id": "job_0002",
+    "status": "completed",
+    "created_at": "2026-08-12T04:05:42.338Z",
+    "started_at": "2026-08-12T04:05:42.390Z",
+    "finished_at": "2026-08-12T04:05:49.562Z",
+    "payload": {
+      "tool": "generate",
+      "prompt": "a red apple on a table",
+      "model": "sdxl",
+      "output": "apple.png"
+    },
+    "result": "\n🎨 AI Art: \"a red apple on a table\"\n   sdxl | 1x | 1:1 | vibrant\n\n   ⏳ Submitting...\n   ⏳ Waiting...\n   ✅ Response received after 0s\n   ✅ Saved: apple.png\n",
+    "output_file": "apple.png",
+    "error": null
+  },
+  {
+    "id": "job_0003",
+    "status": "completed",
+    "created_at": "2026-08-12T04:14:12.832Z",
+    "started_at": "2026-08-12T04:14:12.884Z",
+    "finished_at": "2026-08-12T04:14:20.412Z",
+    "payload": {
+      "tool": "generate",
+      "prompt": "test job poll",
+      "model": "sdxl",
+      "output": "test_poll.png"
+    },
+    "result": "\n🎨 AI Art: \"test job poll\"\n   sdxl | 1x | 1:1 | vibrant\n\n   ⏳ Submitting...\n   ⏳ Waiting...\n   ✅ Response received after 0s\n   ✅ Saved: test_poll.png\n",
+    "output_file": "test_poll.png",
+    "error": null
+  }
+]

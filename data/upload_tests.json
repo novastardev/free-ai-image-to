@@ -1,0 +1,4578 @@
+[
+  {
+    "name": "AI Image Editor",
+    "url": "https://free.ai/image/edit",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "edit-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "realesrgan"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "edit-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"c855140a\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "c855140a"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Enhancer",
+    "url": "https://free.ai/image/enhance",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "enhance-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "realesrgan"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"b2d556e7\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "b2d556e7"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Upscaler",
+    "url": "https://free.ai/image/upscaler",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "upscale-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "realesrgan"
+          ]
+        },
+        {
+          "id": "upscale-scale",
+          "name": "",
+          "value": "2",
+          "opts": [
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"9c0ea050\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "9c0ea050"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Background Remover",
+    "url": "https://free.ai/image/background-remover",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "bgrm-model",
+          "name": "",
+          "value": "rmbg",
+          "opts": [
+            "rmbg",
+            "birefnet"
+          ]
+        },
+        {
+          "id": "bgrm-quality",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "high",
+            "fast"
+          ]
+        },
+        {
+          "id": "bgrm-format",
+          "name": "",
+          "value": "png",
+          "opts": [
+            "png",
+            "webp",
+            "jpg"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"c36ee1b5\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "c36ee1b5"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Object Remover",
+    "url": "https://free.ai/image/object-remover",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "removal-mode",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "clean",
+            "context"
+          ]
+        },
+        {
+          "id": "removal-output",
+          "name": "",
+          "value": "png",
+          "opts": [
+            "png",
+            "jpg",
+            "webp"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"712f8509\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "712f8509"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Face Swap",
+    "url": "https://free.ai/image/face-swap",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "fswap-enhance",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "hd",
+            "none"
+          ]
+        },
+        {
+          "id": "fswap-model",
+          "name": "",
+          "value": "inswapper",
+          "opts": [
+            "inswapper"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI 3D Generator",
+    "url": "https://free.ai/image/3d",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "3d-model",
+          "name": "",
+          "value": "trellis2-4b",
+          "opts": [
+            "trellis2-4b",
+            "triposr"
+          ]
+        },
+        {
+          "id": "3d-format",
+          "name": "",
+          "value": "glb",
+          "opts": [
+            "glb",
+            "obj"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"d910df5c\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "d910df5c"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Depth Map Generator",
+    "url": "https://free.ai/image/depth-map",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "depth-model",
+          "name": "",
+          "value": "marigold-depth",
+          "opts": [
+            "marigold-depth",
+            "premium/imageutils/depth"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"b0e9c323\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "b0e9c323"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Anime Generator",
+    "url": "https://free.ai/image/anime",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "anime-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux/dev",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "anime-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "3:4",
+            "9:16",
+            "16:9"
+          ]
+        },
+        {
+          "id": "anime-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "anime-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Cartoon Generator",
+    "url": "https://free.ai/image/cartoon",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "cartoon-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux/dev",
+            "premium/ideogram/v3",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "cartoon-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        },
+        {
+          "id": "cartoon-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "cartoon-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Realistic Image Generator",
+    "url": "https://free.ai/image/realistic",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "real-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux/dev",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "real-aspect",
+          "name": "",
+          "value": "3:2",
+          "opts": [
+            "3:2",
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:5",
+            "2:3"
+          ]
+        },
+        {
+          "id": "real-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "real-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Fantasy Art Generator",
+    "url": "https://free.ai/image/fantasy",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "fantasy-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/ideogram/v3"
+          ]
+        },
+        {
+          "id": "fantasy-aspect",
+          "name": "",
+          "value": "2:3",
+          "opts": [
+            "2:3",
+            "3:2",
+            "16:9",
+            "1:1",
+            "9:16"
+          ]
+        },
+        {
+          "id": "fantasy-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "fantasy-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Oil Painting Generator",
+    "url": "https://free.ai/image/oil-painting",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "oil-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "oil-aspect",
+          "name": "",
+          "value": "2:3",
+          "opts": [
+            "2:3",
+            "3:2",
+            "4:5",
+            "1:1",
+            "5:7"
+          ]
+        },
+        {
+          "id": "oil-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "oil-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Watercolor Generator",
+    "url": "https://free.ai/image/watercolor",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "water-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "water-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "2:3",
+            "3:2",
+            "5:7",
+            "4:5"
+          ]
+        },
+        {
+          "id": "water-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "water-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Vintage Image Generator",
+    "url": "https://free.ai/image/vintage",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "vintage-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "vintage-aspect",
+          "name": "",
+          "value": "3:2",
+          "opts": [
+            "3:2",
+            "1:1",
+            "4:3",
+            "2:3",
+            "16:9"
+          ]
+        },
+        {
+          "id": "vintage-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "vintage-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Landscape Generator",
+    "url": "https://free.ai/image/landscape",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "land-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "land-aspect",
+          "name": "",
+          "value": "16:9",
+          "opts": [
+            "16:9",
+            "3:2",
+            "2:1",
+            "21:9",
+            "1:1",
+            "9:16"
+          ]
+        },
+        {
+          "id": "land-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "land-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Sketch Generator",
+    "url": "https://free.ai/image/sketch",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "sketch-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/ideogram/v3",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "sketch-detail",
+          "name": "",
+          "value": "moderate",
+          "opts": [
+            "gesture",
+            "moderate",
+            "detailed",
+            "hyperreal"
+          ]
+        },
+        {
+          "id": "sketch-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16",
+            "16:9"
+          ]
+        },
+        {
+          "id": "sketch-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "sketch-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI QR Code Generator",
+    "url": "https://free.ai/image/qr-code",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "qr-style",
+          "name": "",
+          "value": "standard",
+          "opts": [
+            "standard",
+            "rounded",
+            "ai-artistic",
+            "gradient",
+            "logo-center"
+          ]
+        },
+        {
+          "id": "qr-color",
+          "name": "",
+          "value": "black",
+          "opts": [
+            "black",
+            "dark-blue",
+            "dark-green",
+            "dark-red",
+            "purple",
+            "gradient-blue",
+            "gradient-sunset"
+          ]
+        },
+        {
+          "id": "qr-size",
+          "name": "",
+          "value": "512",
+          "opts": [
+            "256",
+            "512",
+            "1024",
+            "2048"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"bff5880c\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "bff5880c"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Wallpaper Generator",
+    "url": "https://free.ai/image/wallpaper",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "wallpaper-aspect",
+          "name": "",
+          "value": "16:9",
+          "opts": [
+            "16:9",
+            "16:10",
+            "21:9",
+            "9:16",
+            "9:19",
+            "4:3",
+            "10:16"
+          ]
+        },
+        {
+          "id": "wallpaper-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/imagen4/preview/ultra",
+            "premium/ideogram/v3"
+          ]
+        },
+        {
+          "id": "wallpaper-count",
+          "name": "",
+          "value": "2",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "wallpaper-scene",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Meme Generator",
+    "url": "https://free.ai/image/meme",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "meme-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image"
+          ]
+        },
+        {
+          "id": "meme-textstyle",
+          "name": "",
+          "value": "impact",
+          "opts": [
+            "impact",
+            "helvetica",
+            "comic"
+          ]
+        },
+        {
+          "id": "meme-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "meme-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI GIF Generator",
+    "url": "https://free.ai/image/gif",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "gif-duration",
+          "name": "",
+          "value": "2",
+          "opts": [
+            "2",
+            "3",
+            "5"
+          ]
+        },
+        {
+          "id": "gif-size",
+          "name": "",
+          "value": "480",
+          "opts": [
+            "256",
+            "480",
+            "720"
+          ]
+        },
+        {
+          "id": "gif-fps",
+          "name": "",
+          "value": "24",
+          "opts": [
+            "12",
+            "24"
+          ]
+        },
+        {
+          "id": "gif-model",
+          "name": "",
+          "value": "cogvideox",
+          "opts": [
+            "cogvideox"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "gif-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Pixel Art",
+    "url": "https://free.ai/image/pixel-art",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "pixelart-res",
+          "name": "",
+          "value": "32",
+          "opts": [
+            "16",
+            "32",
+            "64",
+            "128"
+          ]
+        },
+        {
+          "id": "pixelart-palette",
+          "name": "",
+          "value": "16",
+          "opts": [
+            "4",
+            "8",
+            "16",
+            "32",
+            "0"
+          ]
+        },
+        {
+          "id": "pixelart-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image"
+          ]
+        },
+        {
+          "id": "pixelart-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "pixelart-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Banner Generator",
+    "url": "https://free.ai/image/banner",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "banner-platform",
+          "name": "",
+          "value": "linkedin",
+          "opts": [
+            "linkedin",
+            "twitter",
+            "youtube",
+            "facebook",
+            "hero"
+          ]
+        },
+        {
+          "id": "banner-style",
+          "name": "",
+          "value": "modern",
+          "opts": [
+            "modern",
+            "corporate",
+            "gradient",
+            "photographic",
+            "creative",
+            "gaming",
+            "minimal"
+          ]
+        },
+        {
+          "id": "banner-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/recraft-v3"
+          ]
+        },
+        {
+          "id": "banner-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "banner-scene",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Flyer Generator",
+    "url": "https://free.ai/image/flyer",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "flyer-type",
+          "name": "",
+          "value": "event",
+          "opts": [
+            "event",
+            "sale",
+            "restaurant",
+            "fitness",
+            "party",
+            "realestate",
+            "church",
+            "recruitment"
+          ]
+        },
+        {
+          "id": "flyer-style",
+          "name": "",
+          "value": "modern",
+          "opts": [
+            "modern",
+            "bold",
+            "elegant",
+            "retro",
+            "neon",
+            "minimal"
+          ]
+        },
+        {
+          "id": "flyer-size",
+          "name": "",
+          "value": "1:1.29",
+          "opts": [
+            "1:1.29",
+            "1:1.414",
+            "1:1.55",
+            "1:1.414",
+            "1:1"
+          ]
+        },
+        {
+          "id": "flyer-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/recraft-v3"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "flyer-body",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Mockup Generator",
+    "url": "https://free.ai/image/mockup",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "mockup-scene",
+          "name": "",
+          "value": "studio",
+          "opts": [
+            "studio",
+            "desk",
+            "cafe",
+            "outdoor",
+            "minimal",
+            "dark"
+          ]
+        },
+        {
+          "id": "mockup-angle",
+          "name": "",
+          "value": "front",
+          "opts": [
+            "front",
+            "angled",
+            "top-down",
+            "side"
+          ]
+        },
+        {
+          "id": "mockup-model",
+          "name": "",
+          "value": "sdxl-fallback",
+          "opts": [
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "premium/nano-banana-pro/edit",
+            "sdxl-fallback"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"a941d702\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "a941d702"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Infographic",
+    "url": "https://free.ai/image/infographic",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "infographic-template",
+          "name": "",
+          "value": "statistics",
+          "opts": [
+            "statistics",
+            "process",
+            "comparison",
+            "timeline",
+            "hierarchy",
+            "list"
+          ]
+        },
+        {
+          "id": "infographic-aspect",
+          "name": "",
+          "value": "2:3",
+          "opts": [
+            "2:3",
+            "1:1.414"
+          ]
+        },
+        {
+          "id": "infographic-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/recraft-v3",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "infographic-points",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Comic Generator",
+    "url": "https://free.ai/image/comic",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "comic-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux/dev",
+            "premium/ideogram/v3",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "comic-color",
+          "name": "",
+          "value": "full-color",
+          "opts": [
+            "full-color",
+            "bw",
+            "limited",
+            "halftone",
+            "duotone"
+          ]
+        },
+        {
+          "id": "comic-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "comic-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "Watermark Remover",
+    "url": "https://free.ai/image/watermark-remover",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "watermark-method",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "text",
+            "logo",
+            "tiled"
+          ]
+        },
+        {
+          "id": "watermark-post",
+          "name": "",
+          "value": "inpaint",
+          "opts": [
+            "inpaint",
+            "smooth",
+            "none"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"d52657a6\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "d52657a6"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Expander",
+    "url": "https://free.ai/image/expand",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "expand-ratio",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "16:9",
+            "9:16",
+            "1:1",
+            "4:3",
+            "21:9",
+            "2:3"
+          ]
+        },
+        {
+          "id": "expand-fill",
+          "name": "",
+          "value": "ai-generate",
+          "opts": [
+            "ai-generate",
+            "mirror",
+            "blur"
+          ]
+        },
+        {
+          "id": "expand-model",
+          "name": "",
+          "value": "sdxl-outpaint",
+          "opts": [
+            "sdxl-outpaint",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "premium/ideogram/v3"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"d41434f2\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "d41434f2"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Photo Colorizer",
+    "url": "https://free.ai/image/colorize",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "colorize-saturation",
+          "name": "",
+          "value": "normal",
+          "opts": [
+            "subtle",
+            "normal",
+            "rich"
+          ]
+        },
+        {
+          "id": "colorize-model",
+          "name": "",
+          "value": "deoldify",
+          "opts": [
+            "deoldify",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"12417170\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "12417170"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Photo Restoration",
+    "url": "https://free.ai/image/restore",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "restore-type",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "upscale",
+            "denoise",
+            "dejpeg",
+            "scratch",
+            "full"
+          ]
+        },
+        {
+          "id": "restore-scale",
+          "name": "",
+          "value": "1x",
+          "opts": [
+            "1x",
+            "2x",
+            "4x"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"34612211\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "34612211"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Unblur",
+    "url": "https://free.ai/image/unblur",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "unblur-type",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "motion",
+            "out-of-focus",
+            "low-res",
+            "noise"
+          ]
+        },
+        {
+          "id": "unblur-strength",
+          "name": "",
+          "value": "medium",
+          "opts": [
+            "light",
+            "medium",
+            "strong",
+            "max"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"8e49f91d\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "8e49f91d"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Selfie Enhancer",
+    "url": "https://free.ai/image/selfie",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "selfie-retouch",
+          "name": "",
+          "value": "light",
+          "opts": [
+            "none",
+            "light",
+            "medium",
+            "heavy"
+          ]
+        },
+        {
+          "id": "selfie-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "realesrgan",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"6eecf26a\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "6eecf26a"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI T-Shirt Design",
+    "url": "https://free.ai/image/t-shirt",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "tshirt-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/recraft-v3"
+          ]
+        },
+        {
+          "id": "tshirt-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "3:4",
+            "4:3"
+          ]
+        },
+        {
+          "id": "tshirt-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "tshirt-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Album Cover",
+    "url": "https://free.ai/image/album-cover",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "album-aesthetic",
+          "name": "",
+          "value": "modern",
+          "opts": [
+            "modern",
+            "vintage",
+            "abstract"
+          ]
+        },
+        {
+          "id": "album-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/recraft-v3"
+          ]
+        },
+        {
+          "id": "album-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Book Cover",
+    "url": "https://free.ai/image/book-cover",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "book-genre",
+          "name": "",
+          "value": "fiction",
+          "opts": [
+            "fiction",
+            "thriller",
+            "romance",
+            "scifi",
+            "fantasy",
+            "nonfiction",
+            "textbook",
+            "selfhelp"
+          ]
+        },
+        {
+          "id": "book-format",
+          "name": "",
+          "value": "1:1.5",
+          "opts": [
+            "1:1.5",
+            "1:1.6",
+            "1:1"
+          ]
+        },
+        {
+          "id": "book-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/ideogram/v3",
+            "premium/flux-pro/v1.1-ultra",
+            "premium/recraft-v3"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "book-mood",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "Canny Edge to Image (ControlNet)",
+    "url": "https://free.ai/image/canny-to-image",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "aspect-ratio",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "Sketch to Image",
+    "url": "https://free.ai/image/sketch-to-image",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "style",
+          "name": "",
+          "value": "photorealistic",
+          "opts": [
+            "photorealistic",
+            "illustration",
+            "anime",
+            "watercolor",
+            "oil-painting",
+            "3d-render"
+          ]
+        },
+        {
+          "id": "strength",
+          "name": "",
+          "value": "medium",
+          "opts": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        {
+          "id": "sketch-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux-pro/kontext",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"8ad6208f\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "8ad6208f"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Pose to Image",
+    "url": "https://free.ai/image/pose-to-image",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "aspect-ratio",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "Depth to Image",
+    "url": "https://free.ai/image/depth-to-image",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "aspect-ratio",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "Scribble to Image",
+    "url": "https://free.ai/image/scribble-to-image",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "aspect-ratio",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "ControlNet (12 in 1)",
+    "url": "https://free.ai/image/controlnet",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "cn-type",
+          "name": "",
+          "value": "canny",
+          "opts": [
+            "canny",
+            "pose",
+            "depth",
+            "scribble",
+            "lineart",
+            "anime-lineart",
+            "mlsd",
+            "hed",
+            "soft-edge",
+            "normal",
+            "segmentation",
+            "tile"
+          ]
+        },
+        {
+          "id": "aspect-ratio",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Art Generator",
+    "url": "https://free.ai/image/ai-art",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "aiart-mood",
+          "name": "",
+          "value": "vibrant",
+          "opts": [
+            "vibrant",
+            "dark",
+            "pastel",
+            "neon",
+            "earthy",
+            "monochrome",
+            "golden"
+          ]
+        },
+        {
+          "id": "aiart-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4",
+            "21:9"
+          ]
+        },
+        {
+          "id": "aiart-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "aiart-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "aiart-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Painting Generator",
+    "url": "https://free.ai/image/painting",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "painting-subject",
+          "name": "",
+          "value": "landscape",
+          "opts": [
+            "landscape",
+            "portrait",
+            "still-life",
+            "abstract",
+            "seascape",
+            "cityscape",
+            "floral",
+            "figurative"
+          ]
+        },
+        {
+          "id": "painting-aspect",
+          "name": "",
+          "value": "4:3",
+          "opts": [
+            "4:3",
+            "1:1",
+            "3:4",
+            "2:3",
+            "16:9",
+            "3:2"
+          ]
+        },
+        {
+          "id": "painting-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux-pro/v1.1-ultra"
+          ]
+        },
+        {
+          "id": "painting-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "painting-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Photography",
+    "url": "https://free.ai/image/photography",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "photo-genre",
+          "name": "",
+          "value": "portrait",
+          "opts": [
+            "portrait",
+            "landscape",
+            "street",
+            "architectural",
+            "macro",
+            "wildlife",
+            "fashion",
+            "documentary",
+            "aerial",
+            "underwater"
+          ]
+        },
+        {
+          "id": "photo-lens",
+          "name": "",
+          "value": "35mm",
+          "opts": [
+            "35mm",
+            "85mm",
+            "wide-angle",
+            "telephoto",
+            "macro-lens",
+            "tilt-shift",
+            "film-grain",
+            "polaroid"
+          ]
+        },
+        {
+          "id": "photo-lighting",
+          "name": "",
+          "value": "natural",
+          "opts": [
+            "natural",
+            "golden-hour",
+            "blue-hour",
+            "studio",
+            "dramatic",
+            "overcast",
+            "neon",
+            "silhouette"
+          ]
+        },
+        {
+          "id": "photo-aspect",
+          "name": "",
+          "value": "3:2",
+          "opts": [
+            "3:2",
+            "4:3",
+            "1:1",
+            "16:9",
+            "9:16"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Food Photo",
+    "url": "https://free.ai/image/food-photo",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "food-cuisine",
+          "name": "",
+          "value": "",
+          "opts": [
+            "",
+            "american",
+            "italian",
+            "japanese",
+            "mexican",
+            "french",
+            "indian",
+            "thai",
+            "chinese",
+            "mediterranean",
+            "dessert",
+            "drinks"
+          ]
+        },
+        {
+          "id": "food-surface",
+          "name": "",
+          "value": "rustic-wood",
+          "opts": [
+            "rustic-wood",
+            "marble",
+            "restaurant",
+            "kitchen",
+            "outdoor",
+            "slate",
+            "white"
+          ]
+        },
+        {
+          "id": "food-angle",
+          "name": "",
+          "value": "overhead",
+          "opts": [
+            "overhead",
+            "45",
+            "eye",
+            "macro"
+          ]
+        },
+        {
+          "id": "food-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/flux/dev",
+            "premium/ideogram/v3",
+            "premium/gemini-3-pro-image"
+          ]
+        },
+        {
+          "id": "food-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "4:5",
+            "16:9",
+            "3:2",
+            "9:16"
+          ]
+        },
+        {
+          "id": "food-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "food-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Wedding Photo",
+    "url": "https://free.ai/image/wedding",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "wedding-theme",
+          "name": "",
+          "value": "classic",
+          "opts": [
+            "classic",
+            "rustic",
+            "modern",
+            "bohemian",
+            "vintage",
+            "tropical",
+            "garden",
+            "glam"
+          ]
+        },
+        {
+          "id": "wedding-colors",
+          "name": "",
+          "value": "blush-gold",
+          "opts": [
+            "blush-gold",
+            "white-green",
+            "navy-gold",
+            "sage-cream",
+            "burgundy",
+            "lavender",
+            "terracotta",
+            "custom"
+          ]
+        },
+        {
+          "id": "wedding-aspect",
+          "name": "",
+          "value": "3:4",
+          "opts": [
+            "3:4",
+            "1:1",
+            "4:5",
+            "2:3",
+            "16:9"
+          ]
+        },
+        {
+          "id": "wedding-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/ideogram/v3"
+          ]
+        },
+        {
+          "id": "wedding-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "wedding-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Baby Photo Generator",
+    "url": "https://free.ai/image/baby",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "baby-theme",
+          "name": "",
+          "value": "soft-pastel",
+          "opts": [
+            "soft-pastel",
+            "woodland",
+            "floral",
+            "minimalist",
+            "whimsical",
+            "boho",
+            "safari"
+          ]
+        },
+        {
+          "id": "baby-colors",
+          "name": "",
+          "value": "neutral",
+          "opts": [
+            "neutral",
+            "pink",
+            "blue",
+            "sage",
+            "rainbow",
+            "earthy"
+          ]
+        },
+        {
+          "id": "baby-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "3:4",
+            "2:3",
+            "5:7",
+            "16:9"
+          ]
+        },
+        {
+          "id": "baby-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "premium/flux/dev",
+            "premium/bytedance/seedream/v4/text-to-image",
+            "premium/ideogram/v3"
+          ]
+        },
+        {
+          "id": "baby-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "baby-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Yearbook Photo",
+    "url": "https://free.ai/image/yearbook",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "yearbook-type",
+          "name": "",
+          "value": "high-school",
+          "opts": [
+            "high-school",
+            "college",
+            "elementary",
+            "prom",
+            "sports",
+            "club"
+          ]
+        },
+        {
+          "id": "yearbook-bg",
+          "name": "",
+          "value": "classic-blue",
+          "opts": [
+            "classic-blue",
+            "gray",
+            "laser",
+            "bookshelf",
+            "outdoors"
+          ]
+        },
+        {
+          "id": "yearbook-model",
+          "name": "",
+          "value": "rmbg",
+          "opts": [
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "rmbg"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"adc2db23\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "adc2db23"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "LinkedIn Photo Generator",
+    "url": "https://free.ai/image/linkedin-photo",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "linkedin-attire",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "formal",
+            "blazer",
+            "business-casual",
+            "smart-casual",
+            "shirt"
+          ]
+        },
+        {
+          "id": "linkedin-bg",
+          "name": "",
+          "value": "neutral-gray",
+          "opts": [
+            "neutral-gray",
+            "soft-blue",
+            "white",
+            "dark-navy",
+            "gradient",
+            "office-blur"
+          ]
+        },
+        {
+          "id": "linkedin-industry",
+          "name": "",
+          "value": "general",
+          "opts": [
+            "general",
+            "tech",
+            "finance",
+            "consulting",
+            "legal",
+            "healthcare",
+            "creative",
+            "education",
+            "real-estate",
+            "startup"
+          ]
+        },
+        {
+          "id": "linkedin-model",
+          "name": "",
+          "value": "premium/flux-pro/kontext",
+          "opts": [
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "premium/nano-banana-pro/edit"
+          ]
+        },
+        {
+          "id": "linkedin-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1"
+          ]
+        },
+        {
+          "id": "linkedin-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"8311a5b9\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "8311a5b9"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "ID Photo Generator",
+    "url": "https://free.ai/image/id-photo",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "idphoto-country",
+          "name": "",
+          "value": "us",
+          "opts": [
+            "us",
+            "uk",
+            "schengen",
+            "canada",
+            "australia",
+            "india",
+            "china",
+            "japan",
+            "generic"
+          ]
+        },
+        {
+          "id": "idphoto-bg",
+          "name": "",
+          "value": "white",
+          "opts": [
+            "white",
+            "off-white",
+            "light-blue",
+            "light-gray",
+            "red"
+          ]
+        },
+        {
+          "id": "idphoto-attire",
+          "name": "",
+          "value": "keep",
+          "opts": [
+            "keep",
+            "business",
+            "casual-collared",
+            "formal-dark"
+          ]
+        },
+        {
+          "id": "idphoto-model",
+          "name": "",
+          "value": "rmbg",
+          "opts": [
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "rmbg"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"7aea94ec\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "7aea94ec"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Old Photo Enhancer",
+    "url": "https://free.ai/image/old-photo-enhancer",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "oldphoto-mode",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "scratch-repair",
+            "face-enhance",
+            "colorize",
+            "full"
+          ]
+        },
+        {
+          "id": "oldphoto-strength",
+          "name": "",
+          "value": "medium",
+          "opts": [
+            "light",
+            "medium",
+            "strong"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"ba6bbd13\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "ba6bbd13"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Face Restoration",
+    "url": "https://free.ai/image/face-restore",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "facerestore-fidelity",
+          "name": "",
+          "value": "high",
+          "opts": [
+            "high",
+            "balanced",
+            "quality"
+          ]
+        },
+        {
+          "id": "facerestore-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "realesrgan",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"33911f43\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "33911f43"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Describer",
+    "url": "https://free.ai/image/image-to-text",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "img2txt-mode",
+          "name": "",
+          "value": "caption",
+          "opts": [
+            "caption",
+            "detailed",
+            "alt-text",
+            "tags"
+          ]
+        },
+        {
+          "id": "img2txt-model",
+          "name": "",
+          "value": "qwen-vl",
+          "opts": [
+            "qwen-vl",
+            "qwen25-vl",
+            "moondream2"
+          ]
+        },
+        {
+          "id": "img2txt-lang",
+          "name": "",
+          "value": "en",
+          "opts": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "pt",
+            "zh",
+            "ja",
+            "ko",
+            "ar",
+            "hi"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"3a18b36f\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "3a18b36f"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Text to Image",
+    "url": "https://free.ai/image/text-to-image",
+    "form": {
+      "has_file": false,
+      "selects": [
+        {
+          "id": "t2i-style",
+          "name": "",
+          "value": "none",
+          "opts": [
+            "none",
+            "photo",
+            "digital-art",
+            "anime",
+            "oil-painting",
+            "watercolor",
+            "3d-render",
+            "pixel-art",
+            "sketch",
+            "cinematic"
+          ]
+        },
+        {
+          "id": "t2i-aspect",
+          "name": "",
+          "value": "1:1",
+          "opts": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4",
+            "3:2",
+            "21:9"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "no_file_input"
+  },
+  {
+    "name": "AI Outpainting",
+    "url": "https://free.ai/image/outpainting",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "outpaint-direction",
+          "name": "",
+          "value": "all",
+          "opts": [
+            "all",
+            "left",
+            "right",
+            "top",
+            "bottom",
+            "horizontal",
+            "vertical"
+          ]
+        },
+        {
+          "id": "outpaint-target",
+          "name": "",
+          "value": "1.5x",
+          "opts": [
+            "1.5x",
+            "2x",
+            "16:9",
+            "9:16",
+            "1:1",
+            "21:9"
+          ]
+        },
+        {
+          "id": "outpaint-model",
+          "name": "",
+          "value": "flux2-klein",
+          "opts": [
+            "flux2-klein",
+            "sdxl"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"df8b34a2\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "df8b34a2"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Inpainting",
+    "url": "https://free.ai/image/inpainting",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "inpaint-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "inpaint-fallback-mask",
+          "name": "",
+          "value": "auto",
+          "opts": [
+            "auto",
+            "foreground",
+            "background",
+            "faces"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "prompt",
+          "value": ""
+        }
+      ]
+    },
+    "status": "submit_failed",
+    "error": "Runtime.callFunctionOn timed out. Increase the 'protocolTimeout' setting in launch/connect calls for a higher timeout if needed."
+  },
+  {
+    "name": "AI Style Transfer",
+    "url": "https://free.ai/image/style-transfer",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "transfer-style",
+          "name": "",
+          "value": "van-gogh",
+          "opts": [
+            "van-gogh",
+            "monet",
+            "picasso",
+            "ukiyo-e",
+            "pop-art",
+            "watercolor",
+            "oil-painting",
+            "sketch",
+            "anime",
+            "pixel-art",
+            "stained-glass",
+            "mosaic"
+          ]
+        },
+        {
+          "id": "transfer-intensity",
+          "name": "",
+          "value": "balanced",
+          "opts": [
+            "subtle",
+            "balanced",
+            "strong",
+            "full"
+          ]
+        },
+        {
+          "id": "transfer-preserve",
+          "name": "",
+          "value": "high",
+          "opts": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        {
+          "id": "style-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit",
+            "premium/recraft-v3",
+            "realesrgan"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"655bb266\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "655bb266"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "Image to Image",
+    "url": "https://free.ai/image/image-to-image",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "i2i-strength",
+          "name": "",
+          "value": "moderate",
+          "opts": [
+            "subtle",
+            "moderate",
+            "strong",
+            "complete"
+          ]
+        },
+        {
+          "id": "i2i-aspect",
+          "name": "",
+          "value": "original",
+          "opts": [
+            "original",
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ]
+        },
+        {
+          "id": "i2i-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "premium/flux-pro/kontext",
+            "premium/bytedance/seedream/v4/edit"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": [
+        {
+          "id": "i2i-prompt",
+          "value": ""
+        }
+      ]
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"66615af3\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "66615af3"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Color Palette Generator",
+    "url": "https://free.ai/image/color-palette",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "cpal-count",
+          "name": "",
+          "value": "5",
+          "opts": [
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ]
+        },
+        {
+          "id": "cpal-format",
+          "name": "",
+          "value": "hex",
+          "opts": [
+            "hex",
+            "rgb",
+            "hsl",
+            "all"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"52c32609\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "52c32609"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Reimagine",
+    "url": "https://free.ai/image/reimagine",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "reimagine-style",
+          "name": "",
+          "value": "varied",
+          "opts": [
+            "varied",
+            "photo",
+            "art",
+            "anime",
+            "watercolor",
+            "oil",
+            "sketch",
+            "3d",
+            "pixel",
+            "cyberpunk"
+          ]
+        },
+        {
+          "id": "reimagine-strength",
+          "name": "",
+          "value": "0.55",
+          "opts": [
+            "0.35",
+            "0.55",
+            "0.8"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "premium/flux-pro/kontext"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"0e92f99a\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "0e92f99a"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Relight",
+    "url": "https://free.ai/image/relight",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "relight-preset",
+          "name": "",
+          "value": "",
+          "opts": [
+            "",
+            "golden hour, warm sunlight from the left, soft glow",
+            "studio three-point lighting, soft key light, even fill",
+            "cinematic dramatic lighting, high contrast, moody blue tones",
+            "overcast daylight, even soft diffusion, no harsh shadows",
+            "rim light from behind, strong backlight, silhouette highlights",
+            "neon night, cyan and magenta highlights, urban night scene",
+            "candlelight, warm amber glow, intimate close-up mood",
+            "stage spotlight from above, strong key light, dark background",
+            "natural window light from the side, soft shadows on face"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "sdxl",
+            "premium/iclight-v2",
+            "premium/flux-pro/kontext"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"7d39a4cd\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "7d39a4cd"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Image Detector",
+    "url": "https://free.ai/image/ai-detector",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "flux2-klein",
+            "google/gemini-2.5-flash-image",
+            "google/gemini-3.1-flash-image-preview",
+            "google/gemini-3-pro-image-preview",
+            "openai/gpt-5-image-mini",
+            "openai/gpt-5-image"
+          ]
+        },
+        {
+          "id": "tool-image-count",
+          "name": "",
+          "value": "1",
+          "opts": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"2169b3cf\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "2169b3cf"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Retouch",
+    "url": "https://free.ai/image/retouch",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "sdxl",
+          "opts": [
+            "sdxl",
+            "premium/flux-pro/kontext",
+            "premium/inpaint"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"244da0e4\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "244da0e4"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Skin Enhancer",
+    "url": "https://free.ai/image/skin-enhance",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "skin-model",
+          "name": "",
+          "value": "gfpgan",
+          "opts": [
+            "gfpgan",
+            "realesrgan-portrait",
+            "premium/flux-pro/kontext",
+            "premium/clarity-upscaler"
+          ]
+        },
+        {
+          "id": "skin-strength",
+          "name": "",
+          "value": "balanced",
+          "opts": [
+            "subtle",
+            "balanced",
+            "strong"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"50433b9f\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "50433b9f"
+      }
+    },
+    "status": "rate_limited_429"
+  },
+  {
+    "name": "AI Camera Angle Changer",
+    "url": "https://free.ai/image/camera-angle",
+    "form": {
+      "has_file": true,
+      "file_id": "file-input",
+      "selects": [
+        {
+          "id": "camera-angle-target",
+          "name": "",
+          "value": "Side profile",
+          "opts": [
+            "3/4 view",
+            "Side profile",
+            "Top down",
+            "Bottom up",
+            "Close-up",
+            "Wide shot",
+            "Behind subject",
+            "Over-the-shoulder"
+          ]
+        },
+        {
+          "id": "camera-angle-model",
+          "name": "",
+          "value": "realesrgan",
+          "opts": [
+            "premium/bytedance/seedream/v4/edit",
+            "premium/flux-pro/kontext",
+            "realesrgan"
+          ]
+        },
+        {
+          "id": "tool-image-model",
+          "name": "",
+          "value": "qwen-image-edit",
+          "opts": [
+            "qwen-image-edit",
+            "realesrgan",
+            "sdxl"
+          ]
+        }
+      ],
+      "textareas": []
+    },
+    "submit": {
+      "status": 429,
+      "bodyLen": 140,
+      "bodyFirst": "{\"error\":{\"error\":\"Sign up free - 30,000 tokens/day to use this tool.\",\"requires_signup\":true,\"daily_remaining\":6000},\"error_id\":\"381a2e67\"}",
+      "parsed": {
+        "error": {
+          "error": "Sign up free - 30,000 tokens/day to use this tool.",
+          "requires_signup": true,
+          "daily_remaining": 6000
+        },
+        "error_id": "381a2e67"
+      }
+    },
+    "status": "rate_limited_429"
+  }
+]

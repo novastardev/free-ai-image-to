@@ -1,0 +1,1863 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-user-lang="en" dir="ltr">
+<script>
+(function(){if(localStorage.getItem('free_dark_mode')==='true')document.documentElement.classList.add('dark');})();
+</script>
+<head>
+    <meta charset="utf-8">
+    
+    <script>
+    window.FREE = window.FREE || {};
+    window.FREE.pendingPrompt = null;
+    // Minimal tracker available before utils.js loads. Inline-script funnel
+    // events (pricing_page_viewed, buy_button_clicked) were silently no-oping
+    // because they ran before utils defined itself - use window.track() instead.
+    window.track = function(type, tool, data){
+        try {
+            var body = JSON.stringify({event_type:type, tool:tool||'', data:data||{}, url:location.href});
+            if (navigator.sendBeacon) {
+                var blob = new Blob([body], {type:'application/json'});
+                navigator.sendBeacon('/api/v1/track/', blob);
+            } else {
+                fetch('/api/v1/track/', {method:'POST', headers:{'Content-Type':'application/json'}, body:body, keepalive:true}).catch(function(){});
+            }
+        } catch(e) {}
+    };
+    </script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+    
+    
+    <title>Free.ai API - Access 400+ AI Tools</title>
+    <meta name="description" content="Free API for AI chat, image generation, video, TTS, STT, music, writing, code, and more. Get your free API key.">
+    
+    <link rel="canonical" href="https://free.ai/api/">
+
+    
+    <link rel="alternate" hreflang="x-default" href="https://free.ai/api/">
+    <link rel="alternate" hreflang="en" href="https://free.ai/api/">
+    
+    <link rel="alternate" hreflang="zh" href="https://free.ai/api/?lang=zh">
+    
+    <link rel="alternate" hreflang="es" href="https://free.ai/api/?lang=es">
+    
+    <link rel="alternate" hreflang="ar" href="https://free.ai/api/?lang=ar">
+    
+    <link rel="alternate" hreflang="pt" href="https://free.ai/api/?lang=pt">
+    
+    <link rel="alternate" hreflang="id" href="https://free.ai/api/?lang=id">
+    
+    <link rel="alternate" hreflang="ja" href="https://free.ai/api/?lang=ja">
+    
+    <link rel="alternate" hreflang="ru" href="https://free.ai/api/?lang=ru">
+    
+    <link rel="alternate" hreflang="fr" href="https://free.ai/api/?lang=fr">
+    
+    <link rel="alternate" hreflang="de" href="https://free.ai/api/?lang=de">
+    
+    <link rel="alternate" hreflang="ko" href="https://free.ai/api/?lang=ko">
+    
+    <link rel="alternate" hreflang="tr" href="https://free.ai/api/?lang=tr">
+    
+    <link rel="alternate" hreflang="vi" href="https://free.ai/api/?lang=vi">
+    
+    <link rel="alternate" hreflang="it" href="https://free.ai/api/?lang=it">
+    
+    <link rel="alternate" hreflang="pl" href="https://free.ai/api/?lang=pl">
+    
+    <link rel="alternate" hreflang="nl" href="https://free.ai/api/?lang=nl">
+    
+    <link rel="alternate" hreflang="fa" href="https://free.ai/api/?lang=fa">
+    
+    <link rel="alternate" hreflang="th" href="https://free.ai/api/?lang=th">
+    
+    <link rel="alternate" hreflang="hi" href="https://free.ai/api/?lang=hi">
+    
+    <link rel="alternate" hreflang="uk" href="https://free.ai/api/?lang=uk">
+    
+    <link rel="alternate" hreflang="bg" href="https://free.ai/api/?lang=bg">
+    
+    <link rel="alternate" hreflang="ro" href="https://free.ai/api/?lang=ro">
+    
+    <link rel="alternate" hreflang="el" href="https://free.ai/api/?lang=el">
+    
+    <link rel="alternate" hreflang="sv" href="https://free.ai/api/?lang=sv">
+    
+    <link rel="alternate" hreflang="he" href="https://free.ai/api/?lang=he">
+    
+    <link rel="alternate" hreflang="hu" href="https://free.ai/api/?lang=hu">
+    
+    <link rel="alternate" hreflang="cs" href="https://free.ai/api/?lang=cs">
+    
+    <link rel="alternate" hreflang="da" href="https://free.ai/api/?lang=da">
+    
+    <link rel="alternate" hreflang="fi" href="https://free.ai/api/?lang=fi">
+    
+    <link rel="alternate" hreflang="no" href="https://free.ai/api/?lang=no">
+    
+    <link rel="alternate" hreflang="sk" href="https://free.ai/api/?lang=sk">
+    
+    <link rel="alternate" hreflang="hr" href="https://free.ai/api/?lang=hr">
+    
+    <link rel="alternate" hreflang="lt" href="https://free.ai/api/?lang=lt">
+    
+    <link rel="alternate" hreflang="lv" href="https://free.ai/api/?lang=lv">
+    
+    <link rel="alternate" hreflang="et" href="https://free.ai/api/?lang=et">
+    
+    <link rel="alternate" hreflang="sl" href="https://free.ai/api/?lang=sl">
+    
+    <link rel="alternate" hreflang="sr" href="https://free.ai/api/?lang=sr">
+    
+    <link rel="alternate" hreflang="bs" href="https://free.ai/api/?lang=bs">
+    
+    <link rel="alternate" hreflang="ca" href="https://free.ai/api/?lang=ca">
+    
+    <link rel="alternate" hreflang="eu" href="https://free.ai/api/?lang=eu">
+    
+    <link rel="alternate" hreflang="ga" href="https://free.ai/api/?lang=ga">
+    
+    <link rel="alternate" hreflang="tl" href="https://free.ai/api/?lang=tl">
+    
+    <link rel="alternate" hreflang="ms" href="https://free.ai/api/?lang=ms">
+    
+    <link rel="alternate" hreflang="bn" href="https://free.ai/api/?lang=bn">
+    
+    <link rel="alternate" hreflang="ta" href="https://free.ai/api/?lang=ta">
+    
+    <link rel="alternate" hreflang="ur" href="https://free.ai/api/?lang=ur">
+    
+    <link rel="alternate" hreflang="sw" href="https://free.ai/api/?lang=sw">
+    
+    <link rel="alternate" hreflang="is" href="https://free.ai/api/?lang=is">
+    
+    <link rel="alternate" hreflang="mt" href="https://free.ai/api/?lang=mt">
+    
+    <link rel="alternate" hreflang="af" href="https://free.ai/api/?lang=af">
+    
+    <link rel="alternate" hreflang="be" href="https://free.ai/api/?lang=be">
+    
+    <link rel="alternate" hreflang="ka" href="https://free.ai/api/?lang=ka">
+    
+    <link rel="alternate" hreflang="am" href="https://free.ai/api/?lang=am">
+    
+    <link rel="alternate" hreflang="lb" href="https://free.ai/api/?lang=lb">
+    
+    <link rel="alternate" hreflang="ig" href="https://free.ai/api/?lang=ig">
+    
+    <link rel="alternate" hreflang="pa" href="https://free.ai/api/?lang=pa">
+    
+    <link rel="alternate" hreflang="co" href="https://free.ai/api/?lang=co">
+    
+    <link rel="alternate" hreflang="ne" href="https://free.ai/api/?lang=ne">
+    
+    <link rel="alternate" hreflang="gl" href="https://free.ai/api/?lang=gl">
+    
+    <link rel="alternate" hreflang="mg" href="https://free.ai/api/?lang=mg">
+    
+    <link rel="alternate" hreflang="kk" href="https://free.ai/api/?lang=kk">
+    
+    <link rel="alternate" hreflang="mi" href="https://free.ai/api/?lang=mi">
+    
+    <link rel="alternate" hreflang="sd" href="https://free.ai/api/?lang=sd">
+    
+    <link rel="alternate" hreflang="km" href="https://free.ai/api/?lang=km">
+    
+    <link rel="alternate" hreflang="mk" href="https://free.ai/api/?lang=mk">
+    
+    <link rel="alternate" hreflang="te" href="https://free.ai/api/?lang=te">
+    
+    <link rel="alternate" hreflang="kn" href="https://free.ai/api/?lang=kn">
+    
+    <link rel="alternate" hreflang="ml" href="https://free.ai/api/?lang=ml">
+    
+    <link rel="alternate" hreflang="az" href="https://free.ai/api/?lang=az">
+    
+    <link rel="alternate" hreflang="lo" href="https://free.ai/api/?lang=lo">
+    
+    <link rel="alternate" hreflang="mn" href="https://free.ai/api/?lang=mn">
+    
+    <link rel="alternate" hreflang="tg" href="https://free.ai/api/?lang=tg">
+    
+    <link rel="alternate" hreflang="gu" href="https://free.ai/api/?lang=gu">
+    
+    <link rel="alternate" hreflang="si" href="https://free.ai/api/?lang=si">
+    
+    <link rel="alternate" hreflang="cy" href="https://free.ai/api/?lang=cy">
+    
+    <link rel="alternate" hreflang="ht" href="https://free.ai/api/?lang=ht">
+    
+    <link rel="alternate" hreflang="ug" href="https://free.ai/api/?lang=ug">
+    
+    <link rel="alternate" hreflang="mr" href="https://free.ai/api/?lang=mr">
+    
+    <link rel="alternate" hreflang="tk" href="https://free.ai/api/?lang=tk">
+    
+    <link rel="alternate" hreflang="xh" href="https://free.ai/api/?lang=xh">
+    
+    <link rel="alternate" hreflang="ku" href="https://free.ai/api/?lang=ku">
+    
+    <link rel="alternate" hreflang="hy" href="https://free.ai/api/?lang=hy">
+    
+    <link rel="alternate" hreflang="jv" href="https://free.ai/api/?lang=jw">
+    
+    <link rel="alternate" hreflang="or" href="https://free.ai/api/?lang=or">
+    
+    <link rel="alternate" hreflang="sn" href="https://free.ai/api/?lang=sn">
+    
+    <link rel="alternate" hreflang="so" href="https://free.ai/api/?lang=so">
+    
+    <link rel="alternate" hreflang="yi" href="https://free.ai/api/?lang=yi">
+    
+    <link rel="alternate" hreflang="ps" href="https://free.ai/api/?lang=ps">
+    
+    <link rel="alternate" hreflang="sq" href="https://free.ai/api/?lang=sq">
+    
+    <link rel="alternate" hreflang="ky" href="https://free.ai/api/?lang=ky">
+    
+    <link rel="alternate" hreflang="my" href="https://free.ai/api/?lang=my">
+    
+    <link rel="alternate" hreflang="st" href="https://free.ai/api/?lang=st">
+    
+    <link rel="alternate" hreflang="su" href="https://free.ai/api/?lang=su">
+    
+    <link rel="alternate" hreflang="yo" href="https://free.ai/api/?lang=yo">
+    
+    <link rel="alternate" hreflang="tt" href="https://free.ai/api/?lang=tt">
+    
+    <link rel="alternate" hreflang="rw" href="https://free.ai/api/?lang=rw">
+    
+    <link rel="alternate" hreflang="uz" href="https://free.ai/api/?lang=uz">
+    
+    <link rel="alternate" hreflang="zu" href="https://free.ai/api/?lang=zu">
+    
+
+    
+    <link rel="icon" href="/static/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#16A34A">
+
+    
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Free.ai">
+    <meta property="og:title" content="Free.ai API - Access 400+ AI Tools">
+    <meta property="og:description" content="Free API for AI chat, image generation, video, TTS, STT, music, writing, code, and more. Get your free API key.">
+    <meta property="og:image" content="https://free.ai/og/api.png">
+    <meta property="og:url" content="https://free.ai/api/">
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free.ai API - Access 400+ AI Tools">
+    <meta name="twitter:description" content="Free API for AI chat, image generation, video, TTS, STT, music, writing, code, and more. Get your free API key.">
+    <meta name="twitter:image" content="https://free.ai/og/api.png">
+
+    
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6">
+    
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css?v=1.0.1786428037" rel="stylesheet">
+    <link rel="stylesheet" href="/static/vendor/bootstrap-icons/bootstrap-icons.min.css?v=1.0.1786428037">
+    <link rel="stylesheet" href="/static/css/styles.css?v=1.0.1786428037">
+    <link rel="stylesheet" href="/static/css/chat-composer.css?v=1.0.1786428037">
+    
+
+    
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://free.ai/#organization",
+                "name": "Free.ai",
+                "alternateName": ["Free AI", "FreeAI"],
+                "url": "https://free.ai",
+                "logo": {"@type": "ImageObject", "url": "https://free.ai/static/img/icon-512.png", "width": 512, "height": 512},
+                "description": "Free.ai is a free AI platform with tools for chat, image generation, video, audio, writing, coding, and translation - many usable without an account.",
+                "sameAs": [
+                    "https://github.com/freeaigit",
+                    "https://www.npmjs.com/package/freeai-code",
+                    "https://pypi.org/project/free-dot-ai/",
+                    "https://pypi.org/project/freeai-code/",
+                    "https://play.google.com/store/apps/details?id=free.ai"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://free.ai/#website",
+                "name": "Free.ai",
+                "url": "https://free.ai",
+                "publisher": {"@id": "https://free.ai/#organization"},
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://free.ai/tools/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "MobileApplication",
+                "@id": "https://free.ai/#android-app",
+                "name": "Free.ai",
+                "operatingSystem": "Android",
+                "applicationCategory": "ProductivityApplication",
+                "url": "https://play.google.com/store/apps/details?id=free.ai",
+                "downloadUrl": "https://play.google.com/store/apps/details?id=free.ai",
+                "installUrl": "https://play.google.com/store/apps/details?id=free.ai",
+                "publisher": {"@id": "https://free.ai/#organization"},
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+            }
+            ,
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://free.ai/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "API",
+                        "item": ""
+                    }
+                ]
+            }
+            
+            
+        ]
+    }
+    </script>
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Free.ai API \u002D Access 400+ AI Tools Programmatically",
+        "description": "Free API for AI chat, image generation, video, TTS, STT, music, writing, code, and more. Get your free API key.",
+        "url": "https://free.ai/api/",
+        "isPartOf": {"@type": "WebSite", "name": "Free.ai", "url": "https://free.ai"},
+        "provider": {"@type": "Organization", "name": "Free.ai", "url": "https://free.ai"},
+        "inLanguage": "en",
+        "availableLanguage": ["af","am","ar","az","be","bg","bn","bs","ca","cs","cy","da","de","el","en","es","et","eu","fa","fi","fr","ga","gl","gu","ha","he","hi","hr","hu","hy","id","ig","is","it","ja","ka","kk","km","kn","ko","ku","ky","lo","lt","lv","mk","ml","mn","mr","ms","mt","my","ne","nl","no","pa","pl","pt","ro","ru","sd","si","sk","sl","sq","sr","sv","sw","ta","te","tg","th","tr","uk","ur","uz","vi","yo","zh","zu"],
+        "areaServed": {"@type": "Place", "name": "Worldwide"}
+    }
+    </script>
+    
+    
+
+    
+    <link rel="preconnect" href="https://api.free.ai">
+
+    
+    
+
+    
+    
+
+    
+    <script>
+    if (typeof Promise !== 'undefined' && !Promise.prototype.finally) {
+        Promise.prototype.finally = function(cb) {
+            var P = this.constructor;
+            return this.then(
+                function(v) { return P.resolve(cb()).then(function() { return v; }); },
+                function(r) { return P.resolve(cb()).then(function() { throw r; }); }
+            );
+        };
+    }
+    </script>
+</head>
+<body class="">
+    
+    
+    
+    
+    
+    
+    <style>
+        nav.navbar .nav-link{white-space:nowrap}
+        @media (min-width:1200px){
+            nav.navbar > .container-fluid{padding-left:1.25rem;padding-right:1.25rem}
+            nav.navbar .navbar-nav .nav-link{padding-left:.55rem;padding-right:.55rem}
+        }
+        
+        
+        
+        
+        nav.navbar.nav-collapsed .nav-toggle-wrap{display:flex !important}
+    </style>
+    <nav class="navbar navbar-expand-xl bg-white border-bottom py-0 sticky-top" style="min-height:56px;z-index:1030">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/" style="font-size:2.2rem;color:#1a1a1a;letter-spacing:-1px">
+                <span style="color:#16A34A">Free</span><span>.ai</span>
+            </a>
+            
+            
+            
+            
+            
+            
+            <div class="nav-toggle-wrap d-flex d-xl-none align-items-center">
+                <a id="token-counter-mobile" href="/signup/" class="text-decoration-none me-2" style="visibility:hidden;min-width:80px">
+                    <span id="free-gen-text-mobile" style="display:block;font-size:.6rem;color:#555;white-space:nowrap;text-align:center"></span>
+                    <span style="display:block;height:3px;border-radius:2px;background:#e8e8ea;margin-top:1px;overflow:hidden">
+                        <span id="free-gen-bar-mobile" style="display:block;height:100%;border-radius:2px;background:#22c55e;width:100%;transition:width .3s"></span>
+                    </span>
+                    
+                    <span style="display:block;font-size:.6rem;color:#16A34A;white-space:nowrap;font-weight:600;text-align:center;margin-top:1px">Sign up - 30K/day</span>
+                    
+                </a>
+                
+                
+                
+                
+                
+                
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        
+                        <button type="button" class="nav-link btn btn-link px-2" id="global-search-btn" aria-label="Search tools and models" style="border:none;background:none">
+                            <i class="bi bi-search" style="font-size:1rem"></i>
+                            <span class="d-none d-md-inline ms-1 text-muted" style="font-size:.72rem;border:1px solid #e5e7eb;border-radius:6px;padding:1px 6px;background:#f8fafc">⌘K</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/chat/">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search/">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/my-ai/">My AI</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/chat/"><i class="bi bi-chat-dots me-2"></i>AI Chat</a></li>
+                            <li><a class="dropdown-item" href="/search/"><i class="bi bi-search me-2"></i>AI Search</a></li>
+                            <li><a class="dropdown-item" href="/my-ai/"><i class="bi bi-person-badge me-2"></i>My AI</a></li>
+                            <li><a class="dropdown-item" href="/image/"><i class="bi bi-image me-2"></i>Image Generator</a></li>
+                            <li><a class="dropdown-item" href="/video/"><i class="bi bi-camera-video me-2"></i>Video Generator</a></li>
+                            <li><a class="dropdown-item" href="/text-to-speech/"><i class="bi bi-mic me-2"></i>Text to Speech</a></li>
+                            <li><a class="dropdown-item" href="/voice/"><i class="bi bi-soundwave me-2"></i>AI Voice Generator</a></li>
+                            <li><a class="dropdown-item" href="/music/"><i class="bi bi-music-note-beamed me-2"></i>Music Generator</a></li>
+                            <li><a class="dropdown-item" href="/write/"><i class="bi bi-pencil-square me-2"></i>AI Writer</a></li>
+                            <li><a class="dropdown-item" href="/code/"><i class="bi bi-code-slash me-2"></i>Code Generator</a></li>
+                            <li><a class="dropdown-item" href="/transcribe/"><i class="bi bi-file-earmark-text me-2"></i>Transcription</a></li>
+                            <li><a class="dropdown-item" href="/generator/"><i class="bi bi-stars me-2"></i>AI Generator</a></li>
+                            <li><a class="dropdown-item" href="/coder/"><i class="bi bi-terminal me-2"></i>Free.ai Coder <span class="badge bg-success ms-1" style="font-size:.55rem">New</span></a></li>
+                            <li><a class="dropdown-item fw-semibold" href="/tools/">All 400+</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Models</a>
+                        <ul class="dropdown-menu">
+                            
+                            
+                            
+                            <li><a class="dropdown-item" href="/models/"><i class="bi bi-grid me-2"></i>All Models (346+)</a></li>
+                            <li><a class="dropdown-item" href="/voices/"><i class="bi bi-mic me-2"></i>Voice Catalog</a></li>
+                            <li><a class="dropdown-item" href="/arena/"><i class="bi bi-trophy me-2"></i>AI Arena</a></li>
+                            <li><a class="dropdown-item" href="/chat/compare/"><i class="bi bi-layout-split me-2"></i>Side-by-Side Chat</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pricing/">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/">API</a>
+                    </li>
+                    
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ios/" title="Free.ai for iOS" aria-label="Free.ai for iOS"><i class="bi bi-apple"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://play.google.com/store/apps/details?id=free.ai" rel="noopener" title="Free.ai for Android" aria-label="Free.ai for Android"><i class="bi bi-android2"></i></a>
+                    </li>
+                </ul>
+
+                
+                
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/language/?return=/api/" title="Change language" style="color:#6b7280">
+                            <i class="bi bi-globe"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="dark-mode-toggle" type="button" class="nav-link bg-transparent border-0" title="Toggle dark mode" style="color:#6b7280">
+                            <i class="bi bi-moon-fill"></i>
+                        </button>
+                    </li>
+                </ul>
+
+                
+                <div class="d-flex align-items-center me-2">
+                    
+                    
+                    <a id="token-counter" href="/signup/" class="text-decoration-none me-2" style="cursor:pointer"
+                       title="Free tokens remaining today">
+                        <span class="d-flex align-items-center gap-1" style="font-size:.7rem">
+                            <span style="color:#16A34A;white-space:nowrap;font-weight:600">Sign up - 30K/day</span>
+                        </span>
+                    </a>
+                    
+                </div>
+
+                <ul class="navbar-nav">
+                    
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" href="/login/" style="font-size:1rem">Log in</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="btn btn-primary fw-bold ms-2" href="/signup/" id="signup-cta" style="padding:.55rem 1.4rem;font-size:1rem;border-radius:.6rem;letter-spacing:-.01em">Sign Up Free</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+    // Content-aware navbar collapse. The horizontal nav fits English fine, but
+    // long-label locales (e.g. Malagasy "Pricing" = "Famaritana ny vidin'ny
+    // entana") can be wider than the viewport. Rather than wrap (ugly) or
+    // overflow off the right edge, drop the expand class so it becomes a clean
+    // hamburger whenever the row would not fit. Re-checked on resize.
+    (function(){
+        var nav = document.querySelector('nav.navbar');
+        if(!nav) return;
+        var box = nav.querySelector('.container-fluid');
+        if(!box) return;
+        var BASE = 'navbar-expand-xl';
+        function evaluate(){
+            // Measure in the expanded state, then decide.
+            nav.classList.remove('nav-collapsed');
+            nav.classList.add(BASE);
+            // 2px tolerance for sub-pixel rounding.
+            var overflows = box.scrollWidth > box.clientWidth + 2;
+            if(overflows){
+                nav.classList.remove(BASE);
+                nav.classList.add('nav-collapsed');
+            }
+        }
+        evaluate();
+        // Re-run after webfonts settle (label widths can shift) + on resize.
+        window.addEventListener('load', evaluate);
+        var t; window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(evaluate, 150); });
+    })();
+    </script>
+
+    
+    
+    <div class="bg-light border-bottom py-1 breadcrumbs-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 small">
+                    
+                    
+                    
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        
+                    
+                    
+                    
+                    
+                        <li class="breadcrumb-item active" aria-current="page">API</li>
+                    
+                    
+                </ol>
+            </nav>
+            <a href="/contact/?ref=/api/" class="text-muted small text-decoration-none" rel="nofollow"><i class="bi bi-bug me-1"></i><span class="d-none d-md-inline">Report Bug / Feature Request</span></a>
+        </div>
+    </div>
+    
+
+    <main>
+        
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold" style="font-size:2rem">Free.ai API</h1>
+        <p class="text-muted lead">One API key. Every AI tool. Simple token billing.</p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap mt-3">
+            
+            <a href="/signup/" class="btn btn-primary">Sign Up Free - Get API Key</a>
+            
+            <a href="#pricing" class="btn btn-outline-secondary">Token Pricing</a>
+            <a href="#sdk" class="btn btn-outline-dark">Python SDK</a>
+            <a href="#byok" class="btn btn-outline-dark">BYOK</a>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-sm" style="border-radius:14px">
+                <div class="card-body p-4">
+                    <h2 class="fw-bold mb-3" style="font-size:1.3rem">How It Works</h2>
+                    <div class="row g-4 text-center">
+                        <div class="col-md-4">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:48px;height:48px"><span class="fw-bold text-primary">1</span></div>
+                            <h6 class="fw-semibold">Get an API Key</h6>
+                            <p class="text-muted small">Purchase tokens, then generate your <code>sk-free-</code> key</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:48px;height:48px"><span class="fw-bold text-primary">2</span></div>
+                            <h6 class="fw-semibold">Call Any Endpoint</h6>
+                            <p class="text-muted small">Chat, images, TTS, STT, music, translation - all one API</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:48px;height:48px"><span class="fw-bold text-primary">3</span></div>
+                            <h6 class="fw-semibold">Pay in Tokens</h6>
+                            <p class="text-muted small">One balance. Every tool costs tokens. Simple.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">Quick Start</h2>
+
+            <ul class="nav nav-tabs mb-3" id="codeTabs">
+                <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-curl">cURL</a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-python">Python</a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-node">Node.js</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-curl">
+<pre class="p-3 rounded" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem;overflow-x:auto"><code># Chat with AI
+curl -X POST https://api.free.ai/v1/chat/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "model": "qwen7b"
+  }'
+
+# Generate an image — self-hosted (free within daily allowance)
+curl -X POST https://api.free.ai/v1/image/generate/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "A sunset over mountains", "model": "sdxl"}'
+
+# Generate with a premium model (paid tokens only — FLUX Kontext, Seedream,
+# Ideogram, Nano Banana, Gemini 3 Pro, etc.). Full list at /v1/providers.
+curl -X POST https://api.free.ai/v1/image/generate/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "A sunset over mountains", "model": "premium/flux-pro/kontext"}'
+
+# Generate a video (premium)
+curl -X POST https://api.free.ai/v1/video/generate/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "A cat running in slow motion", "duration": 5, "model": "premium/kling-video/v2.6/pro/text-to-video"}'
+
+# Text to speech
+curl -X POST https://api.free.ai/v1/tts/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello world", "voice": "default", "model": "kokoro"}'
+
+# Translate text
+curl -X POST https://api.free.ai/v1/translate/ \
+  -H "Authorization: Bearer sk-free-YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello world", "target": "es"}'</code></pre>
+                </div>
+                <div class="tab-pane fade" id="tab-python">
+<pre class="p-3 rounded" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem;overflow-x:auto"><code>import requests
+
+API_KEY = "sk-free-YOUR_KEY"
+BASE = "https://api.free.ai"
+HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
+
+# Chat
+r = requests.post(f"{BASE}/v1/chat/", headers=HEADERS, json={
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "model": "qwen7b"  # or "openai/gpt-4o", "anthropic/claude-sonnet-4", etc.
+})
+print(r.json()["choices"][0]["message"]["content"])
+
+# Generate image — self-hosted (free within daily allowance)
+r = requests.post(f"{BASE}/v1/image/generate/", headers=HEADERS, json={
+    "prompt": "A sunset over mountains",
+    "model": "sdxl",  # or "premium/flux-pro/kontext" for paid tier
+    "aspect_ratio": "16:9"
+})
+print(r.json()["image_url"])
+
+# Generate video (premium — see /v1/providers for the full list)
+r = requests.post(f"{BASE}/v1/video/generate/", headers=HEADERS, json={
+    "prompt": "A cat running in slow motion",
+    "duration": 5,
+    "model": "premium/kling-video/v2.6/pro/text-to-video"
+})
+print(r.json()["video_url"])
+
+# Text to speech
+r = requests.post(f"{BASE}/v1/tts/", headers=HEADERS, json={
+    "text": "Hello world",
+    "model": "kokoro",
+    "voice": "af_heart"
+})
+print(r.json()["audio_url"])
+
+# Transcribe audio
+r = requests.post(f"{BASE}/v1/stt/transcribe/", headers=HEADERS, json={
+    "url": "https://example.com/audio.mp3",
+    "model": "whisper"
+})
+print(r.json()["text"])</code></pre>
+                </div>
+                <div class="tab-pane fade" id="tab-node">
+<pre class="p-3 rounded" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem;overflow-x:auto"><code>const API_KEY = "sk-free-YOUR_KEY";
+const BASE = "https://api.free.ai";
+
+// Chat
+const chat = await fetch(`${BASE}/v1/chat/`, {
+  method: "POST",
+  headers: { "Authorization": `Bearer ${API_KEY}`, "Content-Type": "application/json" },
+  body: JSON.stringify({
+    messages: [{ role: "user", content: "Hello!" }],
+    model: "qwen7b"
+  })
+});
+const data = await chat.json();
+console.log(data.choices[0].message.content);
+
+// Generate image — self-hosted (free within daily allowance)
+const img = await fetch(`${BASE}/v1/image/generate/`, {
+  method: "POST",
+  headers: { "Authorization": `Bearer ${API_KEY}`, "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt: "A sunset over mountains", model: "sdxl" })
+});
+
+// Premium image model (paid tokens) — full list at /v1/providers
+const imgPro = await fetch(`${BASE}/v1/image/generate/`, {
+  method: "POST",
+  headers: { "Authorization": `Bearer ${API_KEY}`, "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt: "A sunset over mountains", model: "premium/flux-pro/kontext" })
+});
+console.log((await img.json()).image_url);</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5" id="pricing">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-2" style="font-size:1.3rem">Token Pricing</h2>
+            <p class="text-muted small mb-4">Everything costs tokens. One balance for all tools. Same pricing whether you use the API or the website.</p>
+
+            <div class="card border-0 shadow-sm mb-4" style="border-radius:14px">
+                <div class="card-header bg-white fw-semibold py-3" style="border-radius:14px 14px 0 0">Self-Hosted Models <span class="badge bg-success ms-1">Cheapest</span></div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <thead class="table-light"><tr><th class="px-3">Model</th><th>Type</th><th>Token Cost</th><th>License</th></tr></thead>
+                        <tbody>
+                            <tr><td class="px-3"><strong>Qwen 2.5 7B</strong></td><td>Chat/Write/Code</td><td>Actual tokens used (input+output)</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>FLUX.2 Klein</strong></td><td>Image Generation</td><td>5,000 tokens/image</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>Kokoro</strong></td><td>Text to Speech</td><td>1 token per 4 chars</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>faster-whisper</strong></td><td>Speech to Text</td><td>4 tokens/second of audio</td><td><span class="badge bg-light text-muted">MIT</span></td></tr>
+                            <tr><td class="px-3"><strong>AudioLDM 2</strong></td><td>Music Generation</td><td>2,000 tokens/track</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>MadLAD-400</strong></td><td>Translation (450+ langs)</td><td>Actual tokens used</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>Real-ESRGAN</strong></td><td>Image Upscaling</td><td>500 tokens/image</td><td><span class="badge bg-light text-muted">BSD</span></td></tr>
+                            <tr><td class="px-3"><strong>BRIA RMBG</strong></td><td>Background Removal</td><td>500 tokens/image</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>CogVideoX</strong></td><td>Video Generation</td><td>5,000 tokens/video</td><td><span class="badge bg-light text-muted">Apache 2.0</span></td></tr>
+                            <tr><td class="px-3"><strong>Demucs</strong></td><td>Vocal Separation</td><td>500 tokens/track</td><td><span class="badge bg-light text-muted">MIT</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4" style="border-radius:14px">
+                <div class="card-header bg-white fw-semibold py-3" style="border-radius:14px 14px 0 0">External Models <span class="badge bg-warning text-dark ms-1">346+ models</span></div>
+                <div class="card-body p-0">
+                    <p class="px-3 pt-3 text-muted small">Access GPT-4, Claude, Gemini, Llama, DeepSeek, and 340+ more models. Token cost is based on provider pricing converted to our tokens.</p>
+                    <table class="table table-sm mb-0">
+                        <thead class="table-light"><tr><th class="px-3">Model</th><th>Provider</th><th>~Tokens per message</th><th>Notes</th></tr></thead>
+                        <tbody>
+                            <tr><td class="px-3"><strong>GPT-4o Mini</strong></td><td>OpenAI</td><td>~20</td><td>Cheap, fast</td></tr>
+                            <tr><td class="px-3"><strong>Gemini 2.0 Flash</strong></td><td>Google</td><td>~15</td><td>Very fast</td></tr>
+                            <tr><td class="px-3"><strong>Mistral Nemo</strong></td><td>Mistral</td><td>~10</td><td>Great value</td></tr>
+                            <tr><td class="px-3"><strong>DeepSeek V3</strong></td><td>DeepSeek</td><td>~30</td><td>Strong reasoning</td></tr>
+                            <tr><td class="px-3"><strong>Llama 3.3 70B</strong></td><td>Meta</td><td>~25</td><td>Open weights</td></tr>
+                            <tr><td class="px-3"><strong>Claude Sonnet 4</strong></td><td>Anthropic</td><td>~400</td><td>Premium quality</td></tr>
+                            <tr><td class="px-3"><strong>GPT-4o</strong></td><td>OpenAI</td><td>~325</td><td>Premium quality</td></tr>
+                            <tr><td class="px-3"><strong>Qwen 2.5 72B</strong></td><td>Alibaba</td><td>~40</td><td>Large, capable</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="px-3 py-2 text-muted small mb-0">Full list of 346+ models at <a href="/models/">/models/</a>. All use the same <code>/v1/chat/</code> endpoint - just change the <code>model</code> parameter.</p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm" style="border-radius:14px">
+                <div class="card-header bg-white fw-semibold py-3" style="border-radius:14px 14px 0 0">Token Formula</div>
+                <div class="card-body">
+                    <p class="small mb-2"><strong>Self-hosted models:</strong> You pay the exact tokens used. No markup.</p>
+                    <p class="small mb-2"><strong>External models:</strong> <code>our_tokens = provider_usd_cost × 100,000 × 1.30</code></p>
+                    <p class="small mb-0 text-muted">Example: GPT-4o costs $0.0025 per 1K prompt tokens. For 1,000 tokens: $0.0025 × 100,000 × 1.30 = <strong>325 tokens</strong> from your balance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5" id="endpoints">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">All Endpoints</h2>
+
+            
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Chat / LLM</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/chat/</code></td><td class="text-muted small">Chat with any model (self-hosted or external). Streaming supported.</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Image</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/image/generate/</code></td><td class="text-muted small">Text to image (FLUX, SDXL)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/image/edit/</code></td><td class="text-muted small">Inpaint, outpaint, style transfer</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/image/enhance/</code></td><td class="text-muted small">Upscale 2x/4x (Real-ESRGAN)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/image/remove-bg/</code></td><td class="text-muted small">Remove background (BRIA RMBG)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Video</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/video/generate/</code></td><td class="text-muted small">Text/image to video (CogVideoX)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Text to Speech</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/tts/</code></td><td class="text-muted small">Generate speech (Kokoro, Piper, MeloTTS, Chatterbox)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/tts/stream/</code></td><td class="text-muted small">Streaming TTS (real-time audio chunks)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Speech to Text</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/stt/transcribe/</code></td><td class="text-muted small">Transcribe audio/video (faster-whisper, 99 languages)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Music &amp; Audio</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/music/generate/</code></td><td class="text-muted small">Generate music from text description</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/music/separate/</code></td><td class="text-muted small">Separate vocals/stems (Demucs)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Text Tools</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/write/</code></td><td class="text-muted small">Generate content (essay, email, story, etc.)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/code/generate/</code></td><td class="text-muted small">Generate code in any language</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/summarize/</code></td><td class="text-muted small">Summarize text</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/humanize/</code></td><td class="text-muted small">Make AI text sound human</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/detect/</code></td><td class="text-muted small">Detect AI-generated content</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Translation &amp; OCR</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/translate/</code></td><td class="text-muted small">Translate text (MadLAD-400, 450+ languages)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-primary">POST</code> <code>/v1/ocr/</code></td><td class="text-muted small">Extract text from images</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3" style="border-radius:12px">
+                <div class="card-header bg-white fw-semibold py-3">Utility</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <tr><td class="px-3 py-2"><code class="text-success">GET</code> <code>/v1/models</code></td><td class="text-muted small">List all available models (self-hosted + external)</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-success">GET</code> <code>/v1/status/{job_id}/</code></td><td class="text-muted small">Check async job status</td></tr>
+                        <tr><td class="px-3 py-2"><code class="text-success">GET</code> <code>/health</code></td><td class="text-muted small">API health check</td></tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">Authentication</h2>
+            <div class="card border-0 shadow-sm" style="border-radius:14px">
+                <div class="card-body">
+                    <p class="small mb-2">Include your API key in the <code>Authorization</code> header:</p>
+<pre class="p-2 rounded mb-3" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code>Authorization: Bearer sk-free-YOUR_API_KEY</code></pre>
+                    <p class="small mb-2">Every response includes a <code>free_ai_usage</code> block showing tokens used:</p>
+<pre class="p-2 rounded mb-0" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code>{
+  "choices": [...],
+  "free_ai_usage": {
+    "tokens_used": 142,      // actual tokens processed
+    "tokens_charged": 142,   // tokens deducted from your balance
+    "source": "self_hosted", // or "external"
+    "model": "qwen7b"
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">Rate Limits &amp; Plans</h2>
+            <p class="text-muted small mb-3">Same token pricing on the website and API. No separate API pricing.</p>
+            <div class="card border-0 shadow-sm" style="border-radius:14px">
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0">
+                        <thead class="table-light"><tr><th class="px-3">Plan</th><th>Tokens/Month</th><th>API Requests/Min</th><th>Price</th></tr></thead>
+                        <tbody>
+                            <tr><td class="px-3">Free</td><td>30K/day (pool)</td><td>10</td><td>$0</td></tr>
+                            <tr><td class="px-3">Basic</td><td>250K</td><td>30</td><td>$5/mo</td></tr>
+                            <tr><td class="px-3"><strong>Pro</strong></td><td>1.25M</td><td>60</td><td>$19/mo</td></tr>
+                            <tr><td class="px-3">Business</td><td>6.25M</td><td>120</td><td>$49/mo</td></tr>
+                            <tr><td class="px-3">Enterprise</td><td>Custom</td><td>Custom</td><td><a href="/platform/#talk">Contact</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="text-muted small mt-2">Token packs available: 200K/$5, 1M/$15, 5M/$40. Tokens never expire.</p>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5" id="sdk">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">Python SDK &amp; CLI</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px">
+                        <div class="card-body">
+                            <h5 class="fw-bold" style="font-size:1.05rem">Python SDK</h5>
+                            <p class="text-muted small mb-2">Access every AI tool from your Python code.</p>
+<pre class="p-2 rounded mb-2" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code>pip install free-dot-ai</code></pre>
+<pre class="p-2 rounded mb-2" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code>from freeai import FreeAI
+
+ai = FreeAI(api_key="sk-free-xxx")
+
+# Chat
+response = ai.chat("What is Python?")
+print(response.text)
+
+# Image generation
+image = ai.image("A sunset over mountains")
+image.save("sunset.png")
+
+# Text to speech
+audio = ai.tts("Hello world", voice="af_heart")
+audio.save("hello.mp3")
+
+# Translation
+result = ai.translate("Hello", to="es")
+print(result.text)  # "Hola"</code></pre>
+                            <a href="https://github.com/freeaigit/free-sdk" class="btn btn-sm btn-outline-dark">GitHub</a>
+                            <a href="https://pypi.org/project/free-dot-ai/" class="btn btn-sm btn-outline-secondary">PyPI</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px">
+                        <div class="card-body">
+                            <h5 class="fw-bold" style="font-size:1.05rem">CLI Coding Assistant</h5>
+                            <p class="text-muted small mb-2">Free, open-source alternative to Claude Code, Cursor, and GitHub Copilot.</p>
+<pre class="p-2 rounded mb-2" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code>pip install free-dot-ai-code</code></pre>
+<pre class="p-2 rounded mb-2" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code># Start a coding session
+cd your-project/
+free-code
+
+# Ask about your codebase
+free-code ask "How does auth work?"
+
+# Execute a task
+free-code run "Add unit tests for User model"</code></pre>
+                            <p class="text-muted small mb-2">30K free tokens/day. BYOK supported. 346+ models. Session sync with <a href="/coder/">Web IDE</a>.</p>
+                            <a href="https://github.com/freeaigit/free-code" class="btn btn-sm btn-outline-dark">GitHub</a>
+                            <a href="https://pypi.org/project/freeai-code/" class="btn btn-sm btn-outline-secondary">PyPI</a>
+                            <a href="/coder/" class="btn btn-sm btn-outline-primary">Web IDE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center mb-5" id="byok">
+        <div class="col-lg-10">
+            <h2 class="fw-bold mb-3" style="font-size:1.3rem">BYOK (Bring Your Own Key)</h2>
+            <div class="card border-0 shadow-sm" style="border-radius:14px">
+                <div class="card-body">
+                    <p class="small mb-3">Use your own API keys from any provider. <strong>Zero markup, zero fees.</strong> Free.ai just proxies the request.</p>
+                    <table class="table table-sm mb-3">
+                        <thead class="table-light"><tr><th class="px-3">Provider</th><th>Key Format</th><th>Models</th><th>Markup</th></tr></thead>
+                        <tbody>
+                            <tr><td class="px-3"><strong>OpenAI</strong></td><td><code>sk-proj-xxx</code></td><td>GPT-4o, GPT-4o Mini, o1, o3, etc.</td><td><strong>$0</strong></td></tr>
+                            <tr><td class="px-3"><strong>Anthropic</strong></td><td><code>sk-ant-xxx</code></td><td>Claude Sonnet 4, Opus 4, Haiku, etc.</td><td><strong>$0</strong></td></tr>
+                            <tr><td class="px-3"><strong>Google</strong></td><td><code>AIzaSyxxx</code></td><td>Gemini 2.5 Pro, Flash, etc.</td><td><strong>$0</strong></td></tr>
+                            <tr><td class="px-3"><strong>Other Providers</strong></td><td><code>sk-or-xxx</code> etc.</td><td>346+ models from all providers</td><td><strong>$0</strong></td></tr>
+                        </tbody>
+                    </table>
+<pre class="p-2 rounded mb-2" style="background:#1e1e2e;color:#cdd6f4;font-size:.82rem"><code># Python SDK with BYOK
+from freeai import FreeAI
+
+ai = FreeAI(provider="openai", api_key="sk-proj-xxx")
+response = ai.chat("Hello", model="gpt-4o")
+
+# CLI with BYOK
+# free-code config set provider openai
+# free-code config set api_key sk-proj-xxx</code></pre>
+                    <p class="small text-muted mb-0">Your key, your usage, your bill. No logging. No token deductions from your Free.ai balance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="fw-bold text-center mb-4" style="font-size:1.3rem">API FAQ</h2>
+            <div class="accordion" id="apiFaq">
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af1">Is the API free?</button></h3><div id="af1" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Yes! Free accounts get 30K tokens/day Paid plans offer more tokens and higher rate limits.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af2">Is API pricing different from website pricing?</button></h3><div id="af2" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">No! Same tokens, same pricing. Your token balance is shared between the website and API. Use either, pay the same.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af3">How do I use external models via the API?</button></h3><div id="af3" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Same endpoint, just change the model parameter. For example: <code>"model": "openai/gpt-4o"</code> or <code>"model": "anthropic/claude-sonnet-4"</code>. Full list at /models/ or GET /v1/models.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af4">Is the API OpenAI-compatible?</button></h3><div id="af4" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Yes! The /v1/chat/ endpoint follows the OpenAI chat completions format. You can use any OpenAI-compatible SDK - just change the base URL to https://api.free.ai and use your Free.ai API key.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af5">Do you support streaming?</button></h3><div id="af5" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Yes! Set <code>"stream": true</code> in your chat request. Responses are delivered via Server-Sent Events (SSE).</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af6">What happens when I run out of tokens?</button></h3><div id="af6" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">You&#x27;ll get a 402 response with an error message. Buy more tokens at /pricing/ or wait for your daily free pool to reset. Self-hosted models are always available within daily limits.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af7">Can I use the API for commercial projects?</button></h3><div id="af7" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Yes! All self-hosted models are MIT/Apache 2.0 licensed. Generated content is yours for commercial use.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af8">What&#x27;s the difference between self-hosted and external models?</button></h3><div id="af8" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Self-hosted: runs on our GPU. Cheapest, fastest, most private. External: proxied to the model provider. Access to GPT-4, Claude, Gemini, and more. Costs more tokens due to provider API fees.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af9">How do I check my token balance?</button></h3><div id="af9" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Visit your account page at /account/ or check the <code>free_ai_usage.tokens_charged</code> field in each API response.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af10">Do you have SDKs?</button></h3><div id="af10" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Yes! Install our Python SDK: <code>pip install free-dot-ai</code>. It wraps every endpoint with typed responses. For coding assistance, install <code>pip install free-dot-ai-code</code>. The API also follows OpenAI\</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af11">What about uptime/SLA?</button></h3><div id="af11" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">We aim for 99.9% uptime. Enterprise plans include SLA guarantees. Check /health for real-time status.</div></div></div>
+                <div class="accordion-item border-0 border-bottom"><h3 class="accordion-header"><button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" data-bs-toggle="collapse" data-bs-target="#af12">How do I get support?</button></h3><div id="af12" class="accordion-collapse collapse" data-bs-parent="#apiFaq"><div class="accordion-body text-muted small">Email hello@free.ai or visit /contact/. Pro+ plans get priority support. Error responses include an error_id for debugging.</div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    
+    
+
+<div class="modal fade" id="emailcapture" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:420px">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center px-4 pb-4">
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px">
+                    <i class="bi bi-gift text-primary" style="font-size:1.5rem"></i>
+                </div>
+                <h5 class="fw-bold mb-1">30,000 Free Tokens, Every Day</h5>
+                <p class="text-muted small mb-3">Just enter your email - no password needed. We&#x27;ll send you a link to set one later.</p>
+                <form id="email-capture-form" method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="RZw6OpiAlyliO51KQZwnuiKxqLUfTfjT3k6DqJ0j1BwlnTmxA0udT8TKCLbFVQKz">
+                    
+                    <input type="hidden" id="capture-signup-token" value="1786480099:fIuKUfHE_pQ:661179b55e8de80332c19034">
+                    <div class="input-group mb-2">
+                        <input type="email" class="form-control" id="capture-email" placeholder="your@email.com" required>
+                        <button type="submit" class="btn btn-primary px-3">Sign Up Free</button>
+                    </div>
+                </form>
+                <p class="text-muted" style="font-size:.72rem">No credit card required 30,000 free tokens/day.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<div class="modal fade" id="exitintent" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:420px">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center px-4 pb-4">
+                
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px">
+                    <i class="bi bi-stars text-primary" style="font-size:1.5rem"></i>
+                </div>
+                <h5 class="fw-bold mb-1">Wait - 30K free tokens/day!</h5>
+                <p class="text-muted small mb-3">Sign up in 5 seconds. No credit card required.</p>
+                <form id="exit-signup-form" method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="RZw6OpiAlyliO51KQZwnuiKxqLUfTfjT3k6DqJ0j1BwlnTmxA0udT8TKCLbFVQKz">
+                    
+                    <input type="hidden" id="exit-signup-token" value="1786480099:fIuKUfHE_pQ:661179b55e8de80332c19034">
+                    <div class="input-group mb-2">
+                        <input type="email" class="form-control" id="exit-capture-email" placeholder="your@email.com" required>
+                        <button type="submit" class="btn btn-primary px-3">Get 30K/day Tokens</button>
+                    </div>
+                </form>
+                <p class="text-muted" style="font-size:.72rem">No credit card required 30,000 free tokens/day.</p>
+                <a href="/pricing/" class="text-decoration-none small text-muted">Or view our plans</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    // Purchase attribution for the 8.5K/wk exit-intent impressions - the
+    // modal previously stamped nothing, so any resulting sale read 'direct'.
+    var m = document.getElementById('exitintent');
+    if (!m) return;
+    m.addEventListener('click', function(ev){
+        var el = ev.target;
+        while (el && el !== m && !(el.classList && el.classList.contains('exit-cta'))) el = el.parentNode;
+        if (el && el !== m && window.utils && utils.setPurchaseTrigger) {
+            try { utils.setPurchaseTrigger(el.getAttribute('data-trigger') || 'exit_intent'); } catch(e) {}
+        }
+    });
+})();
+</script>
+
+    
+<div id="share-prompt" class="d-none mt-4">
+    <div class="text-center p-3 rounded-3" style="background:#f8f9ff;border:1px solid #e8ecff">
+        <p class="fw-semibold mb-2" style="font-size:.9rem">Love Free.ai? Tell your friends!</p>
+        <div class="d-flex gap-2 justify-content-center">
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#1DA1F2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-twitter" title="Share on X">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#1877F2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-facebook" title="Share on Facebook">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#0A66C2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-linkedin" title="Share on LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#FF4500;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-reddit" title="Share on Reddit">
+                <i class="bi bi-reddit"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#25D366;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-whatsapp" title="Share on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    var url = encodeURIComponent(window.location.href);
+    var text = encodeURIComponent('Check out this free AI tool on Free.ai!');
+    var s = document.getElementById('share-twitter');
+    if(s) s.href = 'https://twitter.com/intent/tweet?url='+url+'&text='+text;
+    s = document.getElementById('share-facebook');
+    if(s) s.href = 'https://www.facebook.com/sharer/sharer.php?u='+url;
+    s = document.getElementById('share-linkedin');
+    if(s) s.href = 'https://www.linkedin.com/sharing/share-offsite/?url='+url;
+    s = document.getElementById('share-reddit');
+    if(s) s.href = 'https://reddit.com/submit?url='+url+'&title='+text;
+    s = document.getElementById('share-whatsapp');
+    if(s) s.href = 'https://wa.me/?text='+text+' '+url;
+})();
+</script>
+
+
+    
+    
+    <div class="py-4 text-center border-top" style="background:#fafbff">
+        <p class="text-muted mb-2 small">Rate this page</p>
+        <div class="d-inline-flex gap-1" id="page-rating">
+            <button class="btn btn-link text-decoration-none p-0 page-star" data-r="1" style="font-size:1.3rem;color:#ddd"><i class="bi bi-star-fill"></i></button>
+            <button class="btn btn-link text-decoration-none p-0 page-star" data-r="2" style="font-size:1.3rem;color:#ddd"><i class="bi bi-star-fill"></i></button>
+            <button class="btn btn-link text-decoration-none p-0 page-star" data-r="3" style="font-size:1.3rem;color:#ddd"><i class="bi bi-star-fill"></i></button>
+            <button class="btn btn-link text-decoration-none p-0 page-star" data-r="4" style="font-size:1.3rem;color:#ddd"><i class="bi bi-star-fill"></i></button>
+            <button class="btn btn-link text-decoration-none p-0 page-star" data-r="5" style="font-size:1.3rem;color:#ddd"><i class="bi bi-star-fill"></i></button>
+        </div>
+        <p class="text-muted small mt-1" id="page-rating-status"></p>
+    </div>
+    <script>
+    (function(){
+        var rated=false, sel=0, starsList=document.querySelectorAll('.page-star'), stars=[].slice.call(starsList), st=document.getElementById('page-rating-status');
+        var page = 'api' || location.pathname;
+
+        // Half-star display: e.g., 4.3 → stars 1-4 full gold, star 5 partially
+        function setStars(avg){
+            stars.forEach(function(b, i){
+                var n = i + 1;
+                if(avg >= n) {
+                    b.style.color = '#fbbf24';
+                    b.querySelector('i').className = 'bi bi-star-fill';
+                } else if(avg >= n - 0.5) {
+                    b.style.color = '#fbbf24';
+                    b.querySelector('i').className = 'bi bi-star-half';
+                } else {
+                    b.style.color = '#ddd';
+                    b.querySelector('i').className = 'bi bi-star-fill';
+                }
+            });
+        }
+        function setFull(n){ stars.forEach(function(b,i){ b.style.color=i<n?'#fbbf24':'#ddd'; b.querySelector('i').className='bi bi-star-fill'; }); }
+
+        function showStatus(avg, count, yours){
+            if(!st) return;
+            var html = '';
+            // Only advertise the aggregate when it's actually social proof.
+            // The sweep on 2026-07-07 found 2.3-3.7/5 aggregates rendered on
+            // the homepage, /pricing/ and top tool pages - anti-trust right
+            // at the buy decision. We keep collecting votes either way.
+            if(avg >= 4.2 && count >= 5) html += '<span style="color:#fbbf24">★</span> ' + avg + '/5 from ' + count + ' ' + (count!==1 ? 'ratings' : 'rating');
+            if(yours > 0) html += (html?' · ':'') + 'Your vote: ' + yours;
+            st.innerHTML = html;
+        }
+
+        // Load current aggregate + user's existing vote
+        fetch('/api/v1/rate-page/?tool='+encodeURIComponent(page))
+            .then(function(r){return r.json()}).then(function(d){
+                if(d.avg >= 4.2 && d.count >= 5) setStars(d.avg);
+                if(d.user_rating > 0){ sel = d.user_rating; rated = true; }
+                showStatus(d.avg, d.count, d.user_rating);
+            }).catch(function(){});
+
+        stars.forEach(function(b){
+            b.addEventListener('click',function(){
+                sel=parseInt(this.dataset.r); rated=true; setFull(sel);
+                fetch('/api/v1/rate-page/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:page,rating:sel})})
+                .then(function(r){return r.json()}).then(function(d){
+                    if(d.avg) showStatus(d.avg, d.count, sel);
+                    if(st) st.style.color='#16A34A';
+                });
+            });
+            b.addEventListener('mouseenter',function(){if(!rated)setFull(parseInt(this.dataset.r))});
+        });
+        var c=document.getElementById('page-rating');
+        if(c)c.addEventListener('mouseleave',function(){setFull(sel)});
+    })();
+    </script>
+    
+
+    
+    <footer class="bg-dark text-light py-5 mt-0">
+        <div class="container">
+            
+            <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+                <div>
+                    <a href="/" class="text-decoration-none" style="font-size:1.5rem;font-weight:800">
+                        <span style="color:#16A34A">Free</span><span class="text-light">.ai</span>
+                    </a>
+                    <p class="text-secondary small mt-1 mb-0">Every AI tool. Completely free.<br>400+ tools · 346+ models · 100+ languages<br><a href="/models/" class="text-decoration-none" style="color:#16A34A;font-weight:600">All models. One subscription. →</a></p>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=free.ai" rel="noopener" class="d-inline-block mt-2">
+                        <img src="/static/img/google-play-badge.png" alt="Get it on Google Play" height="40" loading="lazy" style="height:40px;width:auto">
+                    </a>
+                </div>
+                <div style="min-width:250px">
+                    <p class="text-light small fw-semibold mb-1">Newsletter</p>
+                    <form id="newsletter-form" class="d-flex gap-1" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="RZw6OpiAlyliO51KQZwnuiKxqLUfTfjT3k6DqJ0j1BwlnTmxA0udT8TKCLbFVQKz">
+                        <input type="email" class="form-control form-control-sm" placeholder="your@email.com" required style="font-size:.75rem">
+                        <button type="submit" class="btn btn-primary btn-sm" style="font-size:.75rem">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Tools</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/chat/" class="text-light text-decoration-none">AI Chat</a></li>
+                        <li class="mb-1"><a href="/image/" class="text-light text-decoration-none">Image Generator</a></li>
+                        <li class="mb-1"><a href="/video/" class="text-light text-decoration-none">Video Generator</a></li>
+                        <li class="mb-1"><a href="/text-to-speech/" class="text-light text-decoration-none">Text to Speech</a></li>
+                        <li class="mb-1"><a href="/voice/" class="text-light text-decoration-none">AI Voice Generator</a></li>
+                        <li class="mb-1"><a href="/write/" class="text-light text-decoration-none">AI Writer</a></li>
+                        <li class="mb-1"><a href="/code/" class="text-light text-decoration-none">Code Generator</a></li>
+                        <li class="mb-1"><a href="/music/" class="text-light text-decoration-none">Music Generator</a></li>
+                        <li class="mb-1"><a href="/transcribe/" class="text-light text-decoration-none">Transcription</a></li>
+                        <li class="mb-1"><a href="/translate/" class="text-light text-decoration-none">Translator</a></li>
+                        <li class="mb-1"><a href="/text/humanizer/" class="text-light text-decoration-none">AI Humanizer</a></li>
+                        <li class="mb-1"><a href="/generator/" class="text-light text-decoration-none">AI Generator</a></li>
+                        <li class="mb-1"><a href="/tools/" class="text-light text-decoration-none fw-semibold">All 400+ &rarr;</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Explore</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        
+                        
+                        
+                        <li class="mb-1"><a href="/models/" class="text-light text-decoration-none">AI Models (346+)</a></li>
+                        <li class="mb-1"><a href="/voices/" class="text-light text-decoration-none">Voice Catalog</a></li>
+                        
+                        
+                        <li class="mb-1"><a href="/batch/" class="text-light text-decoration-none">Batch Processing</a></li>
+                        <li class="mb-1"><a href="/scheduled/" class="text-light text-decoration-none">Scheduled Tasks</a></li>
+                        <li class="mb-1"><a href="/tasks/" class="text-light text-decoration-none">Cloud Code Tasks</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Products</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/platform/" class="text-light text-decoration-none">Platform API</a></li>
+                        <li class="mb-1"><a href="/api/" class="text-light text-decoration-none">API</a></li>
+                        <li class="mb-1"><a href="/hosting/" class="text-light text-decoration-none">AI Hosting</a></li>
+                        <li class="mb-1"><a href="/gpu/" class="text-light text-decoration-none">GPU Access</a></li>
+                        <li class="mb-1"><a href="/coder/" class="text-light text-decoration-none">Free.ai Coder</a></li>
+                        <li class="mb-1"><a href="https://github.com/freeaigit/free-code" target="_blank" rel="noopener" class="text-light text-decoration-none"><i class="bi bi-github me-1"></i>GitHub</a></li>
+                        <li class="mb-1"><a href="/enterprise/" class="text-light text-decoration-none">Enterprise</a></li>
+                        <li class="mb-1"><a href="/agents/" class="text-light text-decoration-none">AI Agents</a></li>
+                        <li class="mb-1"><a href="/workflows/" class="text-light text-decoration-none">Workflows</a></li>
+                        <li class="mb-1"><a href="/integrations/" class="text-light text-decoration-none">Integrations</a></li>
+                        <li class="mb-1"><a href="/chrome-extension/" class="text-light text-decoration-none">Chrome Extension</a></li>
+                        <li class="mb-1"><a href="/widget/" class="text-light text-decoration-none">Widget</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Programs</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/contribute/" class="text-light text-decoration-none">Contribute</a></li>
+                        <li class="mb-1"><a href="/edu/" class="text-light text-decoration-none">Education</a></li>
+                        <li class="mb-1"><a href="/nonprofit/" class="text-light text-decoration-none">Nonprofit</a></li>
+                        <li class="mb-1"><a href="/open-source/" class="text-light text-decoration-none">Open Source</a></li>
+                        <li class="mb-1"><a href="/startup/" class="text-light text-decoration-none">Startups</a></li>
+                        <li class="mb-1"><a href="/learn/" class="text-light text-decoration-none">Learn AI</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Company</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/about/" class="text-light text-decoration-none">About</a></li>
+                        <li class="mb-1"><a href="/host/" class="text-light text-decoration-none">AI Hosting</a></li>
+                        <li class="mb-1"><a href="/domains/" class="text-light text-decoration-none">Domains</a></li>
+                        <li class="mb-1"><a href="/pricing/" class="text-light text-decoration-none">Pricing</a></li>
+                        <li class="mb-1"><a href="/for-teams/" class="text-light text-decoration-none">AI Tools for Teams</a></li>
+                        <li class="mb-1"><a href="/contact/" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-1"><a href="/security/" class="text-light text-decoration-none">Security</a></li>
+                        <li class="mb-1"><a href="/changelog/" class="text-light text-decoration-none">Changelog</a></li>
+                        <li class="mb-1"><a href="/roadmap/" class="text-light text-decoration-none">Roadmap</a></li>
+                        <li class="mb-1"><a href="/status/" class="text-light text-decoration-none">Status</a></li>
+                        <li class="mb-1"><a href="/privacy/" class="text-light text-decoration-none">Privacy</a></li>
+                        <li class="mb-1"><a href="/terms/" class="text-light text-decoration-none">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <p class="text-secondary small mb-0"><a href="/" class="text-secondary text-decoration-none">&copy; 2026 Free.ai</a>. All rights reserved. / <a href="https://muddyholdings.net" target="_blank" rel="noopener" class="text-secondary text-decoration-none">Muddy Holdings LLC</a></p>
+                <div class="d-flex gap-3">
+                    <a href="https://github.com/freeaigit" target="_blank" rel="noopener" class="text-secondary" title="GitHub"><i class="bi bi-github" style="font-size:1.1rem"></i></a>
+                    <a href="https://www.npmjs.com/package/freeai-code" target="_blank" rel="noopener" class="text-secondary" title="npm"><i class="bi bi-box-seam" style="font-size:1.1rem"></i></a>
+                    <a href="https://pypi.org/project/freeai-code/" target="_blank" rel="noopener" class="text-secondary" title="PyPI"><i class="bi bi-filetype-py" style="font-size:1.1rem"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="modal fade" id="ratelimit" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border:2px solid #16A34A">
+                <div class="modal-body text-center py-4 px-4">
+                    <div class="mb-3">
+                        <span style="font-size:3rem">&#9889;</span>
+                    </div>
+                    
+                    <h4 class="fw-bold mb-2">Want more?</h4>
+                    <p class="text-muted mb-3">Sign up free for 30,000 tokens every day. No credit card needed.</p>
+                    
+                    <form id="rl-signup-form" method="POST">
+                        <input type="hidden" id="rl-signup-token" value="1786480099:fIuKUfHE_pQ:661179b55e8de80332c19034">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control" id="rl-capture-email" placeholder="your@email.com" required>
+                            <button type="submit" class="btn btn-primary px-3">Get 30K/day</button>
+                        </div>
+                    </form>
+                    <p class="text-muted mb-3" style="font-size:.72rem">No password needed - we email you a sign-in link. <a href="/signup/" style="color:#16A34A">Prefer Google or Microsoft? &rarr;</a></p>
+                    <a href="/pricing/" class="btn btn-link text-muted small mb-1" style="font-size:.75rem;text-decoration:none">See all plans &rarr;</a>
+                    <button type="button" class="btn btn-link text-muted small" data-bs-dismiss="modal" style="font-size:.7rem;text-decoration:none">Wait for free reset (<span id="reset-timer">...</span>)</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js?v=1.0.1786428037"></script>
+
+    
+    <script async data-id="101503413" src="/f08a0c545d7e2.js"></script>
+
+    
+    <script>
+    window.FREE = window.FREE || {};
+    window.FREE.gpuApiUrl = 'https://api.free.ai';
+    window.FREE.mediaGpuUrl = 'https://media.free.ai';
+    window.FREE.inferenceGpuUrl = 'https://gpu4.free.ai';
+    window.FREE.csrfToken = 'RZw6OpiAlyliO51KQZwnuiKxqLUfTfjT3k6DqJ0j1BwlnTmxA0udT8TKCLbFVQKz';
+    window.FREE.isAuth = false;
+    window.FREE.page = 'api';
+    window.FREE.userLang = 'en';
+    window.FREE.langName = 'English';
+    
+    window.FREE.capabilities = {"bg-removal": {"label": "Model", "default": "free", "free": [{"model_id": "rmbg", "name": "RMBG (free, fast)", "cost": 1000, "desc": "Fast, default \u2014 clean silhouettes / products"}, {"model_id": "birefnet", "name": "BiRefNet (free, sharp)", "cost": 1000, "desc": "Sharper hair / fur / fine edges"}], "premium": [], "endpoint_free": "/v1/image/remove-bg/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "remove_bg"}}, "depth-map": {"label": "Depth model", "default": "free", "free": [{"model_id": "marigold-depth", "name": "Marigold (free)", "cost": 1500, "desc": "Sharp, OpenRAIL++-M, ETH Zurich"}], "premium": [{"model_id": "premium/imageutils/depth", "name": "Fast Depth (premium)", "cost": 1500, "desc": "Quicker on huge inputs"}], "endpoint_free": "/v1/image/depth-map/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "depth"}}, "image-edit": {"label": "Edit model", "default": "free", "free": [{"model_id": "qwen-image-edit", "name": "Qwen-Image-Edit (free, direct)", "cost": 1000, "desc": "Apache 2.0, prompt-following \u2014 fastest free instruction edit"}, {"model_id": "step1x-edit", "name": "Step1X-Edit (free, reasoning)", "cost": 2000, "desc": "Apache 2.0, thinks + reflects \u2014 best on multi-step / abstract edits"}, {"model_id": "sdxl", "name": "SDXL img2img (free)", "cost": 1000, "desc": "Older fallback \u2014 looser instruction following"}], "premium": [{"model_id": "premium/flux-pro/kontext", "name": "FLUX Kontext Pro", "cost": 30000, "desc": "Strong instruction-following on complex prompts"}, {"model_id": "premium/bytedance/seedream/v4/edit", "name": "Seedream 4 Edit", "cost": 52000, "desc": "Best for text + logo preservation"}, {"model_id": "premium/nano-banana-pro/edit", "name": "Nano Banana Pro Edit", "cost": 112000, "desc": "Highest-quality general-purpose edit"}], "endpoint_free": "/v1/image/edit/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "img2img"}}, "vision-describe": {"label": "Vision model", "default": "free", "free": [{"model_id": "qwen25-vl", "name": "Qwen 2.5-VL (free)", "cost": 500, "desc": "Apache 2.0, strong general"}], "premium": [], "endpoint_free": "/v1/image/describe/", "endpoint_premium": "/v1/image/describe/"}, "controlnet": {"label": "Conditioning type", "default": "free", "free": [{"model_id": "canny", "name": "Canny edges", "cost": 1200, "desc": "Hard outlines from line drawings / photos"}, {"model_id": "pose", "name": "OpenPose", "cost": 1200, "desc": "Body skeleton \u2014 copy pose / gesture"}, {"model_id": "depth", "name": "Depth (MiDaS)", "cost": 1200, "desc": "Preserve 3D scene geometry"}, {"model_id": "scribble", "name": "Scribble / PiDi", "cost": 1200, "desc": "Loose doodles \u2192 finished art"}, {"model_id": "lineart", "name": "Lineart", "cost": 1200, "desc": "Clean ink-line / manga-style edges"}, {"model_id": "anime-lineart", "name": "Anime lineart", "cost": 1200, "desc": "Anime-tuned lineart extraction"}, {"model_id": "mlsd", "name": "MLSD (straight lines)", "cost": 1200, "desc": "Architecture / interior straight edges"}, {"model_id": "hed", "name": "HED soft edges", "cost": 1200, "desc": "Smooth holistic edge map"}, {"model_id": "soft-edge", "name": "Soft-edge", "cost": 1200, "desc": "PiDiNet soft-edge \u2014 gentler than canny"}, {"model_id": "normal", "name": "Normal map", "cost": 1200, "desc": "Surface orientation \u2014 preserve volume"}, {"model_id": "segmentation", "name": "Segmentation", "cost": 1200, "desc": "Region labels \u2014 restyle per object"}, {"model_id": "tile", "name": "Tile (variation)", "cost": 1200, "desc": "Refine / upscale / variation"}], "premium": [], "endpoint_free": "/v1/image/generate/", "endpoint_premium": "/v1/image/generate/", "extra_form_fields": {"model": "sdxl"}}, "talking-head": {"label": "Model", "default": "free", "free": [{"model_id": "sadtalker", "name": "SadTalker (free)", "cost": 6000, "desc": "MIT, ~10s/sec of video"}], "premium": [{"model_id": "premium/sync-labs/lipsync", "name": "Lipsync (premium)", "cost": 20000, "desc": "Sharper mouth, faster"}], "endpoint_free": "/v1/video/talking-head/", "endpoint_premium": "/v1/video/lip-sync/"}};
+    // Paid-CTA wall-anchor A/B arm (accounts/ab.py, server IP-hash). utils.js
+    // PAID_CTA.aimHigh reads this - 'micro' for everyone while the experiment
+    // flag is off.
+    window.FREE.paidCtaArm = 'aimhigh';
+    
+    
+    window.FREE.isConfirmed = false;
+    
+    </script>
+    
+    
+
+    
+    <script src="/static/js/utils.js?v=1.0.1786428037"></script>
+    
+    <script src="/static/js/global-search.js?v=1.0.1786428037"></script>
+    
+    <script src="/static/js/voice-loader.js?v=1.0.1786428037"></script>
+
+    <script>
+    window.FREE.i18n = {
+        error_generic: 'Something went wrong. Please try again.',
+        error_connection: 'Connection error - please try again.',
+        error_no_response: 'Sorry, I could not generate a response.',
+        error_text_long: 'Text too long. Maximum',
+        error_characters: 'characters.',
+        error_upload_image: 'Please upload an image first.',
+        error_upload_audio: 'Please upload an audio file.',
+        error_upload_file: 'Please upload a file first.',
+        error_enter_desc: 'Please enter a description.',
+        error_enter_text: 'Please enter some text.',
+        error_processing: 'Processing failed. Please try again.',
+        error_image_gen: 'Failed to generate image. Please try again.',
+        error_tts: 'Failed to generate speech. Please try again.',
+        error_music: 'Music generation failed.',
+        error_audio_sep: 'Audio separation failed.',
+        error_face_swap: 'Please upload both a source photo and a target photo.',
+        copied: 'Copied!',
+        img_upscale_4k_cta: 'Upscale to 4K',
+        
+        img_model_nudge_title: 'Not quite matching your description?',
+        img_model_nudge_body: 'The default model is fast but loose with details. These follow detailed prompts more closely:',
+        img_model_nudge_flux: 'Try FLUX.1 \u002D free',
+        img_model_nudge_premium: 'Try a Premium model',
+        img_model_nudge_switched: 'Model switched \u002D hit Generate again to compare',
+        audio_stems_cta: 'Split into Stems',
+        
+        upsell_do_more: 'Do more with this result',
+        img_upscale_4k_cta_cost: 'Upscale to 4K \u002D {0} tokens',
+        img_variations_cta_cost: '4 more variations \u002D {0} tokens',
+        upsell_variations_ready: 'Variations ready',
+        audio_stems_cta_cost: 'Split into Stems \u002D ~{0} tokens',
+        video_retake_cta: 'Generate another take',
+        video_retake_cta_cost: 'Generate another take \u002D {0} tokens',
+        
+        pack_low_only: 'Only',
+        pack_low_tail: 'purchased tokens left.',
+        pack_low_refill: 'Refill \u002D 200K for $5',
+        pack_low_sub: 'or $5/mo \u002D 250K every month',
+        
+        firstgen_title: 'Your first creation is ready',
+        firstgen_body: 'Made with your free daily tokens. Keep the momentum:',
+        firstgen_body_left: '{0} of your free daily tokens left \u002D keep the momentum:',
+        firstgen_cta_starter: 'Go unlimited \u002D 500K tokens/mo, no daily caps',
+        firstgen_cta_micro: 'Keep creating \u002D 40K tokens for $1',
+        firstgen_cta_once: 'or just this once \u002D 40K for $1',
+        firstgen_confirm_hint: 'Free option: confirm your email to raise your daily pool to 30K tokens.',
+        new_chat: 'New Chat',
+        queue_running: 'Running on GPU…',
+        queue_pos_priority: 'Position #{0} in priority queue…',
+        queue_pos_normal: 'Position #{0} in queue…',
+        queue_waiting: 'Waiting for a worker…',
+        queue_upgrade_cta: 'Skip the line - priority from $1',
+        queue_upgrade_hint: '- any purchase runs first',
+        queue_wait_eta: '{0} wait',
+        queue_upgrade_hint_wait: '- skip the {0} wait',
+        queue_failed_generic: 'Generation failed. Please try again.',
+        queue_failed_cta: 'Skip the line next time - priority from $1',
+        queue_failed_hint: '- paid jobs are run first, so they do not wait for a free slot',
+        queue_still_working: 'Still working - the result will be saved to your account history.',
+        video_free_cap: 'Free videos are up to 3-second CogVideoX clips - Pro unlocks up to 8s, HunyuanVideo HD, and priority (skip the queue).',
+        upgrade_to_pro: 'Upgrade to Pro →',
+        processing: 'Processing your request...',
+        result: 'Result',
+        // Pool warning messages - surfaced from utils.js pool modal/toast
+        pool_low_headline: 'Running low on daily tokens',
+        pool_critical_headline: 'Almost out of daily tokens',
+        pool_empty_headline: 'Daily token pool used up',
+        pool_remaining_of: 'of',
+        pool_daily_tokens_left: 'daily tokens left',
+        pool_cta_signup: 'Sign up \u002D 30K/day',
+        pool_cta_signup_long: 'Sign up free \u002D 30K/day',
+        pool_cta_buy_short: 'Get 200K \u002D $5',
+        pool_cta_buy_long: 'Get 200K tokens \u002D $5',
+        pool_cta_sub_long: 'Get 250K tokens every month \u002D $5/mo',
+        pool_cta_pack_alt: 'or a one\u002Dtime 200K pack for $5',
+        pool_see_plans: 'See all plans',
+        pool_see_pricing: 'See pricing',
+        
+        pool_cta_starter_short: '500K/mo, no caps',
+        pool_cta_starter: '500K tokens/mo, no daily caps',
+        pool_cta_buy_micro_alt: 'Or $1 once \u002D 40K',
+        
+        cap_headline: 'Daily free {0} limit reached',
+        cap_lead: 'This is a per\u002Dtool limit, not your token balance. Your remaining daily tokens still work on every other tool, and this resets tomorrow.',
+        cap_pill_left: '{0} {1} tokens left today',
+        cap_pill_done: 'Daily {0} limit reached',
+        cap_note: 'Free plan: {0} {1} tokens a day, separate from your token pool. Upgrade to remove the limit.',
+        cap_label_image: 'image',
+        cap_label_image_edit: 'image edit',
+        cap_label_music: 'music',
+        cap_label_video: 'video',
+        img_one_failed: 'One image in this batch failed. Please try again.',
+        // 429 / 402 inline CTAs rendered into the chat / coder transcript when
+        // the daily pool is exhausted (429) or the model costs more than the
+        // user can afford (402). Wired by static/js/coder.js error handler.
+        // HTML allowed (anchor tags) - strings are inserted via innerHTML.
+        coder_429_authed: 'Daily limit reached. \u003Ca href\u003D\u0022/checkout/?plan\u003Dtokens_small\u0022 style\u003D\u0022color:#16A34A\u003Bfont\u002Dweight:600\u0022\u003EBuy 200K tokens \u002D $5\u003C/a\u003E or \u003Ca href\u003D\u0022/pricing/\u0022 style\u003D\u0022color:#16A34A\u0022\u003Eview plans\u003C/a\u003E.',
+        coder_429_anon: 'Daily tokens used up. \u003Ca href\u003D\u0022/signup/\u0022 style\u003D\u0022color:#16A34A\u003Bfont\u002Dweight:600\u0022\u003ESign up free \u002D 30K/day\u003C/a\u003E or \u003Ca href\u003D\u0022/pricing/\u0022 style\u003D\u0022color:#16A34A\u0022\u003Eview plans\u003C/a\u003E.',
+        coder_402_prefix: 'Not enough tokens for',
+        coder_402_topup: 'Top up',
+        coder_402_or_pick_free: 'or pick a free model',
+        // /coder/ paid-model block card - fires when user selects a paid model
+        // without enough wallet credits. Rendered as a red inline card via
+        // static/js/coder.js model-switch handler (line ~1373).
+        coder_requires_purchased_tokens: 'requires purchased tokens.',
+        coder_free_daily_only: 'Free daily tokens only work with free models (Qwen Coder, Mistral).',
+        coder_get_tokens: 'Get Tokens',
+        coder_signup_30k_free: 'Sign Up \u002D 30K/day Free',
+        coder_use_free_model: 'Use Free Model',
+        // coder.js reads these so its JS-built strings localize (placeholder
+        // is also rendered server-side on the textarea, but coder.js re-sets it
+        // on model-enable and must not clobber it back to English).
+        coder_input_placeholder: 'Describe what you want to build, paste code to debug, or ask a question...',
+        coder_no_files_loaded: 'No files loaded. Upload files or clone a repo.',
+        coder_purchased_required_placeholder: 'Purchased tokens required for this model',
+        coder_new_session: 'New session',
+        coder_no_sessions: 'No sessions yet',
+        coder_delete_session: 'Delete session',
+        coder_copied: 'Copied!',
+        coder_copy: 'Copy',
+        coder_invalid_github_url: 'Please enter a valid GitHub URL',
+        coder_cloning: 'Cloning...',
+        coder_clone: 'Clone',
+        coder_failed_to_clone: 'Failed to clone:',
+        coder_no_pending_changes: 'No pending changes',
+        coder_monaco_loading: 'Monaco editor still loading. Please try again in a moment.',
+        coder_autodetecting: 'Auto\u002Ddetecting project type...',
+        coder_detect_failed_cmd: 'Could not detect start command.',
+        coder_detection_failed: 'Detection failed:',
+        coder_stream_error: 'Stream error:',
+        coder_no_files_download: 'No files to download. Upload or generate files first.',
+        chat_stop_generation: 'Stop generation',
+        chat_context_label: 'Context: ',
+        chat_context_full: 'Context full \u002D old messages trimmed',
+        chat_processing_tools: 'Processing \u002D searching the web or using tools...',
+        chat_still_working: 'Still working \u002D complex requests take longer...',
+        chat_no_messages_export: 'No messages to export.',
+        chat_nothing_to_branch: 'Nothing to branch yet \u002D send a message first.',
+        chat_could_not_branch: 'Could not branch:',
+        chat_no_messages_share: 'No messages to share yet \u002D send a message first.',
+        chat_share_failed: 'Failed to create share link.',
+        chat_share_link_notice: 'Anyone with the link can read your conversation. Link expires in ',
+        chat_close: 'Close',
+        chat_running_on_gpu: 'Running on GPU…',
+        // Premium-feature CTA shown under chat refusals for non-paid users.
+        // Wording is intentionally neutral ("some features") so the upsell
+        // doesn't read as "we serve explicit content for $5/mo" - both legal
+        // and brand-wise, that framing was a non-starter. Free users see the
+        // hint, paid users skip it (their plan presumably includes more
+        // permissive premium models).
+        premium_features_hint: 'Some of the features you are requesting are for paying customers only.',
+        premium_features_cta: 'Upgrade →',
+        pool_see_plans_link: 'see plans',
+        pool_modal_msg_auth: 'You have used all your daily free tokens. Grab a token pack to keep going \u002D packs never expire.',
+        pool_modal_msg_anon: 'You have used the free anonymous tokens for today. Sign up free to get 30,000 every day \u002D 12x more.',
+        rl_autotopup_ok: 'Auto\u002Drefill is on \u002D you will never hit this wall again.',
+        rl_autotopup_err: 'Could not save right now \u002D please try again.',
+        pool_come_back_later: 'Not now',
+        pool_resets_in: 'Resets in',
+        pool_nudge_only: 'Only',
+        pool_nudge_tail: 'daily tokens left.',
+        // Cost-shortfall banner (utils.js showCostShortfallModal) - these were
+        // never in the i18n bridge, so the banner rendered English on every
+        // locale. Added 2026-07-07 with the tool-shaped offer rework.
+        shortfall_head: 'Not enough tokens for ',
+        shortfall_body_mid: ' tokens. You have ',
+        shortfall_anon_tail: 'daily free tokens.',
+        shortfall_authed_tail: 'tokens.',
+        shortfall_cta_signup_v2: 'Sign up free \u002D 30,000 tokens every day',
+        shortfall_cta_micro: 'Keep going \u002D $1 for',
+        shortfall_cta_buy: 'Buy 200K tokens \u002D $5',
+        
+        shortfall_cta_starter: 'Go unlimited \u002D 500K/mo, no caps',
+        shortfall_cta_micro_secondary: 'Or $1 once \u002D',
+        shortfall_cta_small_secondary: 'Or $5 \u002D',
+        shortfall_cta_switch_prefix: 'Use ',
+        shortfall_cta_switch_suffix: ' (free) instead',
+        shortfall_cta_pricing: 'See plans',
+        shortfall_email_ph: 'you@email.com',
+        shortfall_signup_page: 'Full sign\u002Dup',
+        resume_prompt_ready: 'You are in \u002D your prompt is ready. Click Generate to make it.',
+        resume_prompt_generating: 'You are in \u002D generating your result now…',
+        shortfall_hint_anon_v2: 'A free account gets 30,000 tokens every day \u002D enough for this, free, daily. Packs from $1 if you want more.',
+        shortfall_hint_pack_caps: 'Purchased tokens also remove the daily caps and never expire.',
+        unit_videos: 'videos',
+        unit_songs: 'songs',
+        unit_images: 'images',
+        unit_3d_models: '3D models',
+        unit_generations: 'generations',
+        tokens_word: 'tokens',
+        nav_anon_free_today: 'free today',
+        chat_free_today_label: 'free today',
+        queued_view_result: 'View result',
+        download: 'Download',
+        queued_done_dashboard: 'Done \u002D the result is saved in \u003Ca href\u003D\u0022/account/?tab\u003Dhistory\u0022\u003Eyour dashboard\u003C/a\u003E.',
+        // Generic UI labels surfaced from utils.js helpers (Enhance prompt, Before/After slider).
+        enhance_prompt: 'Enhance prompt',
+        enhance_prompt_title: 'Rewrite your prompt for richer results',
+        enhancing: 'Enhancing...',
+        before: 'Before',
+        after: 'After',
+        // Chat folder + rename prompts (from chat.js).
+        chat_folder_name_prompt: 'Folder name',
+        chat_folder_delete_confirm: 'Delete folder {name}? Its chats will move to Unfiled.',
+        chat_new_title: 'New title',
+        // Chat Projects (folder + shared instructions, from chat.js).
+        chat_project_new_prompt: 'Project name',
+        chat_project_delete_confirm: 'Delete project {name}? Its chats move to Unfiled and its instructions are removed.',
+        chat_project_new_chat: 'New chat in this project',
+        chat_project_edit_instr: 'Edit project instructions',
+        chat_project_delete_title: 'Delete project (chats move to Unfiled)',
+        chat_project_instr_desc: 'These instructions are added to every new chat you start in this project.',
+        chat_project_instr_ph: 'e.g. You are helping me write a mystery novel. Keep a dark, terse tone.',
+        chat_project_save: 'Save',
+        chat_project_cancel: 'Cancel',
+        // Work-chat server sync (from chat.js). Positional {0} slot — MT rule.
+        chat_sync_limit_notice: 'Free accounts sync {0} chats across devices. Older chats stay on this device.',
+        chat_sync_limit_cta: 'Upgrade for unlimited synced history',
+        // Coder SaaS scaffolder strings (from coder-saas.js).
+        coder_saas_build: 'Build it',
+        coder_saas_building: 'Building...',
+        coder_saas_sandbox_starting: 'Spinning up sandbox...',
+        coder_saas_app_live: 'Your app is live. Click below to open the preview in a new tab.',
+        coder_saas_open_preview: 'Open preview',
+        // coder-saas.js scaffolder step labels - round out the translation
+        // sweep flagged earlier by the audit. All read via FREE.i18n with
+        // English fallback inside the file.
+        coder_saas_thinking: 'Thinking...',
+        coder_saas_writing: 'Writing',
+        coder_saas_chars: 'chars',
+        coder_saas_running: 'Running',
+        coder_saas_applying_patch: 'Applying patch',
+        coder_saas_reading: 'Reading',
+        coder_saas_listing: 'Listing files in',
+        coder_saas_saved: 'Saved',
+        coder_saas_failed: 'Failed',
+        coder_saas_unknown_error: 'unknown error',
+        coder_saas_done: 'Done.',
+        coder_saas_approval_unexpected: 'Awaiting approval (unexpected \u002D scaffolder runs unattended).',
+        coder_saas_agent_error: 'Agent error',
+        coder_saas_sandbox_ready: 'Sandbox ready',
+        coder_saas_scaffolding: 'Asking the agent to scaffold.',
+        coder_saas_build_failed: 'Build failed.',
+        // chat.js modal sweep - welcome tour, cheatsheet, prompts manager,
+        // slash commands. Each key matches a T('key', 'fallback') call inside
+        // chat.js. seed_translations scans this file so adding a new key here
+        // is enough - no separate text_entries.json edit required.
+        chat_prompt_insert: 'Insert',
+        chat_prompts_empty: 'No saved prompts yet. Add one below.',
+        chat_prompts_title: 'Saved Prompts',
+        chat_prompts_desc: 'Reusable prompt templates. Insert via the slash menu (type /p) or the buttons below. Stored in this browser only.',
+        chat_prompt_name_ph: 'Name (e.g. Friendly tone rewrite)',
+        chat_prompt_body_ph: 'Prompt body \u002D clicking Insert pastes this into the chat input',
+        chat_prompt_save: 'Save Prompt',
+        chat_slash_image: 'Generate an image \u002D pre\u002Dfills Make an image of',
+        chat_slash_music: 'Compose music \u002D pre\u002Dfills Compose music:',
+        chat_slash_video: 'Generate video \u002D opens /video/generate/',
+        chat_slash_search: 'Web search \u002D pre\u002Dfills Search the web for',
+        chat_slash_translate: 'Translate \u002D pre\u002Dfills Translate to Spanish:',
+        chat_slash_voice: 'Read text aloud \u002D pre\u002Dfills Read this aloud:',
+        chat_slash_p: 'Insert a saved prompt template',
+        chat_slash_prompts: 'Manage saved prompts',
+        chat_slash_clear: 'Start a new chat',
+        chat_slash_star: 'Star/unstar this chat',
+        chat_slash_rename: 'Rename this chat',
+        chat_slash_rename_prompt: 'New title',
+        chat_slash_help: 'Show keyboard shortcuts',
+        chat_cheatsheet_title: 'Keyboard shortcuts',
+        chat_kbd_send: 'Send message',
+        chat_kbd_newline: 'Newline in input',
+        chat_kbd_recall: 'Recall previous message \u002D repeat to walk back',
+        chat_kbd_recall_fwd: 'Walk forward / clear',
+        chat_kbd_slash: 'Slash command palette',
+        chat_kbd_cheatsheet: 'This cheatsheet',
+        chat_kbd_esc: 'Close menu / modal',
+        chat_kbd_search: 'Site\u002Dwide tool search',
+        chat_features_h: 'Features you might not know about',
+        chat_feat_memory_t: 'Memory',
+        chat_feat_memory_d: 'the AI remembers facts across chats.',
+        chat_feat_skills_t: 'Skills',
+        chat_feat_skills_d: 'save instructions that auto\u002Dapply across chats.',
+        chat_feat_folders_t: 'Folders',
+        chat_feat_folders_d: 'group chats. Plus button in sidebar.',
+        chat_feat_branch_t: 'Branch',
+        chat_feat_branch_d: 'fork a chat at any user message.',
+        chat_feat_star_t: 'Star',
+        chat_feat_star_d: 'pin chats to top of sidebar.',
+        chat_feat_edit_t: 'Edit',
+        chat_feat_edit_d: 'pencil icon on user messages \u002D rewrites and regenerates.',
+        chat_feat_stop_t: 'Stop',
+        chat_feat_stop_d: 'Send button turns red mid\u002Dstream\u003B click to abort.',
+        chat_feat_voice_t: 'Voice',
+        chat_feat_voice_d: 'mic icon listens. Speak naturally\u003B auto\u002Dstops on silence.',
+        chat_feat_search_t: 'Web search',
+        chat_feat_search_d: 'type search and AI auto\u002Dcites sources.',
+        chat_feat_image_t: 'Image gen inline',
+        chat_feat_image_d: 'type make an image of and it appears in chat.',
+        chat_feat_math_t: 'Math',
+        chat_feat_math_d: 'wrap in dollar signs for inline, double dollars for display.',
+        chat_feat_drafts_t: 'Drafts',
+        chat_feat_drafts_d: 'in\u002Dprogress message saves per\u002Dchat across reloads.',
+        chat_feat_tab_t: 'Tab notify',
+        chat_feat_tab_d: 'page title flashes when AI finishes if you switched tabs.',
+        chat_feat_artifacts_t: 'Artifacts',
+        chat_feat_artifacts_d: 'long code/HTML responses auto\u002Dopen in Canvas side\u002Dpanel.',
+        chat_feat_prompts_t: 'Saved prompts',
+        chat_feat_prompts_d: 'type slash p to manage reusable prompt templates.',
+        chat_feat_slash_t: 'Slash commands',
+        chat_feat_slash_d: 'type slash at start of input for the command palette.',
+        chat_take_tour: 'Take the welcome tour',
+        chat_tour_h: 'Welcome to Free.ai Chat',
+        chat_tour_sub: 'A quick tour of what makes this chat different.',
+        chat_tour_models_t: '380+ models in one picker',
+        chat_tour_models_d: 'Free Qwen / Mistral / DeepSeek plus the leading paid models \u002D same chat, switch any time.',
+        chat_tour_inline_t: 'Generate inline',
+        chat_tour_inline_d: 'Image, music, search, voice \u002D generated right in the chat.',
+        chat_tour_memskills_t: 'Memory + Skills',
+        chat_tour_memskills_d: 'Remembers facts you tell it. Save reusable instructions that auto\u002Dapply across chats.',
+        chat_tour_branch_t: 'Branch + folders',
+        chat_tour_branch_d: 'Fork any chat at any message. Group chats into folders. Star to pin to the top.',
+        chat_tour_voice_t: 'Voice in + voice out',
+        chat_tour_voice_d: 'Click the mic to speak. AI replies in voice if you want. Click mic mid\u002Dresponse to interrupt.',
+        chat_tour_kbd_t: 'Power\u002Duser keys',
+        chat_tour_kbd_d: 'Type slash for slash commands. Press question mark for the full cheatsheet. Up arrow recalls your last message.',
+        chat_tour_freeforever: 'Free forever.',
+        chat_tour_pricing: '30K tokens/day no signup. Even more for signed\u002Dup users. $1 \u003D 40K extra.',
+        chat_tour_see_kbd: 'See all keyboard shortcuts →',
+        chat_tour_close: 'Got it, let me chat',
+    };
+    window.onerror = function(msg, src, line, col, err) {
+        navigator.sendBeacon('/api/accounts/log-error/', JSON.stringify({
+            message: msg, source: src, lineno: line, colno: col,
+            stack: (err && err.stack) || '', url: location.href
+        }));
+    };
+    // Service Worker. Wrapped in try/catch because some sandboxed iframe
+    // contexts (school filters, Yahoo Mail / Outlook preview frames) throw
+    // SecurityError on the `navigator.serviceWorker` *access itself* - the
+    // `'serviceWorker' in navigator` check is true in those contexts but
+    // the property is unreadable. The catch swallows that silently.
+    try {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/sw.js').catch(function(){});
+        }
+    } catch (_e) {}
+
+    // Dark Mode Toggle
+    (function(){
+        var btn = document.getElementById('dark-mode-toggle');
+        if (!btn) return;
+        var icon = btn.querySelector('i');
+        function updateIcon(){
+            var isDark = document.documentElement.classList.contains('dark');
+            icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        }
+        updateIcon();
+        btn.addEventListener('click', function(){
+            var isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('free_dark_mode', isDark ? 'true' : 'false');
+            updateIcon();
+        });
+    })();
+
+    // A/B test: signup CTA text
+    // Signup CTA - just "Sign Up"
+    (function(){
+        var btn = document.getElementById('signup-cta');
+        if (btn) btn.textContent = 'Sign Up' || 'Sign Up';
+    })();
+    </script>
+    
+
+    
+    <script>
+    (function() {
+        var wrap = document.getElementById('chat-wrapper') || document.querySelector('.myai-layout');
+        if (!wrap) return;
+        function fixH() {
+            var r = wrap.getBoundingClientRect();
+            if (r.top > 0) wrap.style.height = (window.innerHeight - r.top) + 'px';
+        }
+        fixH();
+        window.addEventListener('resize', fixH);
+        window.addEventListener('load', fixH);
+        setTimeout(fixH, 300);
+    })();
+    </script>
+
+</body>
+</html>

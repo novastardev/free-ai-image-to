@@ -1,0 +1,1883 @@
+{
+  "scraped_at": "2026-08-11T22:11:55.845Z",
+  "browser": "puppeteer",
+  "image_tools": [
+    {
+      "name": "AI Image Editor",
+      "url": "https://free.ai/image/edit",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "edit-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - instruction-based edit"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [
+          {
+            "id": "edit-prompt",
+            "placeholder": "e.g., change the shirt to navy blue, add a sunset, remove the background, make it look like a watercolor painting..."
+          }
+        ],
+        "text_inputs": [
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 3,
+        "textarea_count": 1
+      },
+      "title": "Free AI Image Editor - Prompt-Driven Edit with Kontext & Seedream | Free.ai"
+    },
+    {
+      "name": "AI Image Enhancer",
+      "url": "https://free.ai/image/enhance",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "enhance-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - denoise + sharpen blend"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "qwen-image-edit",
+                "label": "Qwen-Image-Edit (free, best instruction following)"
+              },
+              {
+                "value": "realesrgan",
+                "label": "Real-ESRGAN — enhance (free)"
+              },
+              {
+                "value": "sdxl",
+                "label": "SDXL image-to-image (free)"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          }
+        ],
+        "select_count": 2,
+        "textarea_count": 0
+      },
+      "title": "Free AI Image Enhancer - Sharpen, Denoise & Color-Pop | Free.ai"
+    },
+    {
+      "name": "AI Image Upscaler",
+      "url": "https://free.ai/image/upscaler",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "upscale-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - Real-ESRGAN, fast"
+              }
+            ]
+          },
+          {
+            "id": "upscale-scale",
+            "options": [
+              {
+                "value": "2",
+                "label": "2× - good for web & social"
+              },
+              {
+                "value": "4",
+                "label": "4× - best for print & large displays"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "qwen-image-edit",
+                "label": "Qwen-Image-Edit (free, best instruction following)"
+              },
+              {
+                "value": "realesrgan",
+                "label": "Real-ESRGAN — enhance (free)"
+              },
+              {
+                "value": "sdxl",
+                "label": "SDXL image-to-image (free)"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          }
+        ],
+        "select_count": 3,
+        "textarea_count": 0
+      },
+      "title": "Free AI Image Upscaler - 2x & 4x Resolution Boost | Free.ai"
+    },
+    {
+      "name": "Background Remover",
+      "url": "https://free.ai/image/background-remover",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "bgrm-model",
+            "options": [
+              {
+                "value": "rmbg",
+                "label": "RMBG (free, fast) — Fast, default — clean silhouettes / products"
+              },
+              {
+                "value": "birefnet",
+                "label": "BiRefNet (free, sharp) — Sharper hair / fur / fine edges"
+              }
+            ]
+          },
+          {
+            "id": "bgrm-quality",
+            "options": [
+              {
+                "value": "auto",
+                "label": "Auto (recommended)"
+              },
+              {
+                "value": "high",
+                "label": "High (slower, cleanest edges)"
+              },
+              {
+                "value": "fast",
+                "label": "Fast (quicker, good edges)"
+              }
+            ]
+          },
+          {
+            "id": "bgrm-format",
+            "options": [
+              {
+                "value": "png",
+                "label": "PNG (preserves transparency)"
+              },
+              {
+                "value": "webp",
+                "label": "WebP (smaller file)"
+              },
+              {
+                "value": "jpg",
+                "label": "JPG (no transparency)"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 5,
+        "textarea_count": 0
+      },
+      "title": "Free AI Background Remover | Free.ai"
+    },
+    {
+      "name": "Object Remover",
+      "url": "https://free.ai/image/object-remover",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "removal-mode",
+            "options": [
+              {
+                "value": "auto",
+                "label": "Auto (AI detects & removes)"
+              },
+              {
+                "value": "clean",
+                "label": "Clean Fill (smooth background)"
+              },
+              {
+                "value": "context",
+                "label": "Context-Aware (match surroundings)"
+              }
+            ]
+          },
+          {
+            "id": "removal-output",
+            "options": [
+              {
+                "value": "png",
+                "label": "PNG (lossless)"
+              },
+              {
+                "value": "jpg",
+                "label": "JPG (smaller file)"
+              },
+              {
+                "value": "webp",
+                "label": "WebP (modern, small)"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 4,
+        "textarea_count": 0
+      },
+      "title": "Free AI Object Remover | Free.ai"
+    },
+    {
+      "name": "Face Swap",
+      "url": "https://free.ai/image/face-swap"
+    },
+    {
+      "name": "AI 3D Generator",
+      "url": "https://free.ai/image/3d"
+    },
+    {
+      "name": "AI Depth Map Generator",
+      "url": "https://free.ai/image/depth-map"
+    },
+    {
+      "name": "AI Anime Generator",
+      "url": "https://free.ai/image/anime"
+    },
+    {
+      "name": "AI Cartoon Generator",
+      "url": "https://free.ai/image/cartoon"
+    },
+    {
+      "name": "AI Realistic Image Generator",
+      "url": "https://free.ai/image/realistic"
+    },
+    {
+      "name": "AI Fantasy Art Generator",
+      "url": "https://free.ai/image/fantasy"
+    },
+    {
+      "name": "AI Oil Painting Generator",
+      "url": "https://free.ai/image/oil-painting"
+    },
+    {
+      "name": "AI Watercolor Generator",
+      "url": "https://free.ai/image/watercolor"
+    },
+    {
+      "name": "AI Vintage Image Generator",
+      "url": "https://free.ai/image/vintage"
+    },
+    {
+      "name": "AI Landscape Generator",
+      "url": "https://free.ai/image/landscape"
+    },
+    {
+      "name": "AI Sketch Generator",
+      "url": "https://free.ai/image/sketch"
+    },
+    {
+      "name": "AI QR Code Generator",
+      "url": "https://free.ai/image/qr-code"
+    },
+    {
+      "name": "AI Wallpaper Generator",
+      "url": "https://free.ai/image/wallpaper"
+    },
+    {
+      "name": "AI Meme Generator",
+      "url": "https://free.ai/image/meme"
+    },
+    {
+      "name": "AI GIF Generator",
+      "url": "https://free.ai/image/gif"
+    },
+    {
+      "name": "AI Pixel Art",
+      "url": "https://free.ai/image/pixel-art"
+    },
+    {
+      "name": "AI Banner Generator",
+      "url": "https://free.ai/image/banner"
+    },
+    {
+      "name": "AI Flyer Generator",
+      "url": "https://free.ai/image/flyer"
+    },
+    {
+      "name": "AI Mockup Generator",
+      "url": "https://free.ai/image/mockup"
+    },
+    {
+      "name": "AI Infographic",
+      "url": "https://free.ai/image/infographic"
+    },
+    {
+      "name": "AI Comic Generator",
+      "url": "https://free.ai/image/comic"
+    },
+    {
+      "name": "Watermark Remover",
+      "url": "https://free.ai/image/watermark-remover"
+    },
+    {
+      "name": "AI Image Expander",
+      "url": "https://free.ai/image/expand"
+    },
+    {
+      "name": "AI Photo Colorizer",
+      "url": "https://free.ai/image/colorize"
+    },
+    {
+      "name": "AI Photo Restoration",
+      "url": "https://free.ai/image/restore"
+    },
+    {
+      "name": "AI Image Unblur",
+      "url": "https://free.ai/image/unblur"
+    },
+    {
+      "name": "AI Selfie Enhancer",
+      "url": "https://free.ai/image/selfie"
+    },
+    {
+      "name": "AI T-Shirt Design",
+      "url": "https://free.ai/image/t-shirt"
+    },
+    {
+      "name": "AI Album Cover",
+      "url": "https://free.ai/image/album-cover"
+    },
+    {
+      "name": "AI Book Cover",
+      "url": "https://free.ai/image/book-cover"
+    },
+    {
+      "name": "Canny Edge to Image (ControlNet)",
+      "url": "https://free.ai/image/canny-to-image"
+    },
+    {
+      "name": "Sketch to Image",
+      "url": "https://free.ai/image/sketch-to-image"
+    },
+    {
+      "name": "Pose to Image",
+      "url": "https://free.ai/image/pose-to-image"
+    },
+    {
+      "name": "Depth to Image",
+      "url": "https://free.ai/image/depth-to-image"
+    },
+    {
+      "name": "Scribble to Image",
+      "url": "https://free.ai/image/scribble-to-image"
+    },
+    {
+      "name": "ControlNet (12 in 1)",
+      "url": "https://free.ai/image/controlnet"
+    },
+    {
+      "name": "AI Art Generator",
+      "url": "https://free.ai/image/ai-art"
+    },
+    {
+      "name": "AI Painting Generator",
+      "url": "https://free.ai/image/painting"
+    },
+    {
+      "name": "AI Photography",
+      "url": "https://free.ai/image/photography"
+    },
+    {
+      "name": "AI Food Photo",
+      "url": "https://free.ai/image/food-photo"
+    },
+    {
+      "name": "AI Wedding Photo",
+      "url": "https://free.ai/image/wedding"
+    },
+    {
+      "name": "AI Baby Photo Generator",
+      "url": "https://free.ai/image/baby"
+    },
+    {
+      "name": "AI Yearbook Photo",
+      "url": "https://free.ai/image/yearbook"
+    },
+    {
+      "name": "LinkedIn Photo Generator",
+      "url": "https://free.ai/image/linkedin-photo"
+    },
+    {
+      "name": "ID Photo Generator",
+      "url": "https://free.ai/image/id-photo"
+    },
+    {
+      "name": "Old Photo Enhancer",
+      "url": "https://free.ai/image/old-photo-enhancer"
+    },
+    {
+      "name": "AI Face Restoration",
+      "url": "https://free.ai/image/face-restore"
+    },
+    {
+      "name": "AI Image Describer",
+      "url": "https://free.ai/image/image-to-text"
+    },
+    {
+      "name": "Text to Image",
+      "url": "https://free.ai/image/text-to-image"
+    },
+    {
+      "name": "AI Outpainting",
+      "url": "https://free.ai/image/outpainting"
+    },
+    {
+      "name": "AI Inpainting",
+      "url": "https://free.ai/image/inpainting"
+    },
+    {
+      "name": "AI Style Transfer",
+      "url": "https://free.ai/image/style-transfer"
+    },
+    {
+      "name": "Image to Image",
+      "url": "https://free.ai/image/image-to-image"
+    },
+    {
+      "name": "AI Color Palette Generator",
+      "url": "https://free.ai/image/color-palette"
+    },
+    {
+      "name": "AI Reimagine",
+      "url": "https://free.ai/image/reimagine"
+    },
+    {
+      "name": "AI Relight",
+      "url": "https://free.ai/image/relight"
+    },
+    {
+      "name": "AI Image Detector",
+      "url": "https://free.ai/image/ai-detector"
+    },
+    {
+      "name": "AI Retouch",
+      "url": "https://free.ai/image/retouch"
+    },
+    {
+      "name": "AI Skin Enhancer",
+      "url": "https://free.ai/image/skin-enhance"
+    },
+    {
+      "name": "AI Camera Angle Changer",
+      "url": "https://free.ai/image/camera-angle"
+    },
+    {
+      "name": "Image Translation",
+      "url": "https://free.ai/translate/image"
+    }
+  ],
+  "image_tool_details": [
+    {
+      "name": "AI Image Editor",
+      "url": "https://free.ai/image/edit",
+      "title": "Free AI Image Editor - Prompt-Driven Edit with Kontext & Seedream | Free.ai",
+      "description": "Edit any image with a plain-English prompt. Recolor, restyle, add, or remove objects using FLUX Kontext, Seedream Edit, and Nano Banana Pro Edit - no mask required.",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "edit-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - instruction-based edit"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [
+          {
+            "id": "edit-prompt",
+            "placeholder": "e.g., change the shirt to navy blue, add a sunset, remove the background, make it look like a watercolor painting..."
+          }
+        ],
+        "text_inputs": [
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 3,
+        "textarea_count": 1
+      },
+      "has_token_info": true,
+      "has_model_selector": true,
+      "has_negative_prompt": true,
+      "has_seed_input": false,
+      "upload_status": "upload_failed",
+      "has_files": false,
+      "api_calls": [],
+      "api_responses": [
+        {
+          "url": "https://api.free.ai/v1/providers",
+          "status": 200,
+          "body_preview": "{\"premium\":{\"configured\":true,\"models\":[{\"id\":\"premium/flux-pro/v1.1-ultra\",\"name\":\"FLUX 1.1 Pro Ultra\",\"type\":\"image\",\"token_cost\":67500},{\"id\":\"premium/flux/dev\",\"name\":\"FLUX.1 Dev\",\"type\":\"image\",\"token_cost\":28125},{\"id\":\"premium/flux-pro/kontext\",\"name\":\"FLUX Kontext Pro (edit)\",\"type\":\"image_edit\",\"token_cost\":45000},{\"id\":\"premium/ideogram/v2\",\"name\":\"Ideogram v2\",\"type\":\"image\",\"token_cost\":90000},{\"id\":\"premium/ideogram/v3\",\"name\":\"Ideogram v3\",\"type\":\"image\",\"token_cost\":101250},{\"id\":"
+        },
+        {
+          "url": "https://free.ai/api/v1/daily-status/",
+          "status": 200,
+          "body_preview": "{\"remaining\": 6000, \"pool\": 6000, \"used\": 0, \"resets_in\": 7232}"
+        },
+        {
+          "url": "https://api.free.ai/v1/providers",
+          "status": 200,
+          "body_preview": "{\"premium\":{\"configured\":true,\"models\":[{\"id\":\"premium/flux-pro/v1.1-ultra\",\"name\":\"FLUX 1.1 Pro Ultra\",\"type\":\"image\",\"token_cost\":67500},{\"id\":\"premium/flux/dev\",\"name\":\"FLUX.1 Dev\",\"type\":\"image\",\"token_cost\":28125},{\"id\":\"premium/flux-pro/kontext\",\"name\":\"FLUX Kontext Pro (edit)\",\"type\":\"image_edit\",\"token_cost\":45000},{\"id\":\"premium/ideogram/v2\",\"name\":\"Ideogram v2\",\"type\":\"image\",\"token_cost\":90000},{\"id\":\"premium/ideogram/v3\",\"name\":\"Ideogram v3\",\"type\":\"image\",\"token_cost\":101250},{\"id\":"
+        }
+      ]
+    },
+    {
+      "name": "AI Image Enhancer",
+      "url": "https://free.ai/image/enhance",
+      "title": "Free AI Image Enhancer - Sharpen, Denoise & Color-Pop | Free.ai",
+      "description": "Boost image quality with AI. Denoise, sharpen, and color-pop in one click - preserves original dimensions. Standard + Topaz Image + Recraft Crisp included.",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "enhance-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - denoise + sharpen blend"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "qwen-image-edit",
+                "label": "Qwen-Image-Edit (free, best instruction following)"
+              },
+              {
+                "value": "realesrgan",
+                "label": "Real-ESRGAN — enhance (free)"
+              },
+              {
+                "value": "sdxl",
+                "label": "SDXL image-to-image (free)"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          }
+        ],
+        "select_count": 2,
+        "textarea_count": 0
+      },
+      "has_token_info": true,
+      "has_model_selector": true,
+      "has_negative_prompt": true,
+      "has_seed_input": false,
+      "upload_status": "error"
+    },
+    {
+      "name": "AI Image Upscaler",
+      "url": "https://free.ai/image/upscaler",
+      "title": "Free AI Image Upscaler - 2x & 4x Resolution Boost | Free.ai",
+      "description": "Upscale images 2x or 4x with AI. Standard Real-ESRGAN free-pool, plus premium Topaz Image Upscale, ESRGAN, and Ideogram Upscale for true resolution rebuild.",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "upscale-model",
+            "options": [
+              {
+                "value": "realesrgan",
+                "label": "Standard - Real-ESRGAN, fast"
+              }
+            ]
+          },
+          {
+            "id": "upscale-scale",
+            "options": [
+              {
+                "value": "2",
+                "label": "2× - good for web & social"
+              },
+              {
+                "value": "4",
+                "label": "4× - best for print & large displays"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "qwen-image-edit",
+                "label": "Qwen-Image-Edit (free, best instruction following)"
+              },
+              {
+                "value": "realesrgan",
+                "label": "Real-ESRGAN — enhance (free)"
+              },
+              {
+                "value": "sdxl",
+                "label": "SDXL image-to-image (free)"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          }
+        ],
+        "select_count": 3,
+        "textarea_count": 0
+      },
+      "has_token_info": true,
+      "has_model_selector": true,
+      "has_negative_prompt": true,
+      "has_seed_input": false,
+      "upload_status": "error"
+    },
+    {
+      "name": "Background Remover",
+      "url": "https://free.ai/image/background-remover",
+      "title": "Free AI Background Remover | Free.ai",
+      "description": "Remove backgrounds from images instantly with AI. Clean, transparent backgrounds in seconds.",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "bgrm-model",
+            "options": [
+              {
+                "value": "rmbg",
+                "label": "RMBG (free, fast) — Fast, default — clean silhouettes / products"
+              },
+              {
+                "value": "birefnet",
+                "label": "BiRefNet (free, sharp) — Sharper hair / fur / fine edges"
+              }
+            ]
+          },
+          {
+            "id": "bgrm-quality",
+            "options": [
+              {
+                "value": "auto",
+                "label": "Auto (recommended)"
+              },
+              {
+                "value": "high",
+                "label": "High (slower, cleanest edges)"
+              },
+              {
+                "value": "fast",
+                "label": "Fast (quicker, good edges)"
+              }
+            ]
+          },
+          {
+            "id": "bgrm-format",
+            "options": [
+              {
+                "value": "png",
+                "label": "PNG (preserves transparency)"
+              },
+              {
+                "value": "webp",
+                "label": "WebP (smaller file)"
+              },
+              {
+                "value": "jpg",
+                "label": "JPG (no transparency)"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 5,
+        "textarea_count": 0
+      },
+      "has_token_info": true,
+      "has_model_selector": true,
+      "has_negative_prompt": true,
+      "has_seed_input": false,
+      "upload_status": "error"
+    },
+    {
+      "name": "Object Remover",
+      "url": "https://free.ai/image/object-remover",
+      "title": "Free AI Object Remover | Free.ai",
+      "description": "Remove unwanted objects from photos with AI. Clean up images in seconds.",
+      "form": {
+        "has_file": true,
+        "file_fields": [
+          {
+            "id": "file-input",
+            "name": ""
+          },
+          {
+            "id": "tool-ref-image",
+            "name": ""
+          }
+        ],
+        "selects": [
+          {
+            "id": "removal-mode",
+            "options": [
+              {
+                "value": "auto",
+                "label": "Auto (AI detects & removes)"
+              },
+              {
+                "value": "clean",
+                "label": "Clean Fill (smooth background)"
+              },
+              {
+                "value": "context",
+                "label": "Context-Aware (match surroundings)"
+              }
+            ]
+          },
+          {
+            "id": "removal-output",
+            "options": [
+              {
+                "value": "png",
+                "label": "PNG (lossless)"
+              },
+              {
+                "value": "jpg",
+                "label": "JPG (smaller file)"
+              },
+              {
+                "value": "webp",
+                "label": "WebP (modern, small)"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-model",
+            "options": [
+              {
+                "value": "sdxl",
+                "label": "Stable Diffusion XL (free)"
+              },
+              {
+                "value": "flux2-klein",
+                "label": "FLUX.2 Klein 4B (free)"
+              },
+              {
+                "value": "google/gemini-2.5-flash-image",
+                "label": "Nano Banana — cheap + fast (~225 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3.1-flash-image-preview",
+                "label": "Gemini 3.1 Flash Image (~375 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "google/gemini-3-pro-image-preview",
+                "label": "Gemini 3 Pro Image (~1,500 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image-mini",
+                "label": "GPT-5 Image Mini (~1,875 tok) — 🔒 Sign up"
+              },
+              {
+                "value": "openai/gpt-5-image",
+                "label": "GPT-5 Image (~7,500 tok) — 🔒 Sign up"
+              }
+            ]
+          },
+          {
+            "id": "tool-image-count",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ]
+          }
+        ],
+        "textareas": [],
+        "text_inputs": [
+          {
+            "type": "text",
+            "name": "",
+            "id": "prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "number",
+            "name": "",
+            "id": "tool-image-seed",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "name": "",
+            "id": "tool-negative-prompt",
+            "min": "",
+            "max": "",
+            "default": ""
+          },
+          {
+            "type": "range",
+            "name": "",
+            "id": "tool-ref-scale",
+            "min": "0.1",
+            "max": "1.0",
+            "default": "0.5"
+          }
+        ],
+        "select_count": 4,
+        "textarea_count": 0
+      },
+      "has_token_info": true,
+      "has_model_selector": true,
+      "has_negative_prompt": true,
+      "has_seed_input": false,
+      "upload_status": "error"
+    },
+    {
+      "name": "Face Swap",
+      "url": "https://free.ai/image/face-swap"
+    },
+    {
+      "name": "AI 3D Generator",
+      "url": "https://free.ai/image/3d"
+    },
+    {
+      "name": "AI Depth Map Generator",
+      "url": "https://free.ai/image/depth-map"
+    },
+    {
+      "name": "AI Anime Generator",
+      "url": "https://free.ai/image/anime"
+    },
+    {
+      "name": "AI Cartoon Generator",
+      "url": "https://free.ai/image/cartoon"
+    },
+    {
+      "name": "AI Realistic Image Generator",
+      "url": "https://free.ai/image/realistic"
+    },
+    {
+      "name": "AI Fantasy Art Generator",
+      "url": "https://free.ai/image/fantasy"
+    },
+    {
+      "name": "AI Oil Painting Generator",
+      "url": "https://free.ai/image/oil-painting"
+    },
+    {
+      "name": "AI Watercolor Generator",
+      "url": "https://free.ai/image/watercolor"
+    },
+    {
+      "name": "AI Vintage Image Generator",
+      "url": "https://free.ai/image/vintage"
+    },
+    {
+      "name": "AI Landscape Generator",
+      "url": "https://free.ai/image/landscape"
+    },
+    {
+      "name": "AI Sketch Generator",
+      "url": "https://free.ai/image/sketch"
+    },
+    {
+      "name": "AI QR Code Generator",
+      "url": "https://free.ai/image/qr-code"
+    },
+    {
+      "name": "AI Wallpaper Generator",
+      "url": "https://free.ai/image/wallpaper"
+    },
+    {
+      "name": "AI Meme Generator",
+      "url": "https://free.ai/image/meme"
+    },
+    {
+      "name": "AI GIF Generator",
+      "url": "https://free.ai/image/gif"
+    },
+    {
+      "name": "AI Pixel Art",
+      "url": "https://free.ai/image/pixel-art"
+    },
+    {
+      "name": "AI Banner Generator",
+      "url": "https://free.ai/image/banner"
+    },
+    {
+      "name": "AI Flyer Generator",
+      "url": "https://free.ai/image/flyer"
+    },
+    {
+      "name": "AI Mockup Generator",
+      "url": "https://free.ai/image/mockup"
+    },
+    {
+      "name": "AI Infographic",
+      "url": "https://free.ai/image/infographic"
+    },
+    {
+      "name": "AI Comic Generator",
+      "url": "https://free.ai/image/comic"
+    },
+    {
+      "name": "Watermark Remover",
+      "url": "https://free.ai/image/watermark-remover"
+    },
+    {
+      "name": "AI Image Expander",
+      "url": "https://free.ai/image/expand"
+    },
+    {
+      "name": "AI Photo Colorizer",
+      "url": "https://free.ai/image/colorize"
+    },
+    {
+      "name": "AI Photo Restoration",
+      "url": "https://free.ai/image/restore"
+    },
+    {
+      "name": "AI Image Unblur",
+      "url": "https://free.ai/image/unblur"
+    },
+    {
+      "name": "AI Selfie Enhancer",
+      "url": "https://free.ai/image/selfie"
+    },
+    {
+      "name": "AI T-Shirt Design",
+      "url": "https://free.ai/image/t-shirt"
+    },
+    {
+      "name": "AI Album Cover",
+      "url": "https://free.ai/image/album-cover"
+    },
+    {
+      "name": "AI Book Cover",
+      "url": "https://free.ai/image/book-cover"
+    },
+    {
+      "name": "Canny Edge to Image (ControlNet)",
+      "url": "https://free.ai/image/canny-to-image"
+    },
+    {
+      "name": "Sketch to Image",
+      "url": "https://free.ai/image/sketch-to-image"
+    },
+    {
+      "name": "Pose to Image",
+      "url": "https://free.ai/image/pose-to-image"
+    },
+    {
+      "name": "Depth to Image",
+      "url": "https://free.ai/image/depth-to-image"
+    },
+    {
+      "name": "Scribble to Image",
+      "url": "https://free.ai/image/scribble-to-image"
+    },
+    {
+      "name": "ControlNet (12 in 1)",
+      "url": "https://free.ai/image/controlnet"
+    },
+    {
+      "name": "AI Art Generator",
+      "url": "https://free.ai/image/ai-art"
+    },
+    {
+      "name": "AI Painting Generator",
+      "url": "https://free.ai/image/painting"
+    },
+    {
+      "name": "AI Photography",
+      "url": "https://free.ai/image/photography"
+    },
+    {
+      "name": "AI Food Photo",
+      "url": "https://free.ai/image/food-photo"
+    },
+    {
+      "name": "AI Wedding Photo",
+      "url": "https://free.ai/image/wedding"
+    },
+    {
+      "name": "AI Baby Photo Generator",
+      "url": "https://free.ai/image/baby"
+    },
+    {
+      "name": "AI Yearbook Photo",
+      "url": "https://free.ai/image/yearbook"
+    },
+    {
+      "name": "LinkedIn Photo Generator",
+      "url": "https://free.ai/image/linkedin-photo"
+    },
+    {
+      "name": "ID Photo Generator",
+      "url": "https://free.ai/image/id-photo"
+    },
+    {
+      "name": "Old Photo Enhancer",
+      "url": "https://free.ai/image/old-photo-enhancer"
+    },
+    {
+      "name": "AI Face Restoration",
+      "url": "https://free.ai/image/face-restore"
+    },
+    {
+      "name": "AI Image Describer",
+      "url": "https://free.ai/image/image-to-text"
+    },
+    {
+      "name": "Text to Image",
+      "url": "https://free.ai/image/text-to-image"
+    },
+    {
+      "name": "AI Outpainting",
+      "url": "https://free.ai/image/outpainting"
+    },
+    {
+      "name": "AI Inpainting",
+      "url": "https://free.ai/image/inpainting"
+    },
+    {
+      "name": "AI Style Transfer",
+      "url": "https://free.ai/image/style-transfer"
+    },
+    {
+      "name": "Image to Image",
+      "url": "https://free.ai/image/image-to-image"
+    },
+    {
+      "name": "AI Color Palette Generator",
+      "url": "https://free.ai/image/color-palette"
+    },
+    {
+      "name": "AI Reimagine",
+      "url": "https://free.ai/image/reimagine"
+    },
+    {
+      "name": "AI Relight",
+      "url": "https://free.ai/image/relight"
+    },
+    {
+      "name": "AI Image Detector",
+      "url": "https://free.ai/image/ai-detector"
+    },
+    {
+      "name": "AI Retouch",
+      "url": "https://free.ai/image/retouch"
+    },
+    {
+      "name": "AI Skin Enhancer",
+      "url": "https://free.ai/image/skin-enhance"
+    },
+    {
+      "name": "AI Camera Angle Changer",
+      "url": "https://free.ai/image/camera-angle"
+    },
+    {
+      "name": "Image Translation",
+      "url": "https://free.ai/translate/image"
+    }
+  ],
+  "models": [
+    {
+      "model": "Stable Diffusion XL",
+      "tokens_per_image": "1000",
+      "best_for": "Fast drafts, concepts, general-purpose images"
+    },
+    {
+      "model": "FLUX.2 Klein",
+      "tokens_per_image": "5000",
+      "best_for": "High quality, detailed images, photorealism"
+    },
+    {
+      "model": "Gemini 2.5 Flash Image",
+      "tokens_per_image": "225",
+      "best_for": "Cheapest option, fast generation from Google"
+    },
+    {
+      "model": "Gemini 3.1 Flash Image",
+      "tokens_per_image": "375",
+      "best_for": "Fast, affordable image generation from Google"
+    },
+    {
+      "model": "Gemini 3 Pro Image",
+      "tokens_per_image": "1500",
+      "best_for": "High-quality image generation from Google"
+    },
+    {
+      "model": "GPT-5 Image Mini",
+      "tokens_per_image": "1875",
+      "best_for": "Affordable OpenAI image generation"
+    },
+    {
+      "model": "GPT-5 Image",
+      "tokens_per_image": "7500",
+      "best_for": "Best quality, OpenAI flagship image model"
+    }
+  ],
+  "model_options": [
+    {
+      "value": "qwen7b",
+      "label": "Qwen 2.5 7B"
+    },
+    {
+      "value": "sdxl",
+      "label": "Stable Diffusion XL"
+    },
+    {
+      "value": "flux2-klein",
+      "label": "FLUX.2 Klein"
+    },
+    {
+      "value": "google/gemini-2.5-flash-image",
+      "label": "Gemini 2.5 Flash Image - Nano Banana — 🔒 Sign up"
+    },
+    {
+      "value": "google/gemini-3.1-flash-image-preview",
+      "label": "Gemini 3.1 Flash Image — 🔒 Sign up"
+    },
+    {
+      "value": "google/gemini-3-pro-image-preview",
+      "label": "Gemini 3 Pro Image — 🔒 Sign up"
+    },
+    {
+      "value": "openai/gpt-5-image-mini",
+      "label": "GPT-5 Image Mini — 🔒 Sign up"
+    },
+    {
+      "value": "openai/gpt-5-image",
+      "label": "GPT-5 Image — 🔒 Sign up"
+    }
+  ],
+  "aspect_ratios": [
+    "1:1 (Square)",
+    "16:9 (Landscape)",
+    "9:16 (Portrait)",
+    "4:3",
+    "3:4"
+  ],
+  "styles": [
+    "Photographic",
+    "Digital Art",
+    "Anime",
+    "3D Render",
+    "Pencil Sketch",
+    "Watercolor",
+    "Oil Painting",
+    "Pixel Art"
+  ],
+  "features": [
+    "no watermark",
+    "no sign-up",
+    "free",
+    "commercial use",
+    "multiple models",
+    "negative prompt",
+    "style reference",
+    "instant download",
+    "generate in chat",
+    "multiple"
+  ],
+  "stats": {
+    "total_models": "4 models"
+  },
+  "api": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/v1/chat/Chat"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/generate/Text"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/edit/Inpaint"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/enhance/Upscale"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/remove-bg/Remove"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/video/generate/Text/image"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/tts/Generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/tts/stream/Streaming"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/stt/transcribe/Transcribe"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/music/generate/Generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/music/separate/Separate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/write/Generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/code/generate/Generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/summarize/Summarize"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/humanize/Make"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/detect/Detect"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/translate/Translate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/ocr/Extract"
+      },
+      {
+        "method": "GET",
+        "path": "/v1/modelsList"
+      },
+      {
+        "method": "GET",
+        "path": "/v1/status"
+      },
+      {
+        "method": "GET",
+        "path": "/v1/models"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/chat"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/image/generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/video/generate"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/tts"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/translate"
+      }
+    ],
+    "image_endpoints": [
+      {
+        "method": "POST",
+        "path": "/v1/image/generate/Text"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/edit/Inpaint"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/enhance/Upscale"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/image/remove-bg/Remove"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/video/generate/Text/image"
+      },
+      {
+        "method": "POST",
+        "path": "/v1/v1/image/generate"
+      }
+    ]
+  },
+  "upload_tests": [
+    {
+      "name": "AI Image Editor",
+      "url": "https://free.ai/image/edit",
+      "upload_status": "upload_failed",
+      "hasFiles": false,
+      "submit_button": "process-btn",
+      "api_calls": [],
+      "api_responses": [
+        {
+          "url": "https://api.free.ai/v1/providers",
+          "status": 200,
+          "body_preview": "{\"premium\":{\"configured\":true,\"models\":[{\"id\":\"premium/flux-pro/v1.1-ultra\",\"name\":\"FLUX 1.1 Pro Ultra\",\"type\":\"image\",\"token_cost\":67500},{\"id\":\"premium/flux/dev\",\"name\":\"FLUX.1 Dev\",\"type\":\"image\",\"token_cost\":28125},{\"id\":\"premium/flux-pro/kontext\",\"name\":\"FLUX Kontext Pro (edit)\",\"type\":\"image_edit\",\"token_cost\":45000},{\"id\":\"premium/ideogram/v2\",\"name\":\"Ideogram v2\",\"type\":\"image\",\"token_cost\":90000},{\"id\":\"premium/ideogram/v3\",\"name\":\"Ideogram v3\",\"type\":\"image\",\"token_cost\":101250},{\"id\":"
+        },
+        {
+          "url": "https://free.ai/api/v1/daily-status/",
+          "status": 200,
+          "body_preview": "{\"remaining\": 6000, \"pool\": 6000, \"used\": 0, \"resets_in\": 7232}"
+        },
+        {
+          "url": "https://api.free.ai/v1/providers",
+          "status": 200,
+          "body_preview": "{\"premium\":{\"configured\":true,\"models\":[{\"id\":\"premium/flux-pro/v1.1-ultra\",\"name\":\"FLUX 1.1 Pro Ultra\",\"type\":\"image\",\"token_cost\":67500},{\"id\":\"premium/flux/dev\",\"name\":\"FLUX.1 Dev\",\"type\":\"image\",\"token_cost\":28125},{\"id\":\"premium/flux-pro/kontext\",\"name\":\"FLUX Kontext Pro (edit)\",\"type\":\"image_edit\",\"token_cost\":45000},{\"id\":\"premium/ideogram/v2\",\"name\":\"Ideogram v2\",\"type\":\"image\",\"token_cost\":90000},{\"id\":\"premium/ideogram/v3\",\"name\":\"Ideogram v3\",\"type\":\"image\",\"token_cost\":101250},{\"id\":"
+        }
+      ]
+    },
+    {
+      "name": "AI Image Enhancer",
+      "url": "https://free.ai/image/enhance",
+      "upload_status": "error"
+    },
+    {
+      "name": "AI Image Upscaler",
+      "url": "https://free.ai/image/upscaler",
+      "upload_status": "error"
+    },
+    {
+      "name": "Background Remover",
+      "url": "https://free.ai/image/background-remover",
+      "upload_status": "error"
+    },
+    {
+      "name": "Object Remover",
+      "url": "https://free.ai/image/object-remover",
+      "upload_status": "error"
+    }
+  ]
+}

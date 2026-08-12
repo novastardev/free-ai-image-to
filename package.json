@@ -1,0 +1,16 @@
+{
+  "name": "freeai-scraper",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Puppeteer-based scraper for free.ai image tools",
+  "main": "scraper.mjs",
+  "scripts": {
+    "scrape": "node scraper.mjs",
+    "scrape:tools": "node scraper.mjs tools",
+    "scrape:details": "node scraper.mjs details",
+    "scrape:curls": "node scraper.mjs curls"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

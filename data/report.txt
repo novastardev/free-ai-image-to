@@ -1,0 +1,148 @@
+═══════════════════════════════════════════════════════════
+  FREE.AI IMAGE TOOLS — SCRAPER REPORT (Puppeteer)
+  Generated: 2026-08-11T22:11:55.845Z
+═══════════════════════════════════════════════════════════
+
+📸 Image Tools Catalogued: 67
+🤖 Image Models: 7
+🔌 API Endpoints: 26
+   (Image-specific: 6)
+
+── MODELS & TOKEN COSTS ──────────────────────────────
+  • Stable Diffusion XL          ~  1000 tokens/image  (Fast drafts, concepts, general-purpose images)
+  • FLUX.2 Klein                 ~  5000 tokens/image  (High quality, detailed images, photorealism)
+  • Gemini 2.5 Flash Image       ~   225 tokens/image  (Cheapest option, fast generation from Google)
+  • Gemini 3.1 Flash Image       ~   375 tokens/image  (Fast, affordable image generation from Google)
+  • Gemini 3 Pro Image           ~  1500 tokens/image  (High-quality image generation from Google)
+  • GPT-5 Image Mini             ~  1875 tokens/image  (Affordable OpenAI image generation)
+  • GPT-5 Image                  ~  7500 tokens/image  (Best quality, OpenAI flagship image model)
+
+── ALL MODEL OPTIONS (by dropdown) ─────────────────
+  qwen7b                                             → Qwen 2.5 7B
+  sdxl                                               → Stable Diffusion XL
+  flux2-klein                                        → FLUX.2 Klein
+  google/gemini-2.5-flash-image                      → Gemini 2.5 Flash Image - Nano Banana — 🔒 Sign up
+  google/gemini-3.1-flash-image-preview              → Gemini 3.1 Flash Image — 🔒 Sign up
+  google/gemini-3-pro-image-preview                  → Gemini 3 Pro Image — 🔒 Sign up
+  openai/gpt-5-image-mini                            → GPT-5 Image Mini — 🔒 Sign up
+  openai/gpt-5-image                                 → GPT-5 Image — 🔒 Sign up
+
+── ASPECT RATIOS: 1:1 (Square), 16:9 (Landscape), 9:16 (Portrait), 4:3, 3:4
+── STYLES: Photographic, Digital Art, Anime, 3D Render, Pencil Sketch, Watercolor, Oil Painting, Pixel Art
+── FEATURES: no watermark, no sign-up, free, commercial use, multiple models, negative prompt, style reference, instant download, generate in chat, multiple
+
+── IMAGE TOOLS (full catalog) ───────────────────────
+    1. AI Image Editor                     https://free.ai/image/edit
+    2. AI Image Enhancer                   https://free.ai/image/enhance
+    3. AI Image Upscaler                   https://free.ai/image/upscaler
+    4. Background Remover                  https://free.ai/image/background-remover
+    5. Object Remover                      https://free.ai/image/object-remover
+    6. Face Swap                           https://free.ai/image/face-swap
+    7. AI 3D Generator                     https://free.ai/image/3d
+    8. AI Depth Map Generator              https://free.ai/image/depth-map
+    9. AI Anime Generator                  https://free.ai/image/anime
+   10. AI Cartoon Generator                https://free.ai/image/cartoon
+   11. AI Realistic Image Generator        https://free.ai/image/realistic
+   12. AI Fantasy Art Generator            https://free.ai/image/fantasy
+   13. AI Oil Painting Generator           https://free.ai/image/oil-painting
+   14. AI Watercolor Generator             https://free.ai/image/watercolor
+   15. AI Vintage Image Generator          https://free.ai/image/vintage
+   16. AI Landscape Generator              https://free.ai/image/landscape
+   17. AI Sketch Generator                 https://free.ai/image/sketch
+   18. AI QR Code Generator                https://free.ai/image/qr-code
+   19. AI Wallpaper Generator              https://free.ai/image/wallpaper
+   20. AI Meme Generator                   https://free.ai/image/meme
+   21. AI GIF Generator                    https://free.ai/image/gif
+   22. AI Pixel Art                        https://free.ai/image/pixel-art
+   23. AI Banner Generator                 https://free.ai/image/banner
+   24. AI Flyer Generator                  https://free.ai/image/flyer
+   25. AI Mockup Generator                 https://free.ai/image/mockup
+   26. AI Infographic                      https://free.ai/image/infographic
+   27. AI Comic Generator                  https://free.ai/image/comic
+   28. Watermark Remover                   https://free.ai/image/watermark-remover
+   29. AI Image Expander                   https://free.ai/image/expand
+   30. AI Photo Colorizer                  https://free.ai/image/colorize
+   31. AI Photo Restoration                https://free.ai/image/restore
+   32. AI Image Unblur                     https://free.ai/image/unblur
+   33. AI Selfie Enhancer                  https://free.ai/image/selfie
+   34. AI T-Shirt Design                   https://free.ai/image/t-shirt
+   35. AI Album Cover                      https://free.ai/image/album-cover
+   36. AI Book Cover                       https://free.ai/image/book-cover
+   37. Canny Edge to Image (ControlNet)    https://free.ai/image/canny-to-image
+   38. Sketch to Image                     https://free.ai/image/sketch-to-image
+   39. Pose to Image                       https://free.ai/image/pose-to-image
+   40. Depth to Image                      https://free.ai/image/depth-to-image
+   41. Scribble to Image                   https://free.ai/image/scribble-to-image
+   42. ControlNet (12 in 1)                https://free.ai/image/controlnet
+   43. AI Art Generator                    https://free.ai/image/ai-art
+   44. AI Painting Generator               https://free.ai/image/painting
+   45. AI Photography                      https://free.ai/image/photography
+   46. AI Food Photo                       https://free.ai/image/food-photo
+   47. AI Wedding Photo                    https://free.ai/image/wedding
+   48. AI Baby Photo Generator             https://free.ai/image/baby
+   49. AI Yearbook Photo                   https://free.ai/image/yearbook
+   50. LinkedIn Photo Generator            https://free.ai/image/linkedin-photo
+   51. ID Photo Generator                  https://free.ai/image/id-photo
+   52. Old Photo Enhancer                  https://free.ai/image/old-photo-enhancer
+   53. AI Face Restoration                 https://free.ai/image/face-restore
+   54. AI Image Describer                  https://free.ai/image/image-to-text
+   55. Text to Image                       https://free.ai/image/text-to-image
+   56. AI Outpainting                      https://free.ai/image/outpainting
+   57. AI Inpainting                       https://free.ai/image/inpainting
+   58. AI Style Transfer                   https://free.ai/image/style-transfer
+   59. Image to Image                      https://free.ai/image/image-to-image
+   60. AI Color Palette Generator          https://free.ai/image/color-palette
+   61. AI Reimagine                        https://free.ai/image/reimagine
+   62. AI Relight                          https://free.ai/image/relight
+   63. AI Image Detector                   https://free.ai/image/ai-detector
+   64. AI Retouch                          https://free.ai/image/retouch
+   65. AI Skin Enhancer                    https://free.ai/image/skin-enhance
+   66. AI Camera Angle Changer             https://free.ai/image/camera-angle
+   67. Image Translation                   https://free.ai/translate/image
+
+── CURL EXAMPLES (auto-generated from form fields) ─
+# AI Image Editor
+# https://free.ai/image/edit
+curl -X POST https://free.ai/image/edit \
+  -F "file-input=@your-image.jpg"
+  -F "edit-prompt='your prompt here'"
+  -F "edit-model=realesrgan"
+  -F "tool-image-model=sdxl"
+  -F "tool-image-count=1"
+
+# AI Image Enhancer
+# https://free.ai/image/enhance
+curl -X POST https://free.ai/image/enhance \
+  -F "file-input=@your-image.jpg"
+  -F "enhance-model=realesrgan"
+  -F "tool-image-model=qwen-image-edit"
+
+# AI Image Upscaler
+# https://free.ai/image/upscaler
+curl -X POST https://free.ai/image/upscaler \
+  -F "file-input=@your-image.jpg"
+  -F "upscale-model=realesrgan"
+  -F "upscale-scale=2"
+  -F "tool-image-model=qwen-image-edit"
+
+# Background Remover
+# https://free.ai/image/background-remover
+curl -X POST https://free.ai/image/background-remover \
+  -F "file-input=@your-image.jpg"
+  -F "bgrm-model=rmbg"
+  -F "bgrm-quality=auto"
+  -F "bgrm-format=png"
+  -F "tool-image-model=sdxl"
+  -F "tool-image-count=1"
+
+# Object Remover
+# https://free.ai/image/object-remover
+curl -X POST https://free.ai/image/object-remover \
+  -F "file-input=@your-image.jpg"
+  -F "removal-mode=auto"
+  -F "removal-output=png"
+  -F "tool-image-model=sdxl"
+  -F "tool-image-count=1"
+
+
+═══════════════════════════════════════════════════════════

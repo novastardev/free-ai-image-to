@@ -1,0 +1,27 @@
+[
+  {
+    "name": "AI Image Editor",
+    "url": "https://free.ai/image/edit",
+    "curl": "curl -X POST https://free.ai/image/edit \\\n  -F \"file-input=@your-image.jpg\"\n  -F \"edit-prompt='your prompt here'\"\n  -F \"edit-model=realesrgan\"\n  -F \"tool-image-model=sdxl\"\n  -F \"tool-image-count=1\""
+  },
+  {
+    "name": "AI Image Enhancer",
+    "url": "https://free.ai/image/enhance",
+    "curl": "curl -X POST https://free.ai/image/enhance \\\n  -F \"file-input=@your-image.jpg\"\n  -F \"enhance-model=realesrgan\"\n  -F \"tool-image-model=qwen-image-edit\""
+  },
+  {
+    "name": "AI Image Upscaler",
+    "url": "https://free.ai/image/upscaler",
+    "curl": "curl -X POST https://free.ai/image/upscaler \\\n  -F \"file-input=@your-image.jpg\"\n  -F \"upscale-model=realesrgan\"\n  -F \"upscale-scale=2\"\n  -F \"tool-image-model=qwen-image-edit\""
+  },
+  {
+    "name": "Background Remover",
+    "url": "https://free.ai/image/background-remover",
+    "curl": "curl -X POST https://free.ai/image/background-remover \\\n  -F \"file-input=@your-image.jpg\"\n  -F \"bgrm-model=rmbg\"\n  -F \"bgrm-quality=auto\"\n  -F \"bgrm-format=png\"\n  -F \"tool-image-model=sdxl\"\n  -F \"tool-image-count=1\""
+  },
+  {
+    "name": "Object Remover",
+    "url": "https://free.ai/image/object-remover",
+    "curl": "curl -X POST https://free.ai/image/object-remover \\\n  -F \"file-input=@your-image.jpg\"\n  -F \"removal-mode=auto\"\n  -F \"removal-output=png\"\n  -F \"tool-image-model=sdxl\"\n  -F \"tool-image-count=1\""
+  }
+]

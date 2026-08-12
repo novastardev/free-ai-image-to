@@ -1,0 +1,2484 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-user-lang="en" dir="ltr">
+<script>
+(function(){if(localStorage.getItem('free_dark_mode')==='true')document.documentElement.classList.add('dark');})();
+</script>
+<head>
+    <meta charset="utf-8">
+    
+    <script>
+    window.FREE = window.FREE || {};
+    window.FREE.pendingPrompt = null;
+    // Minimal tracker available before utils.js loads. Inline-script funnel
+    // events (pricing_page_viewed, buy_button_clicked) were silently no-oping
+    // because they ran before utils defined itself - use window.track() instead.
+    window.track = function(type, tool, data){
+        try {
+            var body = JSON.stringify({event_type:type, tool:tool||'', data:data||{}, url:location.href});
+            if (navigator.sendBeacon) {
+                var blob = new Blob([body], {type:'application/json'});
+                navigator.sendBeacon('/api/v1/track/', blob);
+            } else {
+                fetch('/api/v1/track/', {method:'POST', headers:{'Content-Type':'application/json'}, body:body, keepalive:true}).catch(function(){});
+            }
+        } catch(e) {}
+    };
+    </script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+    
+    
+    <title>Free AI Image Generator - Create Images from Text | Free.ai</title>
+    <meta name="description" content="Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.">
+    
+    <link rel="canonical" href="https://free.ai/image/">
+
+    
+    <link rel="alternate" hreflang="x-default" href="https://free.ai/image/">
+    <link rel="alternate" hreflang="en" href="https://free.ai/image/">
+    
+    <link rel="alternate" hreflang="zh" href="https://free.ai/image/?lang=zh">
+    
+    <link rel="alternate" hreflang="es" href="https://free.ai/image/?lang=es">
+    
+    <link rel="alternate" hreflang="ar" href="https://free.ai/image/?lang=ar">
+    
+    <link rel="alternate" hreflang="pt" href="https://free.ai/image/?lang=pt">
+    
+    <link rel="alternate" hreflang="id" href="https://free.ai/image/?lang=id">
+    
+    <link rel="alternate" hreflang="ja" href="https://free.ai/image/?lang=ja">
+    
+    <link rel="alternate" hreflang="ru" href="https://free.ai/image/?lang=ru">
+    
+    <link rel="alternate" hreflang="fr" href="https://free.ai/image/?lang=fr">
+    
+    <link rel="alternate" hreflang="de" href="https://free.ai/image/?lang=de">
+    
+    <link rel="alternate" hreflang="ko" href="https://free.ai/image/?lang=ko">
+    
+    <link rel="alternate" hreflang="tr" href="https://free.ai/image/?lang=tr">
+    
+    <link rel="alternate" hreflang="vi" href="https://free.ai/image/?lang=vi">
+    
+    <link rel="alternate" hreflang="it" href="https://free.ai/image/?lang=it">
+    
+    <link rel="alternate" hreflang="pl" href="https://free.ai/image/?lang=pl">
+    
+    <link rel="alternate" hreflang="nl" href="https://free.ai/image/?lang=nl">
+    
+    <link rel="alternate" hreflang="fa" href="https://free.ai/image/?lang=fa">
+    
+    <link rel="alternate" hreflang="th" href="https://free.ai/image/?lang=th">
+    
+    <link rel="alternate" hreflang="hi" href="https://free.ai/image/?lang=hi">
+    
+    <link rel="alternate" hreflang="uk" href="https://free.ai/image/?lang=uk">
+    
+    <link rel="alternate" hreflang="bg" href="https://free.ai/image/?lang=bg">
+    
+    <link rel="alternate" hreflang="ro" href="https://free.ai/image/?lang=ro">
+    
+    <link rel="alternate" hreflang="el" href="https://free.ai/image/?lang=el">
+    
+    <link rel="alternate" hreflang="sv" href="https://free.ai/image/?lang=sv">
+    
+    <link rel="alternate" hreflang="he" href="https://free.ai/image/?lang=he">
+    
+    <link rel="alternate" hreflang="hu" href="https://free.ai/image/?lang=hu">
+    
+    <link rel="alternate" hreflang="cs" href="https://free.ai/image/?lang=cs">
+    
+    <link rel="alternate" hreflang="da" href="https://free.ai/image/?lang=da">
+    
+    <link rel="alternate" hreflang="fi" href="https://free.ai/image/?lang=fi">
+    
+    <link rel="alternate" hreflang="no" href="https://free.ai/image/?lang=no">
+    
+    <link rel="alternate" hreflang="sk" href="https://free.ai/image/?lang=sk">
+    
+    <link rel="alternate" hreflang="hr" href="https://free.ai/image/?lang=hr">
+    
+    <link rel="alternate" hreflang="lt" href="https://free.ai/image/?lang=lt">
+    
+    <link rel="alternate" hreflang="lv" href="https://free.ai/image/?lang=lv">
+    
+    <link rel="alternate" hreflang="et" href="https://free.ai/image/?lang=et">
+    
+    <link rel="alternate" hreflang="sl" href="https://free.ai/image/?lang=sl">
+    
+    <link rel="alternate" hreflang="sr" href="https://free.ai/image/?lang=sr">
+    
+    <link rel="alternate" hreflang="bs" href="https://free.ai/image/?lang=bs">
+    
+    <link rel="alternate" hreflang="ca" href="https://free.ai/image/?lang=ca">
+    
+    <link rel="alternate" hreflang="eu" href="https://free.ai/image/?lang=eu">
+    
+    <link rel="alternate" hreflang="ga" href="https://free.ai/image/?lang=ga">
+    
+    <link rel="alternate" hreflang="tl" href="https://free.ai/image/?lang=tl">
+    
+    <link rel="alternate" hreflang="ms" href="https://free.ai/image/?lang=ms">
+    
+    <link rel="alternate" hreflang="bn" href="https://free.ai/image/?lang=bn">
+    
+    <link rel="alternate" hreflang="ta" href="https://free.ai/image/?lang=ta">
+    
+    <link rel="alternate" hreflang="ur" href="https://free.ai/image/?lang=ur">
+    
+    <link rel="alternate" hreflang="sw" href="https://free.ai/image/?lang=sw">
+    
+    <link rel="alternate" hreflang="is" href="https://free.ai/image/?lang=is">
+    
+    <link rel="alternate" hreflang="mt" href="https://free.ai/image/?lang=mt">
+    
+    <link rel="alternate" hreflang="af" href="https://free.ai/image/?lang=af">
+    
+    <link rel="alternate" hreflang="be" href="https://free.ai/image/?lang=be">
+    
+    <link rel="alternate" hreflang="ka" href="https://free.ai/image/?lang=ka">
+    
+    <link rel="alternate" hreflang="am" href="https://free.ai/image/?lang=am">
+    
+    <link rel="alternate" hreflang="lb" href="https://free.ai/image/?lang=lb">
+    
+    <link rel="alternate" hreflang="ig" href="https://free.ai/image/?lang=ig">
+    
+    <link rel="alternate" hreflang="pa" href="https://free.ai/image/?lang=pa">
+    
+    <link rel="alternate" hreflang="co" href="https://free.ai/image/?lang=co">
+    
+    <link rel="alternate" hreflang="ne" href="https://free.ai/image/?lang=ne">
+    
+    <link rel="alternate" hreflang="gl" href="https://free.ai/image/?lang=gl">
+    
+    <link rel="alternate" hreflang="mg" href="https://free.ai/image/?lang=mg">
+    
+    <link rel="alternate" hreflang="kk" href="https://free.ai/image/?lang=kk">
+    
+    <link rel="alternate" hreflang="mi" href="https://free.ai/image/?lang=mi">
+    
+    <link rel="alternate" hreflang="sd" href="https://free.ai/image/?lang=sd">
+    
+    <link rel="alternate" hreflang="km" href="https://free.ai/image/?lang=km">
+    
+    <link rel="alternate" hreflang="mk" href="https://free.ai/image/?lang=mk">
+    
+    <link rel="alternate" hreflang="te" href="https://free.ai/image/?lang=te">
+    
+    <link rel="alternate" hreflang="kn" href="https://free.ai/image/?lang=kn">
+    
+    <link rel="alternate" hreflang="ml" href="https://free.ai/image/?lang=ml">
+    
+    <link rel="alternate" hreflang="az" href="https://free.ai/image/?lang=az">
+    
+    <link rel="alternate" hreflang="lo" href="https://free.ai/image/?lang=lo">
+    
+    <link rel="alternate" hreflang="mn" href="https://free.ai/image/?lang=mn">
+    
+    <link rel="alternate" hreflang="tg" href="https://free.ai/image/?lang=tg">
+    
+    <link rel="alternate" hreflang="gu" href="https://free.ai/image/?lang=gu">
+    
+    <link rel="alternate" hreflang="si" href="https://free.ai/image/?lang=si">
+    
+    <link rel="alternate" hreflang="cy" href="https://free.ai/image/?lang=cy">
+    
+    <link rel="alternate" hreflang="ht" href="https://free.ai/image/?lang=ht">
+    
+    <link rel="alternate" hreflang="ug" href="https://free.ai/image/?lang=ug">
+    
+    <link rel="alternate" hreflang="mr" href="https://free.ai/image/?lang=mr">
+    
+    <link rel="alternate" hreflang="tk" href="https://free.ai/image/?lang=tk">
+    
+    <link rel="alternate" hreflang="xh" href="https://free.ai/image/?lang=xh">
+    
+    <link rel="alternate" hreflang="ku" href="https://free.ai/image/?lang=ku">
+    
+    <link rel="alternate" hreflang="hy" href="https://free.ai/image/?lang=hy">
+    
+    <link rel="alternate" hreflang="jv" href="https://free.ai/image/?lang=jw">
+    
+    <link rel="alternate" hreflang="or" href="https://free.ai/image/?lang=or">
+    
+    <link rel="alternate" hreflang="sn" href="https://free.ai/image/?lang=sn">
+    
+    <link rel="alternate" hreflang="so" href="https://free.ai/image/?lang=so">
+    
+    <link rel="alternate" hreflang="yi" href="https://free.ai/image/?lang=yi">
+    
+    <link rel="alternate" hreflang="ps" href="https://free.ai/image/?lang=ps">
+    
+    <link rel="alternate" hreflang="sq" href="https://free.ai/image/?lang=sq">
+    
+    <link rel="alternate" hreflang="ky" href="https://free.ai/image/?lang=ky">
+    
+    <link rel="alternate" hreflang="my" href="https://free.ai/image/?lang=my">
+    
+    <link rel="alternate" hreflang="st" href="https://free.ai/image/?lang=st">
+    
+    <link rel="alternate" hreflang="su" href="https://free.ai/image/?lang=su">
+    
+    <link rel="alternate" hreflang="yo" href="https://free.ai/image/?lang=yo">
+    
+    <link rel="alternate" hreflang="tt" href="https://free.ai/image/?lang=tt">
+    
+    <link rel="alternate" hreflang="rw" href="https://free.ai/image/?lang=rw">
+    
+    <link rel="alternate" hreflang="uz" href="https://free.ai/image/?lang=uz">
+    
+    <link rel="alternate" hreflang="zu" href="https://free.ai/image/?lang=zu">
+    
+
+    
+    <link rel="icon" href="/static/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#16A34A">
+
+    
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Free.ai">
+    <meta property="og:title" content="Free AI Image Generator - Create Images from Text | Free.ai">
+    <meta property="og:description" content="Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.">
+    <meta property="og:image" content="https://free.ai/og/t/image-generate/en.png">
+    <meta property="og:url" content="https://free.ai/image/">
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free AI Image Generator - Create Images from Text | Free.ai">
+    <meta name="twitter:description" content="Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.">
+    <meta name="twitter:image" content="https://free.ai/og/t/image-generate/en.png">
+
+    
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6">
+    
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css?v=1.0.1786428037" rel="stylesheet">
+    <link rel="stylesheet" href="/static/vendor/bootstrap-icons/bootstrap-icons.min.css?v=1.0.1786428037">
+    <link rel="stylesheet" href="/static/css/styles.css?v=1.0.1786428037">
+    <link rel="stylesheet" href="/static/css/chat-composer.css?v=1.0.1786428037">
+    
+
+    
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://free.ai/#organization",
+                "name": "Free.ai",
+                "alternateName": ["Free AI", "FreeAI"],
+                "url": "https://free.ai",
+                "logo": {"@type": "ImageObject", "url": "https://free.ai/static/img/icon-512.png", "width": 512, "height": 512},
+                "description": "Free.ai is a free AI platform with tools for chat, image generation, video, audio, writing, coding, and translation - many usable without an account.",
+                "sameAs": [
+                    "https://github.com/freeaigit",
+                    "https://www.npmjs.com/package/freeai-code",
+                    "https://pypi.org/project/free-dot-ai/",
+                    "https://pypi.org/project/freeai-code/",
+                    "https://play.google.com/store/apps/details?id=free.ai"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://free.ai/#website",
+                "name": "Free.ai",
+                "url": "https://free.ai",
+                "publisher": {"@id": "https://free.ai/#organization"},
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://free.ai/tools/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "MobileApplication",
+                "@id": "https://free.ai/#android-app",
+                "name": "Free.ai",
+                "operatingSystem": "Android",
+                "applicationCategory": "ProductivityApplication",
+                "url": "https://play.google.com/store/apps/details?id=free.ai",
+                "downloadUrl": "https://play.google.com/store/apps/details?id=free.ai",
+                "installUrl": "https://play.google.com/store/apps/details?id=free.ai",
+                "publisher": {"@id": "https://free.ai/#organization"},
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+            }
+            ,
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://free.ai/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "AI Image Generator",
+                        "item": ""
+                    }
+                ]
+            }
+            
+            ,
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is Free AI Image Generator?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Free AI Image Generator creates images from text descriptions using AI models like FLUX and Stable Diffusion XL. Describe what you want and get a generated image in seconds."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Is it really free?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes! You get 6,000 free tokens per day without signing up. Image generation costs ~1,000\u002D5,000 tokens per image depending on the model. Create a free account for 30,000 tokens/day."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What AI models are used?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "We use FLUX.1\u002Dschnell (Apache 2.0) for fast generation and Stable Diffusion XL for high\u002Dquality results. Both are state\u002Dof\u002Dthe\u002Dart open\u002Dsource models."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Do I need to sign up?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No! Generate images immediately. No account needed."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What image sizes are supported?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Generate images in any aspect ratio: 1:1 (square), 16:9 (landscape), 9:16 (portrait/stories), 4:3, and 3:4."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I use generated images commercially?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes! All images generated on Free.ai are yours to use for personal and commercial purposes. Our models use open\u002Dsource licenses."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do I get better results?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Be specific and descriptive in your prompts. Include style (photo, painting, sketch), subject details, lighting, and mood. Use negative prompts to exclude unwanted elements."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I generate multiple images at once?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes! Generate up to 4 variations per prompt. Each variation counts as one toward your daily limit."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does it compare to Midjourney or DALL\u002DE?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Our image generator uses FLUX.1\u002Dschnell, which produces stunning results competitive with commercial alternatives. The key advantage: it is completely free."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I edit generated images?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes! Use our AI Image Editor at /image/editor/ to modify, enhance, or refine generated images."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Are images stored?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Generated images are available for download immediately. They are temporarily stored on our servers. Signed\u002Din users can view their generation history."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I generate AI art?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Absolutely! Use style presets like watercolor, oil painting, digital art, pixel art, and more to create AI art."
+                        }
+                    }
+                ]
+            }
+            
+        ]
+    }
+    </script>
+    
+    
+    
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI Image Generator",
+    "description": "Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.",
+    "url": "https://free.ai/image/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "en",
+    "availableLanguage": ["af","am","ar","az","be","bg","bn","bs","ca","cs","cy","da","de","el","en","es","et","eu","fa","fi","fr","ga","gl","gu","ha","he","hi","hr","hu","hy","id","ig","is","it","ja","ka","kk","km","kn","ko","ku","ky","lo","lt","lv","mk","ml","mn","mr","ms","mt","my","ne","nl","no","pa","pl","pt","ro","ru","sd","si","sk","sl","sq","sr","sv","sw","ta","te","tg","th","tr","uk","ur","uz","vi","yo","zh","zu"],
+    "areaServed": {"@type": "Place", "name": "Worldwide"},
+    "isAccessibleForFree": true,
+    "availableOnDevice": "Web",
+    "author": {
+        "@type": "Organization",
+        "name": "Free.ai",
+        "url": "https://free.ai"
+    },
+    "screenshot": "https://free.ai/og/image-generate.png",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+    }
+    
+    
+}
+</script>
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to use AI Image Generator",
+    "description": "Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.",
+    "step": [
+        {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter your input",
+            "text": "Type text, upload a file, or describe what you want. No account needed."
+        },
+        {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Click generate",
+            "text": "Our AI processes your request in seconds using the best open-source models."
+        },
+        {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download &amp; share",
+            "text": "Download, copy, or share your result. Free for personal and commercial use."
+        }
+    ],
+    "totalTime": "PT30S",
+    "tool": {
+        "@type": "HowToTool",
+        "name": "Free.ai AI Image Generator"
+    }
+}
+</script>
+
+
+    
+    <link rel="preconnect" href="https://api.free.ai">
+
+    
+    
+
+    
+    
+
+    
+    <script>
+    if (typeof Promise !== 'undefined' && !Promise.prototype.finally) {
+        Promise.prototype.finally = function(cb) {
+            var P = this.constructor;
+            return this.then(
+                function(v) { return P.resolve(cb()).then(function() { return v; }); },
+                function(r) { return P.resolve(cb()).then(function() { throw r; }); }
+            );
+        };
+    }
+    </script>
+</head>
+<body class="">
+    
+    
+    
+    
+    
+    
+    <style>
+        nav.navbar .nav-link{white-space:nowrap}
+        @media (min-width:1200px){
+            nav.navbar > .container-fluid{padding-left:1.25rem;padding-right:1.25rem}
+            nav.navbar .navbar-nav .nav-link{padding-left:.55rem;padding-right:.55rem}
+        }
+        
+        
+        
+        
+        nav.navbar.nav-collapsed .nav-toggle-wrap{display:flex !important}
+    </style>
+    <nav class="navbar navbar-expand-xl bg-white border-bottom py-0 sticky-top" style="min-height:56px;z-index:1030">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/" style="font-size:2.2rem;color:#1a1a1a;letter-spacing:-1px">
+                <span style="color:#16A34A">Free</span><span>.ai</span>
+            </a>
+            
+            
+            
+            
+            
+            
+            <div class="nav-toggle-wrap d-flex d-xl-none align-items-center">
+                <a id="token-counter-mobile" href="/signup/" class="text-decoration-none me-2" style="visibility:hidden;min-width:80px">
+                    <span id="free-gen-text-mobile" style="display:block;font-size:.6rem;color:#555;white-space:nowrap;text-align:center"></span>
+                    <span style="display:block;height:3px;border-radius:2px;background:#e8e8ea;margin-top:1px;overflow:hidden">
+                        <span id="free-gen-bar-mobile" style="display:block;height:100%;border-radius:2px;background:#22c55e;width:100%;transition:width .3s"></span>
+                    </span>
+                    
+                    <span style="display:block;font-size:.6rem;color:#16A34A;white-space:nowrap;font-weight:600;text-align:center;margin-top:1px">Sign up - 30K/day</span>
+                    
+                </a>
+                
+                
+                
+                
+                
+                
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        
+                        <button type="button" class="nav-link btn btn-link px-2" id="global-search-btn" aria-label="Search tools and models" style="border:none;background:none">
+                            <i class="bi bi-search" style="font-size:1rem"></i>
+                            <span class="d-none d-md-inline ms-1 text-muted" style="font-size:.72rem;border:1px solid #e5e7eb;border-radius:6px;padding:1px 6px;background:#f8fafc">⌘K</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/chat/">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search/">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/my-ai/">My AI</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/chat/"><i class="bi bi-chat-dots me-2"></i>AI Chat</a></li>
+                            <li><a class="dropdown-item" href="/search/"><i class="bi bi-search me-2"></i>AI Search</a></li>
+                            <li><a class="dropdown-item" href="/my-ai/"><i class="bi bi-person-badge me-2"></i>My AI</a></li>
+                            <li><a class="dropdown-item" href="/image/"><i class="bi bi-image me-2"></i>Image Generator</a></li>
+                            <li><a class="dropdown-item" href="/video/"><i class="bi bi-camera-video me-2"></i>Video Generator</a></li>
+                            <li><a class="dropdown-item" href="/text-to-speech/"><i class="bi bi-mic me-2"></i>Text to Speech</a></li>
+                            <li><a class="dropdown-item" href="/voice/"><i class="bi bi-soundwave me-2"></i>AI Voice Generator</a></li>
+                            <li><a class="dropdown-item" href="/music/"><i class="bi bi-music-note-beamed me-2"></i>Music Generator</a></li>
+                            <li><a class="dropdown-item" href="/write/"><i class="bi bi-pencil-square me-2"></i>AI Writer</a></li>
+                            <li><a class="dropdown-item" href="/code/"><i class="bi bi-code-slash me-2"></i>Code Generator</a></li>
+                            <li><a class="dropdown-item" href="/transcribe/"><i class="bi bi-file-earmark-text me-2"></i>Transcription</a></li>
+                            <li><a class="dropdown-item" href="/generator/"><i class="bi bi-stars me-2"></i>AI Generator</a></li>
+                            <li><a class="dropdown-item" href="/coder/"><i class="bi bi-terminal me-2"></i>Free.ai Coder <span class="badge bg-success ms-1" style="font-size:.55rem">New</span></a></li>
+                            <li><a class="dropdown-item fw-semibold" href="/tools/">All 400+</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Models</a>
+                        <ul class="dropdown-menu">
+                            
+                            
+                            
+                            <li><a class="dropdown-item" href="/models/"><i class="bi bi-grid me-2"></i>All Models (346+)</a></li>
+                            <li><a class="dropdown-item" href="/voices/"><i class="bi bi-mic me-2"></i>Voice Catalog</a></li>
+                            <li><a class="dropdown-item" href="/arena/"><i class="bi bi-trophy me-2"></i>AI Arena</a></li>
+                            <li><a class="dropdown-item" href="/chat/compare/"><i class="bi bi-layout-split me-2"></i>Side-by-Side Chat</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pricing/">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/">API</a>
+                    </li>
+                    
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ios/" title="Free.ai for iOS" aria-label="Free.ai for iOS"><i class="bi bi-apple"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://play.google.com/store/apps/details?id=free.ai" rel="noopener" title="Free.ai for Android" aria-label="Free.ai for Android"><i class="bi bi-android2"></i></a>
+                    </li>
+                </ul>
+
+                
+                
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/language/?return=/image/" title="Change language" style="color:#6b7280">
+                            <i class="bi bi-globe"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="dark-mode-toggle" type="button" class="nav-link bg-transparent border-0" title="Toggle dark mode" style="color:#6b7280">
+                            <i class="bi bi-moon-fill"></i>
+                        </button>
+                    </li>
+                </ul>
+
+                
+                <div class="d-flex align-items-center me-2">
+                    
+                    
+                    <a id="token-counter" href="/signup/" class="text-decoration-none me-2" style="cursor:pointer"
+                       title="Free tokens remaining today">
+                        <span class="d-flex align-items-center gap-1" style="font-size:.7rem">
+                            <span style="color:#16A34A;white-space:nowrap;font-weight:600">Sign up - 30K/day</span>
+                        </span>
+                    </a>
+                    
+                </div>
+
+                <ul class="navbar-nav">
+                    
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" href="/login/" style="font-size:1rem">Log in</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="btn btn-primary fw-bold ms-2" href="/signup/" id="signup-cta" style="padding:.55rem 1.4rem;font-size:1rem;border-radius:.6rem;letter-spacing:-.01em">Sign Up Free</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+    // Content-aware navbar collapse. The horizontal nav fits English fine, but
+    // long-label locales (e.g. Malagasy "Pricing" = "Famaritana ny vidin'ny
+    // entana") can be wider than the viewport. Rather than wrap (ugly) or
+    // overflow off the right edge, drop the expand class so it becomes a clean
+    // hamburger whenever the row would not fit. Re-checked on resize.
+    (function(){
+        var nav = document.querySelector('nav.navbar');
+        if(!nav) return;
+        var box = nav.querySelector('.container-fluid');
+        if(!box) return;
+        var BASE = 'navbar-expand-xl';
+        function evaluate(){
+            // Measure in the expanded state, then decide.
+            nav.classList.remove('nav-collapsed');
+            nav.classList.add(BASE);
+            // 2px tolerance for sub-pixel rounding.
+            var overflows = box.scrollWidth > box.clientWidth + 2;
+            if(overflows){
+                nav.classList.remove(BASE);
+                nav.classList.add('nav-collapsed');
+            }
+        }
+        evaluate();
+        // Re-run after webfonts settle (label widths can shift) + on resize.
+        window.addEventListener('load', evaluate);
+        var t; window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(evaluate, 150); });
+    })();
+    </script>
+
+    
+    
+    <div class="bg-light border-bottom py-1 breadcrumbs-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 small">
+                    
+                    
+                    
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        
+                    
+                    
+                    
+                    
+                        <li class="breadcrumb-item active" aria-current="page">AI Image Generator</li>
+                    
+                    
+                </ol>
+            </nav>
+            <a href="/contact/?ref=/image/" class="text-muted small text-decoration-none" rel="nofollow"><i class="bi bi-bug me-1"></i><span class="d-none d-md-inline">Report Bug / Feature Request</span></a>
+        </div>
+    </div>
+    
+
+    <main>
+        
+
+
+<div class="border-bottom" style="background:#fff">
+    <div class="container">
+        <div class="d-flex gap-1 py-2" style="white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none">
+            
+            <a href="/image/edit/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">AI Image Editor</a>
+            
+            <a href="/image/enhance/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">AI Image Enhancer</a>
+            
+            <a href="/image/upscaler/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">AI Image Upscaler</a>
+            
+            <a href="/image/background-remover/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">Background Remover</a>
+            
+            <a href="/image/object-remover/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">Object Remover</a>
+            
+            <a href="/image/face-swap/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">Face Swap</a>
+            
+            <a href="/headshot/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">AI Headshot Generator</a>
+            
+            <a href="/avatar/" class="btn btn-sm rounded-pill btn-outline-secondary" style="font-size:.75rem">AI Avatar Generator</a>
+            
+            
+            <a href="/tools/" class="btn btn-sm btn-link text-muted" style="font-size:.75rem">More &rarr;</a>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<section class="pt-2 pb-3" style="background:#fafbff;border-bottom:1px solid #f0f0f0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-xl-8">
+                
+                <h1 class="fw-bold mb-2 mt-1" style="font-size:1.4rem">AI Image Generator</h1>
+
+                
+                <div class="d-flex flex-wrap gap-2 mb-2" style="font-size:.72rem">
+                    <span class="badge rounded-pill" style="background:#DCFCE7;color:#166534;font-weight:500">
+                        <i class="bi bi-check-circle me-1"></i>Commercial use OK
+                    </span>
+                    <span class="badge rounded-pill" style="background:#DBEAFE;color:#1E40AF;font-weight:500">
+                        <i class="bi bi-stars me-1"></i>380+ models
+                    </span>
+                    <span class="badge rounded-pill" style="background:#FEF3C7;color:#92400E;font-weight:500">
+                        <i class="bi bi-droplet-half me-1"></i>No watermark
+                    </span>
+                    
+                    <span class="badge rounded-pill" style="background:#F3E8FF;color:#6B21A8;font-weight:500">
+                        <i class="bi bi-person-x me-1"></i>No sign-up needed
+                    </span>
+                    
+                </div>
+
+                
+                
+                <div class="d-flex align-items-center gap-2 mb-2 d-none" id="tool-model-bar">
+                    <small class="text-muted" style="font-size:.75rem">Model:</small>
+                    <select id="tool-model-select" class="d-none"><option value="qwen7b" selected>Qwen 2.5 7B</option></select>
+                    <div class="position-relative" id="tool-picker-wrap">
+                        <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" id="tool-picker-btn" style="font-size:.75rem;padding:2px 8px">
+                            <span id="tool-picker-label">Qwen 2.5 7B</span> <i class="bi bi-chevron-down" style="font-size:.55rem"></i>
+                        </button>
+                        <div id="tool-picker-dd" class="position-absolute bg-white border rounded shadow-lg" style="display:none;z-index:1050;width:320px;max-width:90vw;top:100%;left:0;margin-top:4px">
+                            <div class="p-2 border-bottom"><input type="text" class="form-control form-control-sm" id="tool-model-search" placeholder="Search 380+ models..." autocomplete="off"></div>
+                            <div id="tool-model-list" style="max-height:350px;overflow-y:auto;font-size:.8rem">
+                                <div class="px-2 py-1 text-muted fw-bold" style="font-size:.7rem;background:#f8f9fa">Free</div>
+                                <div class="tml-opt px-3 py-2 active" data-value="qwen7b">Qwen 2.5 7B</div>
+                                <div class="tml-opt px-3 py-2" data-value="qwen3-8b">Qwen 3 8B</div>
+                                <div class="tml-opt px-3 py-2" data-value="qwen-coder">Qwen Coder 7B</div>
+                                <div class="tml-opt px-3 py-2" data-value="mistral">Mistral 7B</div>
+                                <div class="px-2 py-1 text-muted fw-bold" style="font-size:.7rem;background:#f8f9fa">Popular Paid <span class="badge bg-warning text-dark" style="font-size:.55rem">tokens required</span></div>
+                                <div class="tml-opt px-3 py-2" data-value="qwen/qwen3.5-35b-a3b">Qwen 3.5-35B-A3B <span class="text-muted" style="font-size:.7rem">MoE, 262K ctx</span></div>
+                                <div class="tml-opt px-3 py-2" data-value="qwen/qwen3.6-plus">Qwen 3.6 Plus <span class="text-muted" style="font-size:.7rem">1M ctx</span></div>
+                                <div class="tml-opt px-3 py-2" data-value="openai/gpt-4.1-mini">GPT-4.1 Mini</div>
+                                <div class="tml-opt px-3 py-2" data-value="openai/gpt-5">GPT-5</div>
+                                <div class="tml-opt px-3 py-2" data-value="anthropic/claude-sonnet-4.6">Claude Sonnet 4.6</div>
+                                <div class="tml-opt px-3 py-2" data-value="google/gemini-2.5-pro">Gemini 2.5 Pro</div>
+                                <div class="tml-opt px-3 py-2" data-value="deepseek/deepseek-r1">DeepSeek R1</div>
+                                <div id="tool-model-more"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <small class="text-muted d-none d-sm-inline" style="font-size:.68rem">+ GPT-5, Claude, Gemini</small>
+                </div>
+                <style>.tml-opt{cursor:pointer;transition:background .1s}.tml-opt:hover{background:#f0fdf4}.tml-opt.active{background:#dcfce7;font-weight:600}</style>
+                
+
+                
+                <div class="card shadow-sm border-0" style="border-radius:14px">
+                    <div class="card-body p-3 p-md-4">
+                        
+
+<form id="image-form" method="POST">
+    <input type="hidden" name="csrfmiddlewaretoken" value="ZMSuDyYf4ONLflbN1varPjIwjRQFXxcNgKo0JFaLoTQM5fxZoaCyyu2WUwrpOVox">
+    
+    <div class="mb-3">
+        <label for="prompt" class="form-label fw-semibold">Describe your image</label>
+        <textarea id="prompt" class="form-control" rows="3" placeholder="A majestic mountain landscape at sunset with golden light..." required></textarea>
+    </div>
+
+    <div class="row g-3 mb-3">
+        
+        <div class="col-md-4">
+            <label class="form-label small text-muted">Model</label>
+            <select id="model" class="form-select form-select-sm">
+                <optgroup label="Self-hosted (free pool)">
+                    <option value="sdxl" data-cost="1000" data-name="Stable Diffusion XL" selected>Stable Diffusion XL</option>
+                    <option value="flux2-klein" data-cost="5000" data-name="FLUX.2 Klein">FLUX.2 Klein</option>
+                </optgroup>
+                <optgroup label="Premium - external providers">
+                    <option value="google/gemini-2.5-flash-image" data-cost="225" data-name="Nano Banana">Gemini 2.5 Flash Image - Nano Banana</option>
+                    <option value="google/gemini-3.1-flash-image-preview" data-cost="375" data-name="Gemini 3.1 Flash">Gemini 3.1 Flash Image</option>
+                    <option value="google/gemini-3-pro-image-preview" data-cost="1500" data-name="Gemini 3 Pro">Gemini 3 Pro Image</option>
+                    <option value="openai/gpt-5-image-mini" data-cost="1875" data-name="GPT-5 Image Mini">GPT-5 Image Mini</option>
+                    <option value="openai/gpt-5-image" data-cost="7500" data-name="GPT-5 Image">GPT-5 Image</option>
+                </optgroup>
+                
+                <optgroup label="Premium - paid tokens" id="falai-image-group" style="display:none"></optgroup>
+            </select>
+            <small class="d-block mt-1" style="font-size:.68rem;color:#16A34A"><i class="bi bi-unlock"></i>
+                <span id="model-note-free">Free - runs on your daily token pool</span>
+                <span id="model-note-premium" style="display:none">included with Pro & above</span>
+            </small>
+            <script>
+            (function(){
+                var sel = document.getElementById('model');
+                var freeNote = document.getElementById('model-note-free');
+                var premNote = document.getElementById('model-note-premium');
+                if (!sel || !freeNote || !premNote) return;
+                function update(){
+                    // Self-hosted (free) model ids have no '/'; every premium id
+                    // is namespaced (google/…, openai/…, premium/…).
+                    var isPremium = (sel.value || '').indexOf('/') > -1;
+                    freeNote.style.display = isPremium ? 'none' : '';
+                    premNote.style.display = isPremium ? '' : 'none';
+                }
+                sel.addEventListener('change', update);
+                update();
+            })();
+            </script>
+        </div>
+
+        
+        <div class="col-md-4">
+            <label class="form-label small text-muted">Aspect Ratio</label>
+            <select id="aspect" class="form-select form-select-sm">
+                <option value="1:1" selected>1:1 (Square)</option>
+                <option value="16:9">16:9 (Landscape)</option>
+                <option value="9:16">9:16 (Portrait)</option>
+                <option value="4:3">4:3</option>
+                <option value="3:4">3:4</option>
+            </select>
+        </div>
+
+        
+        <div class="col-md-4">
+            <label class="form-label small text-muted">Style</label>
+            <select id="style" class="form-select form-select-sm">
+                <option value="none">None</option>
+                <option value="photo">Photographic</option>
+                <option value="art">Digital Art</option>
+                <option value="anime">Anime</option>
+                <option value="3d">3D Render</option>
+                <option value="sketch">Pencil Sketch</option>
+                <option value="watercolor">Watercolor</option>
+                <option value="oil">Oil Painting</option>
+                <option value="pixel">Pixel Art</option>
+            </select>
+        </div>
+    </div>
+
+    
+    <details class="mb-3">
+        <summary class="small text-muted" style="cursor:pointer">Advanced options <i class="bi bi-chevron-down" style="font-size:.7rem"></i></summary>
+        <div class="mt-2 mb-2">
+            <label for="negative-prompt" class="form-label text-muted small">Negative prompt (optional)</label>
+            <input type="text" id="negative-prompt" class="form-control form-control-sm" placeholder="blurry, low quality, watermark...">
+        </div>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label small text-muted">Number of images</label>
+                <select id="image-count" class="form-select form-select-sm">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label small text-muted">Seed (optional)</label>
+                <input type="number" id="image-seed" class="form-control form-control-sm" placeholder="Random">
+            </div>
+        </div>
+    
+        <div id="ref-image-section" class="mb-3 d-none">
+            <label class="form-label small text-muted d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-image me-1"></i>Style Reference (optional)</span>
+                <span class="badge bg-info text-dark" style="font-size:.65rem">SDXL only</span>
+            </label>
+            <div id="ref-drop-zone" class="border border-2 border-dashed rounded-3 p-3 text-center" style="cursor:pointer;border-color:#dee2e6!important">
+                <i class="bi bi-image text-muted" style="font-size:1.5rem"></i>
+                <p class="text-muted small mb-0 mt-1">Drop a reference image to match its style, or click to browse</p>
+                <input type="file" id="ref-image-input" class="d-none" accept="image/*">
+            </div>
+            <div id="ref-preview" class="d-none mt-2 position-relative">
+                <img id="ref-preview-img" style="max-height:100px;border-radius:8px;display:block" alt="">
+                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" id="ref-remove" style="font-size:.6rem;padding:2px 5px">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="d-flex align-items-center gap-2 mt-2">
+                <label class="form-label small text-muted mb-0" style="white-space:nowrap">Style strength</label>
+                <input type="range" class="form-range" id="ip-scale" min="0.1" max="1.0" step="0.1" value="0.5" style="flex:1">
+                <span id="ip-scale-val" style="font-size:.8rem;min-width:30px">0.5</span>
+            </div>
+        </div>
+    </details>
+    <div class="mb-2">
+        <small class="text-muted" id="token-estimate"><i class="bi bi-lightning-charge"></i> ~1,000 tokens/per image</small>
+        
+        <small class="d-block d-none text-muted mt-1" style="font-size:.7rem"
+               data-tool-cap-note data-cap-bucket="image"></small>
+    </div>
+
+
+    <div class="d-flex gap-2 flex-wrap">
+        <button type="submit" class="btn btn-primary btn-lg flex-grow-1" id="generate-btn">
+            <i class="bi bi-stars me-1"></i> Generate Image
+        </button>
+        
+    </div>
+    
+    <div class="text-center mt-2 d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#" id="link-image-compare" class="text-muted small text-decoration-none" style="font-size:.78rem">
+            <i class="bi bi-grid-3x3-gap me-1"></i>Compare up to 4 models on this prompt side-by-side →
+        </a>
+        
+        <a href="/image/controlnet/" class="text-muted small text-decoration-none" style="font-size:.78rem">
+            <i class="bi bi-person-arms-up me-1"></i>Need pose or structure control? Try ControlNet →
+        </a>
+    </div>
+    <script>
+    (function(){
+        var lnk = document.getElementById('link-image-compare');
+        if (!lnk) return;
+        lnk.addEventListener('click', function(e){
+            e.preventDefault();
+            var promptEl = document.getElementById('prompt');
+            var p = (promptEl && promptEl.value || '').trim();
+            window.location.href = '/image/compare/' + (p ? '?prompt=' + encodeURIComponent(p) : '');
+        });
+    })();
+    </script>
+</form>
+
+
+
+
+<div id="image-gallery" class="row g-3 mt-3 d-none"></div>
+
+
+<div class="mt-5 pt-4 border-top">
+
+    
+    <h2 class="fw-bold mb-3" style="font-size:1.3rem">What You Can Create</h2>
+    <div class="row g-3 mb-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-palette text-primary" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">Multiple Models</h3>
+                    <p class="text-muted small mb-0">Choose between Stable Diffusion XL (~1,000 tokens) and FLUX.2 Klein (~5,000 tokens) for different quality levels and styles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-brush text-success" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">9 Art Styles</h3>
+                    <p class="text-muted small mb-0">Photographic, digital art, anime, 3D render, pencil sketch, watercolor, oil painting, pixel art, or no style for full creative control.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-aspect-ratio text-warning" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">Flexible Aspect Ratios</h3>
+                    <p class="text-muted small mb-0">Square, landscape (16:9), portrait (9:16), and more. Perfect for social media, wallpapers, or print projects.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-x-circle text-danger" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">Negative Prompts</h3>
+                    <p class="text-muted small mb-0">Exclude unwanted elements like blur, watermarks, or low quality. Fine-tune your results with precision.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-chat-dots text-info" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">Generate in Chat</h3>
+                    <p class="text-muted small mb-0">You can also generate images in <a href="/chat/">Chat</a> - just say "make me an image of..." and the AI handles the rest.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-3">
+                    <i class="bi bi-download text-secondary" style="font-size:2rem"></i>
+                    <h3 class="fw-semibold mt-2" style="font-size:.95rem">Instant Download</h3>
+                    <p class="text-muted small mb-0">Every generated image is ready to download immediately. No watermarks, no waiting.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="fw-bold mb-3" style="font-size:1.3rem">How to Use</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <h3 class="fw-semibold" style="font-size:1rem"><i class="bi bi-1-circle text-primary me-2"></i>Describe your image</h3>
+            <p class="text-muted small">Write a detailed prompt describing what you want. The more specific you are, the better the result. Include details about subject, setting, lighting, and mood.</p>
+        </div>
+        <div class="col-md-6">
+            <h3 class="fw-semibold" style="font-size:1rem"><i class="bi bi-2-circle text-primary me-2"></i>Pick model and style</h3>
+            <p class="text-muted small">Choose SDXL for fast, affordable images or FLUX for higher quality. Select an art style and aspect ratio to match your vision.</p>
+        </div>
+        <div class="col-md-6">
+            <h3 class="fw-semibold" style="font-size:1rem"><i class="bi bi-3-circle text-primary me-2"></i>Refine with negatives</h3>
+            <p class="text-muted small">Use the negative prompt to exclude things you don&#x27;t want, like &#x27;blurry, low quality, watermark, text&#x27;. This sharpens results significantly.</p>
+        </div>
+        <div class="col-md-6">
+            <h3 class="fw-semibold" style="font-size:1rem"><i class="bi bi-4-circle text-primary me-2"></i>Generate and download</h3>
+            <p class="text-muted small">Click Generate and your image appears in seconds. Download it instantly. Not happy? Adjust your prompt and try again.</p>
+        </div>
+    </div>
+
+    
+    <h2 class="fw-bold mb-3" style="font-size:1.3rem">Token Costs</h2>
+    <div class="table-responsive mb-5">
+        <table class="table table-sm">
+            <thead><tr><th>Model</th><th>Tokens per image</th><th>Best for</th></tr></thead>
+            <tbody>
+                <tr><td>Stable Diffusion XL</td><td>~1,000</td><td>Fast drafts, concepts, general-purpose images</td></tr>
+                <tr><td>FLUX.2 Klein</td><td>~5,000</td><td>High quality, detailed images, photorealism</td></tr>
+                <tr><td>Gemini 2.5 Flash Image</td><td>~225</td><td>Cheapest option, fast generation from Google</td></tr>
+                <tr><td>Gemini 3.1 Flash Image</td><td>~375</td><td>Fast, affordable image generation from Google</td></tr>
+                <tr><td>Gemini 3 Pro Image</td><td>~1,500</td><td>High-quality image generation from Google</td></tr>
+                <tr><td>GPT-5 Image Mini</td><td>~1,875</td><td>Affordable OpenAI image generation</td></tr>
+                <tr><td>GPT-5 Image</td><td>~7,500</td><td>Best quality, OpenAI flagship image model</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="text-center py-4">
+        <p class="text-muted mb-3">Free.ai has 400+ AI tools beyond image generation.</p>
+        <a href="/tools/" class="btn btn-outline-primary me-2"><i class="bi bi-grid me-1"></i> Explore All Tools</a>
+        <a href="/pricing/" class="btn btn-primary"><i class="bi bi-lightning-charge me-1"></i> Get More Tokens</a>
+    </div>
+</div>
+
+                        
+                        <div id="tool-rich-controls" data-category="image" data-tool="image-generate"></div>
+                        <script src="/static/js/tool-rich-controls.js?v=1.0.1786428037" defer></script>
+                        
+                        <script src="/static/js/voice-loader.js?v=1.0.1786428037" defer></script>
+                        
+                        <details id="tool-advanced-options" class="d-none mt-2" style="font-size:.82rem">
+                            <summary class="text-muted" style="cursor:pointer"><i class="bi bi-gear me-1"></i>Advanced options</summary>
+                            <div class="row g-2 mt-1">
+                                <div class="col-md-6">
+                                    <input type="text" id="tool-audience" class="form-control form-control-sm" placeholder="Target audience (e.g. marketing professionals, students)">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="tool-extra-instructions" class="form-control form-control-sm" placeholder="Additional instructions...">
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                    
+                </div>
+
+                
+                <div id="result-area" class="d-none mt-3">
+                    <div class="card shadow-sm border-0" style="border-radius:14px">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0 fw-semibold" style="font-size:1rem">Result</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-1" id="btn-download"><i class="bi bi-download"></i> Download</button>
+                                    <button class="btn btn-sm btn-outline-secondary me-1" id="btn-copy"><i class="bi bi-clipboard"></i> Copy</button>
+                                    <button class="btn btn-sm btn-outline-secondary" id="btn-share"><i class="bi bi-share"></i> Share</button>
+                                </div>
+                            </div>
+                            <div id="result-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="low-token-warn" class="d-none mt-2">
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2 rounded-3" style="background:#FEF3C7;border:1px solid #F59E0B;font-size:.82rem">
+                        <span><i class="bi bi-exclamation-triangle me-1"></i> <strong>Tokens running low.</strong> <span id="low-token-count"></span></span>
+                        <a href="/pricing/" class="btn btn-sm btn-warning" style="font-size:.75rem">Get More Tokens</a>
+                    </div>
+                </div>
+
+                
+                <div id="premium-upsell" class="d-none mt-2">
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2 rounded-3" style="background:#EFF6FF;border:1px solid #BFDBFE;font-size:.82rem">
+                        <span><i class="bi bi-stars me-1"></i> Want better results? <strong>Premium models</strong> (GPT-5, Claude, Gemini) deliver higher quality.</span>
+                        <a href="/pricing/" class="btn btn-sm btn-primary" style="font-size:.75rem">View Plans</a>
+                    </div>
+                </div>
+
+                
+                <div id="post-gen-cta" class="d-none mt-3">
+                    
+                    <div class="text-center p-3 rounded-3 mb-3" style="background:#F0FDF4;border:1px solid #DCFCE7">
+                        <p class="fw-semibold mb-2" style="font-size:.9rem">&#10084;&#65039; Love Free.ai? Tell your friends!</p>
+                        <div class="d-flex gap-2 justify-content-center mb-2">
+                            <a href="#" class="btn btn-sm rounded-circle share-social" data-platform="twitter" style="background:#1DA1F2;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center" title="Share on X"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#" class="btn btn-sm rounded-circle share-social" data-platform="facebook" style="background:#1877F2;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center" title="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="btn btn-sm rounded-circle share-social" data-platform="linkedin" style="background:#0A66C2;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="btn btn-sm rounded-circle share-social" data-platform="reddit" style="background:#FF4500;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center" title="Reddit"><i class="bi bi-reddit"></i></a>
+                            <a href="#" class="btn btn-sm rounded-circle share-social" data-platform="whatsapp" style="background:#25D366;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        </div>
+                        
+                        
+                        <p class="text-muted mb-0" style="font-size:.75rem"><a href="/signup/" style="color:#16A34A">Sign up</a> to get a referral link and earn 30,000 tokens per friend.</p>
+                        
+                    </div>
+
+                    
+
+                    
+                    
+                    <div class="card border-0 shadow-sm" style="border-radius:12px">
+                        <div class="card-body py-3 px-4 d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong style="font-size:.9rem">Want more?</strong>
+                                <span class="text-muted" style="font-size:.8rem">Sign up free for 30K tokens/day</span>
+                            </div>
+                            <a href="/signup/" class="btn btn-primary btn-sm">Sign Up Free</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+                <div id="processing" class="d-none text-center py-4">
+                    <div class="spinner-border text-primary mb-2" role="status"></div>
+                    <p class="text-muted mb-1 small">Processing your request...</p>
+                    <div class="progress mx-auto" style="max-width:280px;height:4px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" id="process-progress" style="width:0%"></div>
+                    </div>
+                </div>
+
+                
+                <p class="text-muted text-center small mb-0 mt-2">Generate stunning images from text descriptions for free. Powered by FLUX and Stable Diffusion. No sign up required.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <h2 class="fw-bold text-center mb-4" style="font-size:1.3rem">How to Use AI Image Generator</h2>
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:52px;height:52px">
+                            <span class="fw-bold text-primary">1</span>
+                        </div>
+                        <h6 class="fw-semibold" style="font-size:.9rem">Enter your input</h6>
+                        <p class="text-muted" style="font-size:.82rem">Type text, upload a file, or describe what you want. No account needed.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:52px;height:52px">
+                            <span class="fw-bold text-primary">2</span>
+                        </div>
+                        <h6 class="fw-semibold" style="font-size:.9rem">Click generate</h6>
+                        <p class="text-muted" style="font-size:.82rem">Our AI processes your request in seconds using the best open-source models.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-2" style="width:52px;height:52px">
+                            <span class="fw-bold text-primary">3</span>
+                        </div>
+                        <h6 class="fw-semibold" style="font-size:.9rem">Download &amp; share</h6>
+                        <p class="text-muted" style="font-size:.82rem">Download, copy, or share your result. Free for personal and commercial use.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5" style="background:#1a1a2e;color:#fff">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5">
+                <h2 class="fw-bold mb-2" style="font-size:1.3rem">Use this tool via API</h2>
+                <p style="opacity:.75;font-size:.9rem">Automate this tool from your own code. OpenAI-compatible REST endpoint, Bearer-token auth, no extra SDK required. Token costs match the web interface.</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="/api/" class="btn btn-success btn-sm">API Documentation</a>
+                    
+                    <a href="/account/?tab=api" class="btn btn-outline-light btn-sm">Get API Key</a>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <pre class="rounded p-3 mt-3 mt-md-0" style="background:#111;font-size:.72rem;overflow-x:auto;max-width:100%;white-space:pre-wrap;word-break:break-all"><code style="color:#e5e7eb">curl -X POST https://api.free.ai/v1/image/generate/ \
+  -H "Authorization: Bearer sk-free-..." \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "A sunset over mountains", "model": "sdxl"}'</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="py-4 border-top" style="background:#fafbff">
+    <div class="container">
+        <h3 class="fw-bold mb-3 text-center" style="font-size:1.2rem">Related Free AI Tools</h3>
+        <div class="row g-2 justify-content-center" style="max-width:900px;margin:0 auto">
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/edit/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>AI Image Editor</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/enhance/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>AI Image Enhancer</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/upscaler/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>AI Image Upscaler</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/background-remover/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>Background Remover</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/object-remover/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>Object Remover</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/image/face-swap/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>Face Swap</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/headshot/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>AI Headshot Generator</strong>
+                </a>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/avatar/" class="d-block text-decoration-none text-center p-2 rounded-3" style="border:1px solid #eee;font-size:.85rem;color:#374151;transition:all .15s">
+                    <strong>AI Avatar Generator</strong>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold text-center mb-4" style="font-size:1.3rem">AI Image Generator - FAQ</h2>
+                <div class="accordion" id="faqAccordion">
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What is Free AI Image Generator?
+                            </button>
+                        </h3>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Free AI Image Generator creates images from text descriptions using AI models like FLUX and Stable Diffusion XL. Describe what you want and get a generated image in seconds.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Is it really free?
+                            </button>
+                        </h3>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Yes! You get 6,000 free tokens per day without signing up. Image generation costs ~1,000-5,000 tokens per image depending on the model. Create a free account for 30,000 tokens/day.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                What AI models are used?
+                            </button>
+                        </h3>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">We use FLUX.1-schnell (Apache 2.0) for fast generation and Stable Diffusion XL for high-quality results. Both are state-of-the-art open-source models.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Do I need to sign up?
+                            </button>
+                        </h3>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">No! Generate images immediately. No account needed.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                What image sizes are supported?
+                            </button>
+                        </h3>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Generate images in any aspect ratio: 1:1 (square), 16:9 (landscape), 9:16 (portrait/stories), 4:3, and 3:4.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                Can I use generated images commercially?
+                            </button>
+                        </h3>
+                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Yes! All images generated on Free.ai are yours to use for personal and commercial purposes. Our models use open-source licenses.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                How do I get better results?
+                            </button>
+                        </h3>
+                        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Be specific and descriptive in your prompts. Include style (photo, painting, sketch), subject details, lighting, and mood. Use negative prompts to exclude unwanted elements.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                Can I generate multiple images at once?
+                            </button>
+                        </h3>
+                        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Yes! Generate up to 4 variations per prompt. Each variation counts as one toward your daily limit.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                How does it compare to Midjourney or DALL-E?
+                            </button>
+                        </h3>
+                        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Our image generator uses FLUX.1-schnell, which produces stunning results competitive with commercial alternatives. The key advantage: it is completely free.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                                Can I edit generated images?
+                            </button>
+                        </h3>
+                        <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Yes! Use our AI Image Editor at /image/editor/ to modify, enhance, or refine generated images.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+                                Are images stored?
+                            </button>
+                        </h3>
+                        <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Generated images are available for download immediately. They are temporarily stored on our servers. Signed-in users can view their generation history.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 border-bottom">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed py-3" style="font-size:.92rem;font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
+                                Can I generate AI art?
+                            </button>
+                        </h3>
+                        <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted" style="font-size:.88rem">Absolutely! Use style presets like watercolor, oil painting, digital art, pixel art, and more to create AI art.</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="py-4 text-center" style="background:#f0f2ff">
+    <div class="container">
+        <p class="fw-semibold mb-2">Sign up free - 30,000 tokens/day</p>
+        <a href="/signup/" class="btn btn-primary btn-sm rounded-pill px-4">Create Free Account</a>
+        <p class="text-muted small mt-2 mb-0">No credit card required</p>
+    </div>
+</section>
+
+
+
+
+<div class="text-center py-3 border-top" id="star-rating-section">
+    <p class="text-muted mb-2 small">How would you rate this tool?</p>
+    <div class="d-inline-flex gap-1" id="star-rating">
+        
+        <button class="btn btn-link text-decoration-none p-0 star-btn" data-rating="1" style="font-size:1.5rem;color:#ddd" aria-label="Rate 1 stars">
+            <i class="bi bi-star-fill"></i>
+        </button>
+        
+        <button class="btn btn-link text-decoration-none p-0 star-btn" data-rating="2" style="font-size:1.5rem;color:#ddd" aria-label="Rate 2 stars">
+            <i class="bi bi-star-fill"></i>
+        </button>
+        
+        <button class="btn btn-link text-decoration-none p-0 star-btn" data-rating="3" style="font-size:1.5rem;color:#ddd" aria-label="Rate 3 stars">
+            <i class="bi bi-star-fill"></i>
+        </button>
+        
+        <button class="btn btn-link text-decoration-none p-0 star-btn" data-rating="4" style="font-size:1.5rem;color:#ddd" aria-label="Rate 4 stars">
+            <i class="bi bi-star-fill"></i>
+        </button>
+        
+        <button class="btn btn-link text-decoration-none p-0 star-btn" data-rating="5" style="font-size:1.5rem;color:#ddd" aria-label="Rate 5 stars">
+            <i class="bi bi-star-fill"></i>
+        </button>
+        
+    </div>
+    
+    <p class="text-muted small mt-1" id="rating-status">
+        
+    </p>
+
+    
+    <div id="low-rating-feedback" style="display:none;max-width:400px;margin:0 auto">
+        <p class="text-muted small mb-2">We&#x27;re sorry! What went wrong? Your feedback helps us improve.</p>
+        <textarea id="feedback-text" class="form-control form-control-sm mb-2" rows="3" placeholder="What didn&#x27;t work? Any bugs or issues?" style="font-size:.85rem"></textarea>
+        <button class="btn btn-primary btn-sm" id="send-feedback-btn">Send Feedback</button>
+        <button class="btn btn-link btn-sm text-muted" id="skip-feedback-btn">Skip</button>
+    </div>
+</div>
+<script>
+(function(){
+    var rated = false;
+    var selectedRating = 0;
+    var stars = [].slice.call(document.querySelectorAll('.star-btn'));
+    var statusEl = document.getElementById('rating-status');
+    var feedbackEl = document.getElementById('low-rating-feedback');
+
+    function setStars(n, color) {
+        stars.forEach(function(b, i) {
+            b.style.color = i < n ? (color || '#fbbf24') : '#ddd';
+        });
+    }
+
+    stars.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var rating = parseInt(this.dataset.rating);
+            selectedRating = rating;
+            setStars(rating, '#fbbf24');
+
+            function showLowFeedback() {
+                if (rating <= 3 && feedbackEl) {
+                    feedbackEl.style.display = '';
+                    if (statusEl) statusEl.style.display = 'none';
+                }
+            }
+
+            // Send rating
+            fetch('/api/v1/rate-page/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({tool: 'image-generate', rating: rating})
+            }).then(function(r) { return (typeof utils !== "undefined" && utils.safeJson) ? utils.safeJson(r) : r.json(); }).then(function(d) {
+                // Login-required tools require login to rate - prompt sign-in
+                // instead of recording (and don't reveal the feedback form).
+                if (d && d.requires_signup) {
+                    rated = false;
+                    setStars(0);
+                    if (statusEl) {
+                        statusEl.style.display = '';
+                        statusEl.style.color = '';
+                        statusEl.innerHTML = '<a href="/login/?next=' + encodeURIComponent(location.pathname) + '">' + 'Sign in to rate this tool' + '</a>';
+                    }
+                    return;
+                }
+                rated = true;
+                if (d && d.ok && statusEl) {
+                    statusEl.textContent = 'Thanks for rating!';
+                    statusEl.style.color = '#16A34A';
+                }
+                showLowFeedback();
+            }).catch(function() {
+                rated = true;
+                if (statusEl) statusEl.textContent = 'Rating saved!';
+                showLowFeedback();
+            });
+        });
+
+        btn.addEventListener('mouseenter', function() {
+            if (!rated) setStars(parseInt(this.dataset.rating));
+        });
+    });
+
+    var container = document.getElementById('star-rating');
+    if (container) {
+        container.addEventListener('mouseleave', function() {
+            if (!rated) setStars(0);
+            else setStars(selectedRating, '#fbbf24');
+        });
+    }
+
+    // Send feedback (no captcha)
+    var sendBtn = document.getElementById('send-feedback-btn');
+    var skipBtn = document.getElementById('skip-feedback-btn');
+    if (sendBtn) {
+        sendBtn.addEventListener('click', function() {
+            var text = document.getElementById('feedback-text').value.trim();
+            if (!text) return;
+            sendBtn.disabled = true;
+            sendBtn.textContent = '...';
+            fetch('/api/v1/feedback/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': (window.FREE && FREE.csrfToken) || ''},
+                body: JSON.stringify({
+                    tool: 'image-generate',
+                    rating: selectedRating,
+                    feedback: text,
+                    url: location.href,
+                    user_agent: navigator.userAgent
+                })
+            }).then(function() {
+                feedbackEl.innerHTML = '<p class="text-success small">Thank you! Your feedback has been received.</p>';
+            }).catch(function() {
+                feedbackEl.innerHTML = '<p class="text-success small">Feedback sent. Thank you!</p>';
+            });
+        });
+    }
+    if (skipBtn) {
+        skipBtn.addEventListener('click', function() {
+            feedbackEl.style.display = 'none';
+            statusEl.style.display = '';
+        });
+    }
+})();
+</script>
+
+
+
+<script>
+(function() {
+    var TOOL_ROUTES_LLM = {'write':1,'write-essay':1,'write-article':1,'write-blog':1,'write-email':1,'write-story':1,'write-resume':1,'write-cover-letter':1,'write-poem':1,'write-slogan':1,'write-bio':1,'write-ad-copy':1,'write-social':1,'write-business-plan':1,'write-letter':1,'write-speech':1,'write-product-desc':1,'write-caption':1,'write-headline':1,'write-tagline':1,'write-script':1,'write-book':1,'write-novel':1,'write-thesis':1,'write-proposal':1,'write-newsletter':1,'write-press-release':1,'write-review':1,'write-instagram-caption':1,'write-linkedin-post':1,'write-tweet':1,'write-reddit-post':1,'write-tinder-bio':1,'write-thank-you':1,'write-apology':1,'write-recommendation':1,'write-resignation':1,'write-invitation':1,'code':1,'code-python':1,'code-javascript':1,'code-typescript':1,'code-java':1,'code-cpp':1,'code-go':1,'code-rust':1,'code-ruby':1,'code-php':1,'code-sql':1,'code-html':1,'code-css':1,'code-shell':1,'code-swift':1,'code-kotlin':1,'code-r':1,'code-matlab':1,'code-csharp':1,'code-yaml':1,'code-json':1,'code-debug':1,'code-explain':1,'code-convert':1,'code-review':1,'code-refactor':1,'code-test':1,'code-documentation':1,'code-readme':1,'code-regex':1,'code-api':1,'text-summarizer':1,'text-paraphraser':1,'text-rewriter':1,'text-grammar':1,'text-humanizer':1,'text-detector':1,'text-generator':1,'text-tone-changer':1,'text-proofreader':1,'text-expander':1,'text-shortener':1,'text-simplifier':1,'text-emoji-translator':1,'text-hashtag-gen':1,'text-readability':1,'text-char-counter':1,'text-plagiarism':1,'text-keyword-extractor':1,'text-sentiment':1,'voice-chat':1,'voice-recorder':1,'voice-podcast':1,'pdf-chat':1,'pdf-summarizer':1,'video-shorts':1,'video-reels':1,'video-tiktok':1,'video-reddit':1,'video-trailer':1,'video-slideshow':1,'video-music':1,'music-lyrics':1,'music-remix':1,'music-dj':1,'music-guitar':1,'music-piano':1,'study-math':1,'study-quiz':1,'study-flashcards':1,'study-notes':1,'study-homework':1,'study-tutor':1,'study-citation':1,'study-bibliography':1,'study-language':1,'study-vocabulary':1,'study-reading':1,'study-practice-test':1,'study-essay-grader':1,'study-mindmap':1,'study-presentation':1,'youtube-thumbnail':1,'youtube-title':1,'youtube-script':1,'youtube-seo':1,'youtube-tags':1,'youtube-summarizer':1,'youtube-hashtag':1,'youtube-intro':1,'youtube-outro':1,'youtube-hook':1,'youtube-shorts-script':1,'youtube-channel-name':1,'youtube-analytics':1,'youtube-banner':1,'youtube-desc':1,'social-instagram':1,'social-linkedin':1,'social-twitter':1,'social-facebook':1,'social-tiktok':1,'social-pinterest':1,'social-reddit':1,'social-youtube':1,'social-whatsapp':1,'social-bio':1,'social-hashtag':1,'social-content-calendar':1,'social-influencer':1,'horoscope':1,'baby-names':1,'trip-planner':1,'dream':1,'pickup-lines':1,'personality-test':1,'roast':1,'design-presentation':1,'design-diagram':1,'design-flowchart':1,'design-mindmap':1,'design-floorplan':1,'design-menu':1,'design-color-scheme':1,'design-wireframe':1,'design-ui':1,'design-font-pairing':1,'health-calorie':1,'health-workout':1,'health-recipe':1,'health-fitness-plan':1,'astrology':1,'builder-website':1,'builder-landing':1,'builder-app':1,'builder-shopify':1,'business-marketing':1,'business-seo':1,'business-brand-name':1,'business-data':1,'business-excel':1,'business-meeting-notes':1,'business-contract':1,'business-pitch-deck':1,'business-report':1,'business-company-name':1,'business-product-name':1,'business-domain-name':1,'business-startup-idea':1,'business-swot':1,'business-spreadsheet':1,'business-email':1,'business-plan':1,'business-proposal':1,'business-presentation':1,'chatbot':1,'chat-creative':1,'chat-coding':1,'chat-math':1,'chat-language':1,'chat-roleplay':1,'ocr-receipt':1,'translate':1};
+    var page = window.location.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+    var bar = document.getElementById('tool-model-bar');
+    var advOpts = document.getElementById('tool-advanced-options');
+    if (bar && TOOL_ROUTES_LLM[page]) bar.classList.remove('d-none');
+    if (advOpts && TOOL_ROUTES_LLM[page]) advOpts.classList.remove('d-none');
+
+    // Picker open/close/search/select
+    var btn = document.getElementById('tool-picker-btn');
+    var dd = document.getElementById('tool-picker-dd');
+    var search = document.getElementById('tool-model-search');
+    var list = document.getElementById('tool-model-list');
+    var more = document.getElementById('tool-model-more');
+    var label = document.getElementById('tool-picker-label');
+    var sel = document.getElementById('tool-model-select');
+    if (!btn || !dd) return;
+    var _loaded = false;
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = dd.style.display !== 'none';
+        dd.style.display = open ? 'none' : 'block';
+        if (!open && search) { search.value = ''; search.focus(); if (!_loaded) _loadModels(); }
+    });
+    document.addEventListener('click', function(e) { if (dd && !dd.contains(e.target) && e.target !== btn) dd.style.display = 'none'; });
+    if (search) search.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        [].forEach.call(list.querySelectorAll('.tml-opt'), function(el) {
+            el.style.display = (!q || (el.textContent || '').toLowerCase().indexOf(q) !== -1 || (el.getAttribute('data-value') || '').toLowerCase().indexOf(q) !== -1) ? '' : 'none';
+        });
+    });
+    list.addEventListener('click', function(e) {
+        var opt = e.target.closest('.tml-opt');
+        if (!opt) return;
+        var v = opt.getAttribute('data-value'), n = opt.textContent.trim();
+        // Block paid for non-paid
+        if (v.indexOf('/') !== -1 && !(window.FREE && window.FREE.userId && window.FREE.credits > 0)) {
+            var ra = document.getElementById('result-area'), rc = document.getElementById('result-content');
+            if (ra && rc) { rc.innerHTML = '<div style="background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:14px"><strong>' + n.split('-')[0].trim() + '</strong> requires purchased tokens.<br><div style="margin-top:10px"><a href="/pricing/" class="btn btn-sm btn-danger me-2">Get Tokens</a><a href="/signup/" class="btn btn-sm btn-success">Sign Up - 30K/day Free</a></div></div>'; ra.classList.remove('d-none'); }
+            dd.style.display = 'none'; return;
+        }
+        var f = false;
+        for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].value === v) { sel.selectedIndex = i; f = true; break; } }
+        if (!f) { var o = document.createElement('option'); o.value = v; o.textContent = n; sel.appendChild(o); sel.value = v; }
+        if (label) label.textContent = n;
+        [].forEach.call(list.querySelectorAll('.tml-opt.active'), function(a) { a.classList.remove('active'); });
+        opt.classList.add('active');
+        dd.style.display = 'none';
+    });
+    // Map: our short self-hosted IDs → their OpenRouter equivalent(s) to dedupe
+    // so users don't see e.g. both "Qwen 3 8B (Free)" AND "Qwen: Qwen3 8B (paid)"
+    // when those are the same underlying model just on different infrastructure.
+    var SELF_HOSTED_OR_EQUIV = {
+        'qwen7b': ['qwen/qwen-2.5-7b-instruct', 'qwen/qwen2.5-7b-instruct'],
+        'qwen3-8b': ['qwen/qwen3-8b', 'qwen/qwen-3-8b'],
+        'qwen-coder': ['qwen/qwen-2.5-coder-32b-instruct', 'qwen/qwen2.5-coder-32b-instruct', 'qwen/qwen-2.5-coder-7b-instruct'],
+        'qwen3-coder': ['qwen/qwen3-coder', 'qwen/qwen3-coder:free', 'qwen/qwen3-coder-30b-a3b-instruct'],
+        'mistral': ['mistralai/mistral-7b-instruct', 'mistralai/mistral-7b-instruct:free', 'mistralai/mistral-7b-instruct-v0.3'],
+        'deepseek-r1-7b': ['deepseek/deepseek-r1-distill-qwen-7b', 'deepseek/deepseek-r1-distill-llama-7b'],
+        'deepseek-r1': ['deepseek/deepseek-r1', 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1:free'],
+    };
+    function _loadModels() {
+        _loaded = true;
+        fetch(((window.FREE && window.FREE.gpuApiUrl) || 'https://api.free.ai') + '/v1/models').then(function(r) { return (typeof utils !== "undefined" && utils.safeJson) ? utils.safeJson(r) : r.json(); }).then(function(d) {
+            var ex = {};
+            [].forEach.call(list.querySelectorAll('.tml-opt'), function(el) {
+                var v = el.getAttribute('data-value');
+                ex[v] = 1;
+                // Also exclude any OpenRouter equivalents of our self-hosted models
+                (SELF_HOSTED_OR_EQUIV[v] || []).forEach(function(eq) { ex[eq] = 1; });
+            });
+            var h = document.createElement('div'); h.className = 'px-2 py-1 text-muted fw-bold'; h.style.cssText = 'font-size:.7rem;background:#f8f9fa'; h.textContent = 'All models'; more.appendChild(h);
+            var c = 0;
+            (d.models || []).forEach(function(m) {
+                if (ex[m.id] || m.type !== 'chat') return;
+                // Hide OpenRouter :free variants (rate-limited, confusing)
+                if (m.id && m.id.indexOf(':free') !== -1) return;
+                var div = document.createElement('div'); div.className = 'tml-opt px-3 py-2'; div.setAttribute('data-value', m.id);
+                var _cl='';
+                if(m.pricing&&m.id.indexOf('/')!==-1){
+                    var _pp=parseFloat(m.pricing.prompt||0),_cp=parseFloat(m.pricing.completion||0);
+                    if(_pp>0||_cp>0){var _t=Math.max(100,Math.round((_pp*500+_cp*300)* 750000 * 1.5));_cl=' <span class="text-muted">(~' + _t.toLocaleString() + '/msg)</span>';}
+                    else{_cl=' <span class="text-muted">(~100/msg)</span>';}
+                }
+                div.innerHTML = (m.name || m.id.split('/').pop()) + _cl;
+                more.appendChild(div); c++;
+            });
+            h.textContent = 'All models (' + c + ' more)';
+        }).catch(function() {});
+    }
+})();
+</script>
+
+    </main>
+
+    
+    
+
+<div class="modal fade" id="emailcapture" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:420px">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center px-4 pb-4">
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px">
+                    <i class="bi bi-gift text-primary" style="font-size:1.5rem"></i>
+                </div>
+                <h5 class="fw-bold mb-1">30,000 Free Tokens, Every Day</h5>
+                <p class="text-muted small mb-3">Just enter your email - no password needed. We&#x27;ll send you a link to set one later.</p>
+                <form id="email-capture-form" method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="ZMSuDyYf4ONLflbN1varPjIwjRQFXxcNgKo0JFaLoTQM5fxZoaCyyu2WUwrpOVox">
+                    
+                    <input type="hidden" id="capture-signup-token" value="1786480099:6-jUXXwS8rs:b3546773dc147b3a25f0ba53">
+                    <div class="input-group mb-2">
+                        <input type="email" class="form-control" id="capture-email" placeholder="your@email.com" required>
+                        <button type="submit" class="btn btn-primary px-3">Sign Up Free</button>
+                    </div>
+                </form>
+                <p class="text-muted" style="font-size:.72rem">No credit card required 30,000 free tokens/day.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<div class="modal fade" id="exitintent" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:420px">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center px-4 pb-4">
+                
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px">
+                    <i class="bi bi-stars text-primary" style="font-size:1.5rem"></i>
+                </div>
+                <h5 class="fw-bold mb-1">Wait - 30K free tokens/day!</h5>
+                <p class="text-muted small mb-3">Sign up in 5 seconds. No credit card required.</p>
+                <form id="exit-signup-form" method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="ZMSuDyYf4ONLflbN1varPjIwjRQFXxcNgKo0JFaLoTQM5fxZoaCyyu2WUwrpOVox">
+                    
+                    <input type="hidden" id="exit-signup-token" value="1786480099:6-jUXXwS8rs:b3546773dc147b3a25f0ba53">
+                    <div class="input-group mb-2">
+                        <input type="email" class="form-control" id="exit-capture-email" placeholder="your@email.com" required>
+                        <button type="submit" class="btn btn-primary px-3">Get 30K/day Tokens</button>
+                    </div>
+                </form>
+                <p class="text-muted" style="font-size:.72rem">No credit card required 30,000 free tokens/day.</p>
+                <a href="/pricing/" class="text-decoration-none small text-muted">Or view our plans</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    // Purchase attribution for the 8.5K/wk exit-intent impressions - the
+    // modal previously stamped nothing, so any resulting sale read 'direct'.
+    var m = document.getElementById('exitintent');
+    if (!m) return;
+    m.addEventListener('click', function(ev){
+        var el = ev.target;
+        while (el && el !== m && !(el.classList && el.classList.contains('exit-cta'))) el = el.parentNode;
+        if (el && el !== m && window.utils && utils.setPurchaseTrigger) {
+            try { utils.setPurchaseTrigger(el.getAttribute('data-trigger') || 'exit_intent'); } catch(e) {}
+        }
+    });
+})();
+</script>
+
+    
+<div id="share-prompt" class="d-none mt-4">
+    <div class="text-center p-3 rounded-3" style="background:#f8f9ff;border:1px solid #e8ecff">
+        <p class="fw-semibold mb-2" style="font-size:.9rem">Love Free.ai? Tell your friends!</p>
+        <div class="d-flex gap-2 justify-content-center">
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#1DA1F2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-twitter" title="Share on X">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#1877F2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-facebook" title="Share on Facebook">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#0A66C2;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-linkedin" title="Share on LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#FF4500;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-reddit" title="Share on Reddit">
+                <i class="bi bi-reddit"></i>
+            </a>
+            <a href="#" class="btn btn-sm rounded-circle" style="background:#25D366;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center" id="share-whatsapp" title="Share on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    var url = encodeURIComponent(window.location.href);
+    var text = encodeURIComponent('Check out this free AI tool on Free.ai!');
+    var s = document.getElementById('share-twitter');
+    if(s) s.href = 'https://twitter.com/intent/tweet?url='+url+'&text='+text;
+    s = document.getElementById('share-facebook');
+    if(s) s.href = 'https://www.facebook.com/sharer/sharer.php?u='+url;
+    s = document.getElementById('share-linkedin');
+    if(s) s.href = 'https://www.linkedin.com/sharing/share-offsite/?url='+url;
+    s = document.getElementById('share-reddit');
+    if(s) s.href = 'https://reddit.com/submit?url='+url+'&title='+text;
+    s = document.getElementById('share-whatsapp');
+    if(s) s.href = 'https://wa.me/?text='+text+' '+url;
+})();
+</script>
+
+
+    
+
+    
+    <footer class="bg-dark text-light py-5 mt-0">
+        <div class="container">
+            
+            <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+                <div>
+                    <a href="/" class="text-decoration-none" style="font-size:1.5rem;font-weight:800">
+                        <span style="color:#16A34A">Free</span><span class="text-light">.ai</span>
+                    </a>
+                    <p class="text-secondary small mt-1 mb-0">Every AI tool. Completely free.<br>400+ tools · 346+ models · 100+ languages<br><a href="/models/" class="text-decoration-none" style="color:#16A34A;font-weight:600">All models. One subscription. →</a></p>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=free.ai" rel="noopener" class="d-inline-block mt-2">
+                        <img src="/static/img/google-play-badge.png" alt="Get it on Google Play" height="40" loading="lazy" style="height:40px;width:auto">
+                    </a>
+                </div>
+                <div style="min-width:250px">
+                    <p class="text-light small fw-semibold mb-1">Newsletter</p>
+                    <form id="newsletter-form" class="d-flex gap-1" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="ZMSuDyYf4ONLflbN1varPjIwjRQFXxcNgKo0JFaLoTQM5fxZoaCyyu2WUwrpOVox">
+                        <input type="email" class="form-control form-control-sm" placeholder="your@email.com" required style="font-size:.75rem">
+                        <button type="submit" class="btn btn-primary btn-sm" style="font-size:.75rem">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Tools</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/chat/" class="text-light text-decoration-none">AI Chat</a></li>
+                        <li class="mb-1"><a href="/image/" class="text-light text-decoration-none">Image Generator</a></li>
+                        <li class="mb-1"><a href="/video/" class="text-light text-decoration-none">Video Generator</a></li>
+                        <li class="mb-1"><a href="/text-to-speech/" class="text-light text-decoration-none">Text to Speech</a></li>
+                        <li class="mb-1"><a href="/voice/" class="text-light text-decoration-none">AI Voice Generator</a></li>
+                        <li class="mb-1"><a href="/write/" class="text-light text-decoration-none">AI Writer</a></li>
+                        <li class="mb-1"><a href="/code/" class="text-light text-decoration-none">Code Generator</a></li>
+                        <li class="mb-1"><a href="/music/" class="text-light text-decoration-none">Music Generator</a></li>
+                        <li class="mb-1"><a href="/transcribe/" class="text-light text-decoration-none">Transcription</a></li>
+                        <li class="mb-1"><a href="/translate/" class="text-light text-decoration-none">Translator</a></li>
+                        <li class="mb-1"><a href="/text/humanizer/" class="text-light text-decoration-none">AI Humanizer</a></li>
+                        <li class="mb-1"><a href="/generator/" class="text-light text-decoration-none">AI Generator</a></li>
+                        <li class="mb-1"><a href="/tools/" class="text-light text-decoration-none fw-semibold">All 400+ &rarr;</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Explore</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        
+                        
+                        
+                        <li class="mb-1"><a href="/models/" class="text-light text-decoration-none">AI Models (346+)</a></li>
+                        <li class="mb-1"><a href="/voices/" class="text-light text-decoration-none">Voice Catalog</a></li>
+                        
+                        
+                        <li class="mb-1"><a href="/batch/" class="text-light text-decoration-none">Batch Processing</a></li>
+                        <li class="mb-1"><a href="/scheduled/" class="text-light text-decoration-none">Scheduled Tasks</a></li>
+                        <li class="mb-1"><a href="/tasks/" class="text-light text-decoration-none">Cloud Code Tasks</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Products</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/platform/" class="text-light text-decoration-none">Platform API</a></li>
+                        <li class="mb-1"><a href="/api/" class="text-light text-decoration-none">API</a></li>
+                        <li class="mb-1"><a href="/hosting/" class="text-light text-decoration-none">AI Hosting</a></li>
+                        <li class="mb-1"><a href="/gpu/" class="text-light text-decoration-none">GPU Access</a></li>
+                        <li class="mb-1"><a href="/coder/" class="text-light text-decoration-none">Free.ai Coder</a></li>
+                        <li class="mb-1"><a href="https://github.com/freeaigit/free-code" target="_blank" rel="noopener" class="text-light text-decoration-none"><i class="bi bi-github me-1"></i>GitHub</a></li>
+                        <li class="mb-1"><a href="/enterprise/" class="text-light text-decoration-none">Enterprise</a></li>
+                        <li class="mb-1"><a href="/agents/" class="text-light text-decoration-none">AI Agents</a></li>
+                        <li class="mb-1"><a href="/workflows/" class="text-light text-decoration-none">Workflows</a></li>
+                        <li class="mb-1"><a href="/integrations/" class="text-light text-decoration-none">Integrations</a></li>
+                        <li class="mb-1"><a href="/chrome-extension/" class="text-light text-decoration-none">Chrome Extension</a></li>
+                        <li class="mb-1"><a href="/widget/" class="text-light text-decoration-none">Widget</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Programs</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/contribute/" class="text-light text-decoration-none">Contribute</a></li>
+                        <li class="mb-1"><a href="/edu/" class="text-light text-decoration-none">Education</a></li>
+                        <li class="mb-1"><a href="/nonprofit/" class="text-light text-decoration-none">Nonprofit</a></li>
+                        <li class="mb-1"><a href="/open-source/" class="text-light text-decoration-none">Open Source</a></li>
+                        <li class="mb-1"><a href="/startup/" class="text-light text-decoration-none">Startups</a></li>
+                        <li class="mb-1"><a href="/learn/" class="text-light text-decoration-none">Learn AI</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="fw-bold mb-3" style="font-size:.8rem">Company</h6>
+                    <ul class="list-unstyled" style="font-size:.78rem">
+                        <li class="mb-1"><a href="/about/" class="text-light text-decoration-none">About</a></li>
+                        <li class="mb-1"><a href="/host/" class="text-light text-decoration-none">AI Hosting</a></li>
+                        <li class="mb-1"><a href="/domains/" class="text-light text-decoration-none">Domains</a></li>
+                        <li class="mb-1"><a href="/pricing/" class="text-light text-decoration-none">Pricing</a></li>
+                        <li class="mb-1"><a href="/for-teams/" class="text-light text-decoration-none">AI Tools for Teams</a></li>
+                        <li class="mb-1"><a href="/contact/" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-1"><a href="/security/" class="text-light text-decoration-none">Security</a></li>
+                        <li class="mb-1"><a href="/changelog/" class="text-light text-decoration-none">Changelog</a></li>
+                        <li class="mb-1"><a href="/roadmap/" class="text-light text-decoration-none">Roadmap</a></li>
+                        <li class="mb-1"><a href="/status/" class="text-light text-decoration-none">Status</a></li>
+                        <li class="mb-1"><a href="/privacy/" class="text-light text-decoration-none">Privacy</a></li>
+                        <li class="mb-1"><a href="/terms/" class="text-light text-decoration-none">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <p class="text-secondary small mb-0"><a href="/" class="text-secondary text-decoration-none">&copy; 2026 Free.ai</a>. All rights reserved. / <a href="https://muddyholdings.net" target="_blank" rel="noopener" class="text-secondary text-decoration-none">Muddy Holdings LLC</a></p>
+                <div class="d-flex gap-3">
+                    <a href="https://github.com/freeaigit" target="_blank" rel="noopener" class="text-secondary" title="GitHub"><i class="bi bi-github" style="font-size:1.1rem"></i></a>
+                    <a href="https://www.npmjs.com/package/freeai-code" target="_blank" rel="noopener" class="text-secondary" title="npm"><i class="bi bi-box-seam" style="font-size:1.1rem"></i></a>
+                    <a href="https://pypi.org/project/freeai-code/" target="_blank" rel="noopener" class="text-secondary" title="PyPI"><i class="bi bi-filetype-py" style="font-size:1.1rem"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="modal fade" id="ratelimit" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border:2px solid #16A34A">
+                <div class="modal-body text-center py-4 px-4">
+                    <div class="mb-3">
+                        <span style="font-size:3rem">&#9889;</span>
+                    </div>
+                    
+                    <h4 class="fw-bold mb-2">Want more?</h4>
+                    <p class="text-muted mb-3">Sign up free for 30,000 tokens every day. No credit card needed.</p>
+                    
+                    <form id="rl-signup-form" method="POST">
+                        <input type="hidden" id="rl-signup-token" value="1786480099:6-jUXXwS8rs:b3546773dc147b3a25f0ba53">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control" id="rl-capture-email" placeholder="your@email.com" required>
+                            <button type="submit" class="btn btn-primary px-3">Get 30K/day</button>
+                        </div>
+                    </form>
+                    <p class="text-muted mb-3" style="font-size:.72rem">No password needed - we email you a sign-in link. <a href="/signup/" style="color:#16A34A">Prefer Google or Microsoft? &rarr;</a></p>
+                    <a href="/pricing/" class="btn btn-link text-muted small mb-1" style="font-size:.75rem;text-decoration:none">See all plans &rarr;</a>
+                    <button type="button" class="btn btn-link text-muted small" data-bs-dismiss="modal" style="font-size:.7rem;text-decoration:none">Wait for free reset (<span id="reset-timer">...</span>)</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js?v=1.0.1786428037"></script>
+
+    
+    <script async data-id="101503413" src="/f08a0c545d7e2.js"></script>
+
+    
+    <script>
+    window.FREE = window.FREE || {};
+    window.FREE.gpuApiUrl = 'https://api.free.ai';
+    window.FREE.mediaGpuUrl = 'https://media.free.ai';
+    window.FREE.inferenceGpuUrl = 'https://gpu4.free.ai';
+    window.FREE.csrfToken = 'ZMSuDyYf4ONLflbN1varPjIwjRQFXxcNgKo0JFaLoTQM5fxZoaCyyu2WUwrpOVox';
+    window.FREE.isAuth = false;
+    window.FREE.page = 'image-generate';
+    window.FREE.userLang = 'en';
+    window.FREE.langName = 'English';
+    
+    window.FREE.capabilities = {"bg-removal": {"label": "Model", "default": "free", "free": [{"model_id": "rmbg", "name": "RMBG (free, fast)", "cost": 1000, "desc": "Fast, default \u2014 clean silhouettes / products"}, {"model_id": "birefnet", "name": "BiRefNet (free, sharp)", "cost": 1000, "desc": "Sharper hair / fur / fine edges"}], "premium": [], "endpoint_free": "/v1/image/remove-bg/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "remove_bg"}}, "depth-map": {"label": "Depth model", "default": "free", "free": [{"model_id": "marigold-depth", "name": "Marigold (free)", "cost": 1500, "desc": "Sharp, OpenRAIL++-M, ETH Zurich"}], "premium": [{"model_id": "premium/imageutils/depth", "name": "Fast Depth (premium)", "cost": 1500, "desc": "Quicker on huge inputs"}], "endpoint_free": "/v1/image/depth-map/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "depth"}}, "image-edit": {"label": "Edit model", "default": "free", "free": [{"model_id": "qwen-image-edit", "name": "Qwen-Image-Edit (free, direct)", "cost": 1000, "desc": "Apache 2.0, prompt-following \u2014 fastest free instruction edit"}, {"model_id": "step1x-edit", "name": "Step1X-Edit (free, reasoning)", "cost": 2000, "desc": "Apache 2.0, thinks + reflects \u2014 best on multi-step / abstract edits"}, {"model_id": "sdxl", "name": "SDXL img2img (free)", "cost": 1000, "desc": "Older fallback \u2014 looser instruction following"}], "premium": [{"model_id": "premium/flux-pro/kontext", "name": "FLUX Kontext Pro", "cost": 30000, "desc": "Strong instruction-following on complex prompts"}, {"model_id": "premium/bytedance/seedream/v4/edit", "name": "Seedream 4 Edit", "cost": 52000, "desc": "Best for text + logo preservation"}, {"model_id": "premium/nano-banana-pro/edit", "name": "Nano Banana Pro Edit", "cost": 112000, "desc": "Highest-quality general-purpose edit"}], "endpoint_free": "/v1/image/edit/", "endpoint_premium": "/v1/image/edit/", "extra_form_fields": {"operation": "img2img"}}, "vision-describe": {"label": "Vision model", "default": "free", "free": [{"model_id": "qwen25-vl", "name": "Qwen 2.5-VL (free)", "cost": 500, "desc": "Apache 2.0, strong general"}], "premium": [], "endpoint_free": "/v1/image/describe/", "endpoint_premium": "/v1/image/describe/"}, "controlnet": {"label": "Conditioning type", "default": "free", "free": [{"model_id": "canny", "name": "Canny edges", "cost": 1200, "desc": "Hard outlines from line drawings / photos"}, {"model_id": "pose", "name": "OpenPose", "cost": 1200, "desc": "Body skeleton \u2014 copy pose / gesture"}, {"model_id": "depth", "name": "Depth (MiDaS)", "cost": 1200, "desc": "Preserve 3D scene geometry"}, {"model_id": "scribble", "name": "Scribble / PiDi", "cost": 1200, "desc": "Loose doodles \u2192 finished art"}, {"model_id": "lineart", "name": "Lineart", "cost": 1200, "desc": "Clean ink-line / manga-style edges"}, {"model_id": "anime-lineart", "name": "Anime lineart", "cost": 1200, "desc": "Anime-tuned lineart extraction"}, {"model_id": "mlsd", "name": "MLSD (straight lines)", "cost": 1200, "desc": "Architecture / interior straight edges"}, {"model_id": "hed", "name": "HED soft edges", "cost": 1200, "desc": "Smooth holistic edge map"}, {"model_id": "soft-edge", "name": "Soft-edge", "cost": 1200, "desc": "PiDiNet soft-edge \u2014 gentler than canny"}, {"model_id": "normal", "name": "Normal map", "cost": 1200, "desc": "Surface orientation \u2014 preserve volume"}, {"model_id": "segmentation", "name": "Segmentation", "cost": 1200, "desc": "Region labels \u2014 restyle per object"}, {"model_id": "tile", "name": "Tile (variation)", "cost": 1200, "desc": "Refine / upscale / variation"}], "premium": [], "endpoint_free": "/v1/image/generate/", "endpoint_premium": "/v1/image/generate/", "extra_form_fields": {"model": "sdxl"}}, "talking-head": {"label": "Model", "default": "free", "free": [{"model_id": "sadtalker", "name": "SadTalker (free)", "cost": 6000, "desc": "MIT, ~10s/sec of video"}], "premium": [{"model_id": "premium/sync-labs/lipsync", "name": "Lipsync (premium)", "cost": 20000, "desc": "Sharper mouth, faster"}], "endpoint_free": "/v1/video/talking-head/", "endpoint_premium": "/v1/video/lip-sync/"}};
+    // Paid-CTA wall-anchor A/B arm (accounts/ab.py, server IP-hash). utils.js
+    // PAID_CTA.aimHigh reads this - 'micro' for everyone while the experiment
+    // flag is off.
+    window.FREE.paidCtaArm = 'aimhigh';
+    
+    
+    window.FREE.isConfirmed = false;
+    
+    </script>
+    
+    
+
+    
+    <script src="/static/js/utils.js?v=1.0.1786428037"></script>
+    
+    <script src="/static/js/global-search.js?v=1.0.1786428037"></script>
+    
+    <script src="/static/js/voice-loader.js?v=1.0.1786428037"></script>
+
+    <script>
+    window.FREE.i18n = {
+        error_generic: 'Something went wrong. Please try again.',
+        error_connection: 'Connection error - please try again.',
+        error_no_response: 'Sorry, I could not generate a response.',
+        error_text_long: 'Text too long. Maximum',
+        error_characters: 'characters.',
+        error_upload_image: 'Please upload an image first.',
+        error_upload_audio: 'Please upload an audio file.',
+        error_upload_file: 'Please upload a file first.',
+        error_enter_desc: 'Please enter a description.',
+        error_enter_text: 'Please enter some text.',
+        error_processing: 'Processing failed. Please try again.',
+        error_image_gen: 'Failed to generate image. Please try again.',
+        error_tts: 'Failed to generate speech. Please try again.',
+        error_music: 'Music generation failed.',
+        error_audio_sep: 'Audio separation failed.',
+        error_face_swap: 'Please upload both a source photo and a target photo.',
+        copied: 'Copied!',
+        img_upscale_4k_cta: 'Upscale to 4K',
+        
+        img_model_nudge_title: 'Not quite matching your description?',
+        img_model_nudge_body: 'The default model is fast but loose with details. These follow detailed prompts more closely:',
+        img_model_nudge_flux: 'Try FLUX.1 \u002D free',
+        img_model_nudge_premium: 'Try a Premium model',
+        img_model_nudge_switched: 'Model switched \u002D hit Generate again to compare',
+        audio_stems_cta: 'Split into Stems',
+        
+        upsell_do_more: 'Do more with this result',
+        img_upscale_4k_cta_cost: 'Upscale to 4K \u002D {0} tokens',
+        img_variations_cta_cost: '4 more variations \u002D {0} tokens',
+        upsell_variations_ready: 'Variations ready',
+        audio_stems_cta_cost: 'Split into Stems \u002D ~{0} tokens',
+        video_retake_cta: 'Generate another take',
+        video_retake_cta_cost: 'Generate another take \u002D {0} tokens',
+        
+        pack_low_only: 'Only',
+        pack_low_tail: 'purchased tokens left.',
+        pack_low_refill: 'Refill \u002D 200K for $5',
+        pack_low_sub: 'or $5/mo \u002D 250K every month',
+        
+        firstgen_title: 'Your first creation is ready',
+        firstgen_body: 'Made with your free daily tokens. Keep the momentum:',
+        firstgen_body_left: '{0} of your free daily tokens left \u002D keep the momentum:',
+        firstgen_cta_starter: 'Go unlimited \u002D 500K tokens/mo, no daily caps',
+        firstgen_cta_micro: 'Keep creating \u002D 40K tokens for $1',
+        firstgen_cta_once: 'or just this once \u002D 40K for $1',
+        firstgen_confirm_hint: 'Free option: confirm your email to raise your daily pool to 30K tokens.',
+        new_chat: 'New Chat',
+        queue_running: 'Running on GPU…',
+        queue_pos_priority: 'Position #{0} in priority queue…',
+        queue_pos_normal: 'Position #{0} in queue…',
+        queue_waiting: 'Waiting for a worker…',
+        queue_upgrade_cta: 'Skip the line - priority from $1',
+        queue_upgrade_hint: '- any purchase runs first',
+        queue_wait_eta: '{0} wait',
+        queue_upgrade_hint_wait: '- skip the {0} wait',
+        queue_failed_generic: 'Generation failed. Please try again.',
+        queue_failed_cta: 'Skip the line next time - priority from $1',
+        queue_failed_hint: '- paid jobs are run first, so they do not wait for a free slot',
+        queue_still_working: 'Still working - the result will be saved to your account history.',
+        video_free_cap: 'Free videos are up to 3-second CogVideoX clips - Pro unlocks up to 8s, HunyuanVideo HD, and priority (skip the queue).',
+        upgrade_to_pro: 'Upgrade to Pro →',
+        processing: 'Processing your request...',
+        result: 'Result',
+        // Pool warning messages - surfaced from utils.js pool modal/toast
+        pool_low_headline: 'Running low on daily tokens',
+        pool_critical_headline: 'Almost out of daily tokens',
+        pool_empty_headline: 'Daily token pool used up',
+        pool_remaining_of: 'of',
+        pool_daily_tokens_left: 'daily tokens left',
+        pool_cta_signup: 'Sign up \u002D 30K/day',
+        pool_cta_signup_long: 'Sign up free \u002D 30K/day',
+        pool_cta_buy_short: 'Get 200K \u002D $5',
+        pool_cta_buy_long: 'Get 200K tokens \u002D $5',
+        pool_cta_sub_long: 'Get 250K tokens every month \u002D $5/mo',
+        pool_cta_pack_alt: 'or a one\u002Dtime 200K pack for $5',
+        pool_see_plans: 'See all plans',
+        pool_see_pricing: 'See pricing',
+        
+        pool_cta_starter_short: '500K/mo, no caps',
+        pool_cta_starter: '500K tokens/mo, no daily caps',
+        pool_cta_buy_micro_alt: 'Or $1 once \u002D 40K',
+        
+        cap_headline: 'Daily free {0} limit reached',
+        cap_lead: 'This is a per\u002Dtool limit, not your token balance. Your remaining daily tokens still work on every other tool, and this resets tomorrow.',
+        cap_pill_left: '{0} {1} tokens left today',
+        cap_pill_done: 'Daily {0} limit reached',
+        cap_note: 'Free plan: {0} {1} tokens a day, separate from your token pool. Upgrade to remove the limit.',
+        cap_label_image: 'image',
+        cap_label_image_edit: 'image edit',
+        cap_label_music: 'music',
+        cap_label_video: 'video',
+        img_one_failed: 'One image in this batch failed. Please try again.',
+        // 429 / 402 inline CTAs rendered into the chat / coder transcript when
+        // the daily pool is exhausted (429) or the model costs more than the
+        // user can afford (402). Wired by static/js/coder.js error handler.
+        // HTML allowed (anchor tags) - strings are inserted via innerHTML.
+        coder_429_authed: 'Daily limit reached. \u003Ca href\u003D\u0022/checkout/?plan\u003Dtokens_small\u0022 style\u003D\u0022color:#16A34A\u003Bfont\u002Dweight:600\u0022\u003EBuy 200K tokens \u002D $5\u003C/a\u003E or \u003Ca href\u003D\u0022/pricing/\u0022 style\u003D\u0022color:#16A34A\u0022\u003Eview plans\u003C/a\u003E.',
+        coder_429_anon: 'Daily tokens used up. \u003Ca href\u003D\u0022/signup/\u0022 style\u003D\u0022color:#16A34A\u003Bfont\u002Dweight:600\u0022\u003ESign up free \u002D 30K/day\u003C/a\u003E or \u003Ca href\u003D\u0022/pricing/\u0022 style\u003D\u0022color:#16A34A\u0022\u003Eview plans\u003C/a\u003E.',
+        coder_402_prefix: 'Not enough tokens for',
+        coder_402_topup: 'Top up',
+        coder_402_or_pick_free: 'or pick a free model',
+        // /coder/ paid-model block card - fires when user selects a paid model
+        // without enough wallet credits. Rendered as a red inline card via
+        // static/js/coder.js model-switch handler (line ~1373).
+        coder_requires_purchased_tokens: 'requires purchased tokens.',
+        coder_free_daily_only: 'Free daily tokens only work with free models (Qwen Coder, Mistral).',
+        coder_get_tokens: 'Get Tokens',
+        coder_signup_30k_free: 'Sign Up \u002D 30K/day Free',
+        coder_use_free_model: 'Use Free Model',
+        // coder.js reads these so its JS-built strings localize (placeholder
+        // is also rendered server-side on the textarea, but coder.js re-sets it
+        // on model-enable and must not clobber it back to English).
+        coder_input_placeholder: 'Describe what you want to build, paste code to debug, or ask a question...',
+        coder_no_files_loaded: 'No files loaded. Upload files or clone a repo.',
+        coder_purchased_required_placeholder: 'Purchased tokens required for this model',
+        coder_new_session: 'New session',
+        coder_no_sessions: 'No sessions yet',
+        coder_delete_session: 'Delete session',
+        coder_copied: 'Copied!',
+        coder_copy: 'Copy',
+        coder_invalid_github_url: 'Please enter a valid GitHub URL',
+        coder_cloning: 'Cloning...',
+        coder_clone: 'Clone',
+        coder_failed_to_clone: 'Failed to clone:',
+        coder_no_pending_changes: 'No pending changes',
+        coder_monaco_loading: 'Monaco editor still loading. Please try again in a moment.',
+        coder_autodetecting: 'Auto\u002Ddetecting project type...',
+        coder_detect_failed_cmd: 'Could not detect start command.',
+        coder_detection_failed: 'Detection failed:',
+        coder_stream_error: 'Stream error:',
+        coder_no_files_download: 'No files to download. Upload or generate files first.',
+        chat_stop_generation: 'Stop generation',
+        chat_context_label: 'Context: ',
+        chat_context_full: 'Context full \u002D old messages trimmed',
+        chat_processing_tools: 'Processing \u002D searching the web or using tools...',
+        chat_still_working: 'Still working \u002D complex requests take longer...',
+        chat_no_messages_export: 'No messages to export.',
+        chat_nothing_to_branch: 'Nothing to branch yet \u002D send a message first.',
+        chat_could_not_branch: 'Could not branch:',
+        chat_no_messages_share: 'No messages to share yet \u002D send a message first.',
+        chat_share_failed: 'Failed to create share link.',
+        chat_share_link_notice: 'Anyone with the link can read your conversation. Link expires in ',
+        chat_close: 'Close',
+        chat_running_on_gpu: 'Running on GPU…',
+        // Premium-feature CTA shown under chat refusals for non-paid users.
+        // Wording is intentionally neutral ("some features") so the upsell
+        // doesn't read as "we serve explicit content for $5/mo" - both legal
+        // and brand-wise, that framing was a non-starter. Free users see the
+        // hint, paid users skip it (their plan presumably includes more
+        // permissive premium models).
+        premium_features_hint: 'Some of the features you are requesting are for paying customers only.',
+        premium_features_cta: 'Upgrade →',
+        pool_see_plans_link: 'see plans',
+        pool_modal_msg_auth: 'You have used all your daily free tokens. Grab a token pack to keep going \u002D packs never expire.',
+        pool_modal_msg_anon: 'You have used the free anonymous tokens for today. Sign up free to get 30,000 every day \u002D 12x more.',
+        rl_autotopup_ok: 'Auto\u002Drefill is on \u002D you will never hit this wall again.',
+        rl_autotopup_err: 'Could not save right now \u002D please try again.',
+        pool_come_back_later: 'Not now',
+        pool_resets_in: 'Resets in',
+        pool_nudge_only: 'Only',
+        pool_nudge_tail: 'daily tokens left.',
+        // Cost-shortfall banner (utils.js showCostShortfallModal) - these were
+        // never in the i18n bridge, so the banner rendered English on every
+        // locale. Added 2026-07-07 with the tool-shaped offer rework.
+        shortfall_head: 'Not enough tokens for ',
+        shortfall_body_mid: ' tokens. You have ',
+        shortfall_anon_tail: 'daily free tokens.',
+        shortfall_authed_tail: 'tokens.',
+        shortfall_cta_signup_v2: 'Sign up free \u002D 30,000 tokens every day',
+        shortfall_cta_micro: 'Keep going \u002D $1 for',
+        shortfall_cta_buy: 'Buy 200K tokens \u002D $5',
+        
+        shortfall_cta_starter: 'Go unlimited \u002D 500K/mo, no caps',
+        shortfall_cta_micro_secondary: 'Or $1 once \u002D',
+        shortfall_cta_small_secondary: 'Or $5 \u002D',
+        shortfall_cta_switch_prefix: 'Use ',
+        shortfall_cta_switch_suffix: ' (free) instead',
+        shortfall_cta_pricing: 'See plans',
+        shortfall_email_ph: 'you@email.com',
+        shortfall_signup_page: 'Full sign\u002Dup',
+        resume_prompt_ready: 'You are in \u002D your prompt is ready. Click Generate to make it.',
+        resume_prompt_generating: 'You are in \u002D generating your result now…',
+        shortfall_hint_anon_v2: 'A free account gets 30,000 tokens every day \u002D enough for this, free, daily. Packs from $1 if you want more.',
+        shortfall_hint_pack_caps: 'Purchased tokens also remove the daily caps and never expire.',
+        unit_videos: 'videos',
+        unit_songs: 'songs',
+        unit_images: 'images',
+        unit_3d_models: '3D models',
+        unit_generations: 'generations',
+        tokens_word: 'tokens',
+        nav_anon_free_today: 'free today',
+        chat_free_today_label: 'free today',
+        queued_view_result: 'View result',
+        download: 'Download',
+        queued_done_dashboard: 'Done \u002D the result is saved in \u003Ca href\u003D\u0022/account/?tab\u003Dhistory\u0022\u003Eyour dashboard\u003C/a\u003E.',
+        // Generic UI labels surfaced from utils.js helpers (Enhance prompt, Before/After slider).
+        enhance_prompt: 'Enhance prompt',
+        enhance_prompt_title: 'Rewrite your prompt for richer results',
+        enhancing: 'Enhancing...',
+        before: 'Before',
+        after: 'After',
+        // Chat folder + rename prompts (from chat.js).
+        chat_folder_name_prompt: 'Folder name',
+        chat_folder_delete_confirm: 'Delete folder {name}? Its chats will move to Unfiled.',
+        chat_new_title: 'New title',
+        // Chat Projects (folder + shared instructions, from chat.js).
+        chat_project_new_prompt: 'Project name',
+        chat_project_delete_confirm: 'Delete project {name}? Its chats move to Unfiled and its instructions are removed.',
+        chat_project_new_chat: 'New chat in this project',
+        chat_project_edit_instr: 'Edit project instructions',
+        chat_project_delete_title: 'Delete project (chats move to Unfiled)',
+        chat_project_instr_desc: 'These instructions are added to every new chat you start in this project.',
+        chat_project_instr_ph: 'e.g. You are helping me write a mystery novel. Keep a dark, terse tone.',
+        chat_project_save: 'Save',
+        chat_project_cancel: 'Cancel',
+        // Work-chat server sync (from chat.js). Positional {0} slot — MT rule.
+        chat_sync_limit_notice: 'Free accounts sync {0} chats across devices. Older chats stay on this device.',
+        chat_sync_limit_cta: 'Upgrade for unlimited synced history',
+        // Coder SaaS scaffolder strings (from coder-saas.js).
+        coder_saas_build: 'Build it',
+        coder_saas_building: 'Building...',
+        coder_saas_sandbox_starting: 'Spinning up sandbox...',
+        coder_saas_app_live: 'Your app is live. Click below to open the preview in a new tab.',
+        coder_saas_open_preview: 'Open preview',
+        // coder-saas.js scaffolder step labels - round out the translation
+        // sweep flagged earlier by the audit. All read via FREE.i18n with
+        // English fallback inside the file.
+        coder_saas_thinking: 'Thinking...',
+        coder_saas_writing: 'Writing',
+        coder_saas_chars: 'chars',
+        coder_saas_running: 'Running',
+        coder_saas_applying_patch: 'Applying patch',
+        coder_saas_reading: 'Reading',
+        coder_saas_listing: 'Listing files in',
+        coder_saas_saved: 'Saved',
+        coder_saas_failed: 'Failed',
+        coder_saas_unknown_error: 'unknown error',
+        coder_saas_done: 'Done.',
+        coder_saas_approval_unexpected: 'Awaiting approval (unexpected \u002D scaffolder runs unattended).',
+        coder_saas_agent_error: 'Agent error',
+        coder_saas_sandbox_ready: 'Sandbox ready',
+        coder_saas_scaffolding: 'Asking the agent to scaffold.',
+        coder_saas_build_failed: 'Build failed.',
+        // chat.js modal sweep - welcome tour, cheatsheet, prompts manager,
+        // slash commands. Each key matches a T('key', 'fallback') call inside
+        // chat.js. seed_translations scans this file so adding a new key here
+        // is enough - no separate text_entries.json edit required.
+        chat_prompt_insert: 'Insert',
+        chat_prompts_empty: 'No saved prompts yet. Add one below.',
+        chat_prompts_title: 'Saved Prompts',
+        chat_prompts_desc: 'Reusable prompt templates. Insert via the slash menu (type /p) or the buttons below. Stored in this browser only.',
+        chat_prompt_name_ph: 'Name (e.g. Friendly tone rewrite)',
+        chat_prompt_body_ph: 'Prompt body \u002D clicking Insert pastes this into the chat input',
+        chat_prompt_save: 'Save Prompt',
+        chat_slash_image: 'Generate an image \u002D pre\u002Dfills Make an image of',
+        chat_slash_music: 'Compose music \u002D pre\u002Dfills Compose music:',
+        chat_slash_video: 'Generate video \u002D opens /video/generate/',
+        chat_slash_search: 'Web search \u002D pre\u002Dfills Search the web for',
+        chat_slash_translate: 'Translate \u002D pre\u002Dfills Translate to Spanish:',
+        chat_slash_voice: 'Read text aloud \u002D pre\u002Dfills Read this aloud:',
+        chat_slash_p: 'Insert a saved prompt template',
+        chat_slash_prompts: 'Manage saved prompts',
+        chat_slash_clear: 'Start a new chat',
+        chat_slash_star: 'Star/unstar this chat',
+        chat_slash_rename: 'Rename this chat',
+        chat_slash_rename_prompt: 'New title',
+        chat_slash_help: 'Show keyboard shortcuts',
+        chat_cheatsheet_title: 'Keyboard shortcuts',
+        chat_kbd_send: 'Send message',
+        chat_kbd_newline: 'Newline in input',
+        chat_kbd_recall: 'Recall previous message \u002D repeat to walk back',
+        chat_kbd_recall_fwd: 'Walk forward / clear',
+        chat_kbd_slash: 'Slash command palette',
+        chat_kbd_cheatsheet: 'This cheatsheet',
+        chat_kbd_esc: 'Close menu / modal',
+        chat_kbd_search: 'Site\u002Dwide tool search',
+        chat_features_h: 'Features you might not know about',
+        chat_feat_memory_t: 'Memory',
+        chat_feat_memory_d: 'the AI remembers facts across chats.',
+        chat_feat_skills_t: 'Skills',
+        chat_feat_skills_d: 'save instructions that auto\u002Dapply across chats.',
+        chat_feat_folders_t: 'Folders',
+        chat_feat_folders_d: 'group chats. Plus button in sidebar.',
+        chat_feat_branch_t: 'Branch',
+        chat_feat_branch_d: 'fork a chat at any user message.',
+        chat_feat_star_t: 'Star',
+        chat_feat_star_d: 'pin chats to top of sidebar.',
+        chat_feat_edit_t: 'Edit',
+        chat_feat_edit_d: 'pencil icon on user messages \u002D rewrites and regenerates.',
+        chat_feat_stop_t: 'Stop',
+        chat_feat_stop_d: 'Send button turns red mid\u002Dstream\u003B click to abort.',
+        chat_feat_voice_t: 'Voice',
+        chat_feat_voice_d: 'mic icon listens. Speak naturally\u003B auto\u002Dstops on silence.',
+        chat_feat_search_t: 'Web search',
+        chat_feat_search_d: 'type search and AI auto\u002Dcites sources.',
+        chat_feat_image_t: 'Image gen inline',
+        chat_feat_image_d: 'type make an image of and it appears in chat.',
+        chat_feat_math_t: 'Math',
+        chat_feat_math_d: 'wrap in dollar signs for inline, double dollars for display.',
+        chat_feat_drafts_t: 'Drafts',
+        chat_feat_drafts_d: 'in\u002Dprogress message saves per\u002Dchat across reloads.',
+        chat_feat_tab_t: 'Tab notify',
+        chat_feat_tab_d: 'page title flashes when AI finishes if you switched tabs.',
+        chat_feat_artifacts_t: 'Artifacts',
+        chat_feat_artifacts_d: 'long code/HTML responses auto\u002Dopen in Canvas side\u002Dpanel.',
+        chat_feat_prompts_t: 'Saved prompts',
+        chat_feat_prompts_d: 'type slash p to manage reusable prompt templates.',
+        chat_feat_slash_t: 'Slash commands',
+        chat_feat_slash_d: 'type slash at start of input for the command palette.',
+        chat_take_tour: 'Take the welcome tour',
+        chat_tour_h: 'Welcome to Free.ai Chat',
+        chat_tour_sub: 'A quick tour of what makes this chat different.',
+        chat_tour_models_t: '380+ models in one picker',
+        chat_tour_models_d: 'Free Qwen / Mistral / DeepSeek plus the leading paid models \u002D same chat, switch any time.',
+        chat_tour_inline_t: 'Generate inline',
+        chat_tour_inline_d: 'Image, music, search, voice \u002D generated right in the chat.',
+        chat_tour_memskills_t: 'Memory + Skills',
+        chat_tour_memskills_d: 'Remembers facts you tell it. Save reusable instructions that auto\u002Dapply across chats.',
+        chat_tour_branch_t: 'Branch + folders',
+        chat_tour_branch_d: 'Fork any chat at any message. Group chats into folders. Star to pin to the top.',
+        chat_tour_voice_t: 'Voice in + voice out',
+        chat_tour_voice_d: 'Click the mic to speak. AI replies in voice if you want. Click mic mid\u002Dresponse to interrupt.',
+        chat_tour_kbd_t: 'Power\u002Duser keys',
+        chat_tour_kbd_d: 'Type slash for slash commands. Press question mark for the full cheatsheet. Up arrow recalls your last message.',
+        chat_tour_freeforever: 'Free forever.',
+        chat_tour_pricing: '30K tokens/day no signup. Even more for signed\u002Dup users. $1 \u003D 40K extra.',
+        chat_tour_see_kbd: 'See all keyboard shortcuts →',
+        chat_tour_close: 'Got it, let me chat',
+    };
+    window.onerror = function(msg, src, line, col, err) {
+        navigator.sendBeacon('/api/accounts/log-error/', JSON.stringify({
+            message: msg, source: src, lineno: line, colno: col,
+            stack: (err && err.stack) || '', url: location.href
+        }));
+    };
+    // Service Worker. Wrapped in try/catch because some sandboxed iframe
+    // contexts (school filters, Yahoo Mail / Outlook preview frames) throw
+    // SecurityError on the `navigator.serviceWorker` *access itself* - the
+    // `'serviceWorker' in navigator` check is true in those contexts but
+    // the property is unreadable. The catch swallows that silently.
+    try {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/sw.js').catch(function(){});
+        }
+    } catch (_e) {}
+
+    // Dark Mode Toggle
+    (function(){
+        var btn = document.getElementById('dark-mode-toggle');
+        if (!btn) return;
+        var icon = btn.querySelector('i');
+        function updateIcon(){
+            var isDark = document.documentElement.classList.contains('dark');
+            icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        }
+        updateIcon();
+        btn.addEventListener('click', function(){
+            var isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('free_dark_mode', isDark ? 'true' : 'false');
+            updateIcon();
+        });
+    })();
+
+    // A/B test: signup CTA text
+    // Signup CTA - just "Sign Up"
+    (function(){
+        var btn = document.getElementById('signup-cta');
+        if (btn) btn.textContent = 'Sign Up' || 'Sign Up';
+    })();
+    </script>
+    
+<script src="/static/js/image.js?v=1.0.1786428037"></script>
+
+<script>
+// Live cost label - reacts to model + image-count. Each option has data-cost
+// (self-hosted + OpenRouter hardcoded; premium-fal injected by populateFalaiModels).
+document.addEventListener('DOMContentLoaded', function(){
+    var modelSel = document.getElementById('model');
+    var countSel = document.getElementById('image-count');
+    var label = document.getElementById('token-estimate');
+    if (!modelSel || !label) return;
+    function render(){
+        var opt = modelSel.options[modelSel.selectedIndex];
+        var base = parseInt(opt && opt.getAttribute('data-cost')) || 1000;
+        var n = parseInt(countSel && countSel.value) || 1;
+        var total = Math.max(100, base * n);
+        var name = (opt && opt.getAttribute('data-name')) || (opt.textContent || '').split(' (')[0];
+        label.innerHTML = '<i class="bi bi-lightning-charge"></i> ~' + total.toLocaleString() +
+            ' tokens' + (n > 1 ? ' (' + n + ' × ' + base.toLocaleString() + ', ' + name + ')' : ' / image');
+    }
+    modelSel.addEventListener('change', render);
+    if (countSel) countSel.addEventListener('change', render);
+    render();
+    // Premium options inject async - re-render once they land
+    var retries = 0;
+    var poll = setInterval(function(){
+        if (modelSel.querySelector('option[data-paid="1"]') || retries++ > 20) {
+            clearInterval(poll); render();
+        }
+    }, 250);
+    // Variation chip from chat sends ?reference=<url>. Auto-fill the IP-Adapter
+    // reference image so paid users can run the variation immediately.
+    if (window.utils && utils.handleImageHandoff) {
+        utils.handleImageHandoff({fileInputSel: '#ref-image-input', paramNames: ['reference','from']});
+    }
+
+});
+</script>
+
+
+    
+    <script>
+    (function() {
+        var wrap = document.getElementById('chat-wrapper') || document.querySelector('.myai-layout');
+        if (!wrap) return;
+        function fixH() {
+            var r = wrap.getBoundingClientRect();
+            if (r.top > 0) wrap.style.height = (window.innerHeight - r.top) + 'px';
+        }
+        fixH();
+        window.addEventListener('resize', fixH);
+        window.addEventListener('load', fixH);
+        setTimeout(fixH, 300);
+    })();
+    </script>
+
+</body>
+</html>
