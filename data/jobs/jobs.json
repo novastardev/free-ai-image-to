@@ -62,5 +62,21 @@
     "result": "\n🎨 AI Art: \"a cyberpunk cat wearing a neon jacket\"\n   flux2-klein | 1x | 1:1 | vibrant\n\n   ⏳ Submitting...\n   ⏳ Waiting...\n   ✅ Response received after 0s\n   ✅ Saved: cyberpunk_cat.png\n",
     "output_file": "cyberpunk_cat.png",
     "error": null
+  },
+  {
+    "id": "job_0005",
+    "status": "completed",
+    "created_at": "2026-08-12T04:28:55.606Z",
+    "started_at": "2026-08-12T04:28:55.658Z",
+    "finished_at": "2026-08-12T04:29:02.068Z",
+    "payload": {
+      "tool": "generate",
+      "prompt": "a blue bird on a tree",
+      "model": "sdxl",
+      "output": "e2e_test.png"
+    },
+    "result": "\n🎨 AI Art: \"a blue bird on a tree\"\n   sdxl | 1x | 1:1 | vibrant\n\n   ⏳ Submitting to API...\n   ✅ Saved: e2e_test.png (1677.6KB)\n",
+    "output_file": "e2e_test.png (1677.6KB)",
+    "error": null
   }
 ]

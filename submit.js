@@ -3,7 +3,7 @@
 /**
  * Free.ai All-Tools Submitter
  * Browser-based form automation — no sign-in, no API keys needed.
- * 
+ *
  * Usage:
  *   # Generate images (text-to-image)
  *   node submit.js generate "prompt" --model sdxl
@@ -17,8 +17,6 @@
  *   node submit.js face-swap src.jpg target.jpg --out swapped.png
  *   node submit.js object-remove photo.jpg --out cleaned.png
  *   node submit.js edit photo.jpg "make it sunset" --out edited.png
- *   node submit.js edit photo.jpg "remove background" --remove-bg
- *   node submit.js edit photo.jpg "swap face" --swap-face target.jpg
  *
  *   # Helpers
  *   node submit.js list
@@ -26,8 +24,8 @@
  */
 
 import puppeteer from "puppeteer-core";
-import { writeFileSync } from "fs";
-import { basename, extname } from "path";
+import { writeFileSync, readFileSync } from "fs";
+import { basename, extname, join } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -56,55 +54,56 @@ async function usePage(browser) {
   return page;
 }
 
-// ─── Intercept API response ─────────────────────────────────────────────
+// ─── Output URL interceptor ─────────────────────────────────────────────
 
-function interceptResponse(page, pattern) {
+/**
+ * Captures the image output URL that free.ai fetches from
+ * api.free.ai/static/outputs/{uuid}.{ext} after generation completes.
+ * This works because those GET requests ARE readable by Puppeteer.
+ */
+function captureOutputUrl(page, maxWait = 90000) {
   return new Promise((resolve) => {
-    let resolved = false;
+    const done = () => { if (!done.done) { done.done = true; resolve(); } };
+    done.done = false;
 
-    function tryResolve(data) {
-      if (resolved) return;
-      resolved = true;
-      resolve(data);
-    }
+    let outputUrl = null;
 
-    // Prefer response handler (has the actual response body)
     page.on("response", async (resp) => {
-      try {
-        if (!pattern.test(resp.url())) return;
-        const status = resp.status();
-        if (status >= 400) {
-          try {
-            const body = await resp.text();
-            let parsed;
-            try { parsed = JSON.parse(body); } catch { parsed = {}; }
-            tryResolve({ status, error: body, detail: parsed.detail || body.substring(0, 500), ...parsed });
-          } catch {
-            tryResolve({ status, error: "could not read response body" });
-          }
-          return;
-        }
-        const body = await resp.text();
-        if (!body || body.length === 0) return;
-        try {
-          const json = JSON.parse(body);
-          // Validate this looks like an image response, not an API endpoint
-          if (json.url || json.images || json.image || json.image_url) {
-            tryResolve(json);
-          }
-        } catch {
-          tryResolve({ raw: body.substring(0, 3000), body_length: body.length });
-        }
-      } catch {
-        // Preflight or broken response — skip
+      const url = resp.url();
+      if (url.match(/api\.free\.ai\/static\/outputs\//)) {
+        outputUrl = url;
+        done();
       }
     });
 
-    // Fallback: if no response arrives in 5s, use requestfinished
+    // Timeout — give up after maxWait
     setTimeout(() => {
-      tryResolve({ fallback: true, error: "no response captured within timeout" });
-    }, 5000);
+      if (outputUrl) done(); // still resolve with what we have
+      else resolve(null);
+    }, maxWait);
   });
+}
+
+/**
+ * Wait for output URL AND poll for it.
+ * Returns { url, filename } or null on timeout.
+ */
+async function waitForOutput(page, maxWait = 90000) {
+  let waited = 0;
+  const tick = 3000;
+  console.log(`   ⏳ Waiting for generation...`);
+
+  while (waited < maxWait) {
+    const result = await captureOutputUrl(page, tick);
+    if (result) {
+      // result is the resolved promise value — but we need the actual URL
+      // Actually captureOutputUrl returns the URL via the response handler
+      // Let me restructure...
+    }
+    // This approach is getting complicated. Let me use a simpler pattern below.
+    break;
+  }
+  return null;
 }
 
 // ─── Download image from URL ────────────────────────────────────────────
@@ -116,38 +115,61 @@ async function downloadImage(page, url, outputPath) {
     return;
   }
 
-  const buffer = await page.evaluate(async (fetchUrl) => {
-    const resp = await fetch(fetchUrl);
-    const blob = await resp.blob();
-    const ab = await blob.arrayBuffer();
-    return Array.from(new Uint8Array(ab));
-  }, url);
-
-  writeFileSync(outputPath, Buffer.from(new Uint8Array(buffer)));
+  // Use page.evaluate with fetch — works for same-origin or CORS-enabled endpoints
+  // For api.free.ai/static/outputs/, the page is on free.ai so cross-origin fetch may fail
+  // Use a simple approach: load the image in an <img> tag and grab the blob
+  try {
+    const buffer = await page.evaluate(async (fetchUrl) => {
+      const resp = await fetch(fetchUrl);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const blob = await resp.blob();
+      const ab = await blob.arrayBuffer();
+      return Array.from(new Uint8Array(ab));
+    }, url);
+    writeFileSync(outputPath, Buffer.from(new Uint8Array(buffer)));
+    return;
+  } catch {
+    // Fallback: use page.screenshot or navigate to URL
+    // Actually, the simplest reliable method: load via <img> and extract
+    const buffer = await page.evaluate(async (fetchUrl) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = async () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          const dataUrl = canvas.toDataURL("image/png");
+          const base64 = dataUrl.split(";base64,").pop();
+          resolve(Array.from(Buffer.from(base64, "base64")));
+        };
+        img.onerror = () => reject(new Error("Image load failed"));
+        img.src = fetchUrl;
+      });
+    }, url);
+    writeFileSync(outputPath, Buffer.from(new Uint8Array(buffer)));
+  }
 }
 
 // ─── Upload file via DataTransfer ────────────────────────────────────────
 
 async function uploadFile(page, selector, filePath) {
-  const { readFileSync } = await import("fs");
-  const { basename } = await import("path");
-
   const buffer = readFileSync(filePath);
-  // Use Uint8Array directly instead of base64 (avoids atob binary issues)
   await page.evaluate(
-    async (sel, bytes, mime, fname) => {
+    async (sel, bytes, fname) => {
       const el = document.querySelector(sel);
       if (!el) return false;
-      const blob = new Blob([new Uint8Array(bytes)], { type: mime });
+      const blob = new Blob([new Uint8Array(bytes)], { type: "image/png" });
       const dt = new DataTransfer();
-      dt.items.add(new File([blob], fname, { type: mime }));
+      dt.items.add(new File([blob], fname, { type: "image/png" }));
       el.files = dt.files;
       el.dispatchEvent(new Event("change", { bubbles: true }));
       return true;
     },
     selector,
     Array.from(new Uint8Array(buffer)),
-    buffer.length > 0 ? "image/jpeg" : "image/png",
     basename(filePath)
   );
   return true;
@@ -174,81 +196,56 @@ async function setField(page, selector, value) {
   }, selector, value);
 }
 
-// ─── Submit via JS click (handles SPA button click handlers) ────────────
+// ─── Submit via JS click ────────────────────────────────────────────────
 
 async function submitForm(page, selector) {
   await page.evaluate((sel) => {
     const btn = document.querySelector(sel);
     if (btn) {
-      if (btn.type === "submit") {
-        btn.click();
-      } else {
-        btn.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-      }
+      if (btn.type === "submit") btn.click();
+      else btn.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     }
   }, selector);
 }
 
-// ─── Wait for generation result ─────────────────────────────────────────
+// ─── Wait for output URL ────────────────────────────────────────────────
 
-async function waitForResult(interceptorPromise, maxWait = 90000) {
+async function waitForOutputUrl(page, maxWait = 90000) {
   let waited = 0;
-  const tick = 3000;
-  console.log(`   ⏳ Waiting...`);
-  while (waited < maxWait) {
-    const result = await Promise.race([
-      interceptorPromise,
-      new Promise((r) => setTimeout(() => r(null), tick)),
-    ]);
-    if (result) {
-      console.log(`   ✅ Response received after ${Math.round(waited / 1000)}s`);
-      return result;
+  const tick = 2000;
+  let outputUrl = null;
+
+  const handler = async (resp) => {
+    const url = resp.url();
+    if (url.match(/api\.free\.ai\/static\/outputs\//)) {
+      outputUrl = url;
+      outputResolved = true;
     }
+  };
+
+  let outputResolved = false;
+  page.on("response", handler);
+
+  while (!outputResolved && waited < maxWait) {
+    if (outputUrl) break;
+    await new Promise((r) => setTimeout(r, tick));
     waited += tick;
-    console.log(`   ...${Math.round(waited / 1000)}s`);
+    if (waited % 6000 < tick) {
+      console.log(`   ...${Math.round(waited / 1000)}s`);
+    }
   }
+
+  page.off("response", handler);
+
+  if (outputUrl) {
+    const parsed = new URL(outputUrl);
+    return { url: outputUrl, fileName: parsed.pathname.split("/").pop() };
+  }
+  console.log(`\n❌ Timeout waiting for output URL (${Math.round(maxWait / 1000)}s)`);
   return null;
 }
 
-// ─── Extract image URL from response ────────────────────────────────────
-
-function extractImageUrl(result) {
-  if (!result) return null;
-
-  // Reject API endpoint URLs — they're not image URLs
-  if (result.url && result.url.includes("/v1/image/")) return null;
-
-  if (result.image_url) return result.image_url;
-  if (result.url) return result.url;
-
-  if (result.images && Array.isArray(result.images) && result.images.length > 0) {
-    const img = result.images[0];
-    return typeof img === "string" ? img : (img?.url || null);
-  }
-  if (result.image) {
-    return typeof result.image === "string" ? result.image : result.image.url;
-  }
-  return null;
-}
-
-// ─── TOOL: text-to-image (ai-art) via API ───────────────────────────
-
-const MOOD_MAP = {
-  "vibrant": "vibrant",
-  "dark": "dark / moody",
-  "pastel": "pastel / soft",
-  "neon": "neon / electric",
-  "earthy": "earthy / natural",
-  "monochrome": "monochrome",
-  "golden": "golden hour",
-};
-
-const MODEL_MAP = {
-  "sdxl": "sdxl",
-  "flux2-klein": "flux2-klein",
-  "flux1-dev": "flux-schnell",
-  "flux-1.1-ultra": "flux-1.1-ultra",
-};
+// ─── TOOL: text-to-image (ai-art) ───────────────────────────────────────
 
 async function runAiArt(prompt, opts = {}) {
   const {
@@ -263,74 +260,31 @@ async function runAiArt(prompt, opts = {}) {
   console.log(`\n🎨 AI Art: "${prompt}"`);
   console.log(`   ${model} | ${count}x | ${aspect} | ${mood}\n`);
 
-  // Use free.ai's public API directly
-  const url = "https://api.free.ai/v1/image/generate/";
+  const browser = await launchBrowser();
+  const page = await usePage(browser);
 
-  // Map our model names to free.ai's model names
-  const freeModel = MODEL_MAP[model] || model;
+  await navigateTo(page, "https://free.ai/image/ai-art", "#aiart-prompt");
+  await setField(page, "#aiart-prompt", prompt);
+  await setField(page, "#aiart-model", model);
+  await setField(page, "#aiart-aspect", aspect);
+  await setField(page, "#aiart-mood", mood);
+  await setField(page, "#aiart-count", count.toString());
+  if (negative) await setField(page, "#aiart-negative", negative);
 
-  const body = {
-    model: freeModel,
-    prompt: prompt,
-    aspect_ratio: aspect,
-    style_preset: "digital",
-    n: count,
-  };
+  console.log("   ⏳ Submitting...");
+  await submitForm(page, 'button[type="submit"]');
 
-  if (negative) {
-    body.negative_prompt = negative;
+  const outputData = await waitForOutputUrl(page, 90000);
+  if (outputData) {
+    // Wait a moment for the image to fully download
+    await new Promise((r) => setTimeout(r, 2000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
   }
 
-  // Mood front-loading (add mood cue to prompt like the website does)
-  const moodText = MOOD_MAP[mood] || mood;
-  const enhancedPrompt = `${moodText} ${prompt}`;
-
-  // Also try with the enhanced prompt
-  const submitBody = { ...body, prompt: enhancedPrompt };
-
-  console.log("   ⏳ Submitting to API...");
-
-  try {
-    const resp = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(submitBody),
-    });
-
-    const data = await resp.json();
-
-    if (data.url || data.image_url || data.data?.[0]?.url) {
-      // Handle array response (n > 1)
-      const urls = data.data
-        ? data.data.map((d) => d.url).filter(Boolean)
-        : [data.url || data.image_url];
-
-      for (let i = 0; i < urls.length; i++) {
-        const u = urls[i];
-        const out = urls.length > 1
-          ? output.replace(/(\.\w+)$/, `_${i + 1}$1`)
-          : output;
-
-        // Direct download (no browser needed)
-        const resp = await fetch(u);
-        if (!resp.ok) {
-          throw new Error(`Failed to download image: ${resp.status}`);
-        }
-        const buffer = Buffer.from(await resp.arrayBuffer());
-        writeFileSync(out, buffer);
-        console.log(`   ✅ Saved: ${out} (${(buffer.length / 1024).toFixed(1)}KB)`);
-      }
-    } else if (data.error) {
-      console.log(`\n❌ Error: ${data.error.message || JSON.stringify(data.error)}`);
-      process.exit(1);
-    } else {
-      console.log(`\n❌ Unexpected response: ${JSON.stringify(data).substring(0, 500)}`);
-      process.exit(1);
-    }
-  } catch (err) {
-    console.log(`\n❌ API request failed: ${err.message}`);
-    process.exit(1);
-  }
+  await browser.close();
 }
 
 // ─── TOOL: background remover ───────────────────────────────────────────
@@ -342,14 +296,8 @@ async function runRemoveBg(filePath, opts = {}) {
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/remove-bg|\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/background-remover", "#file-input");
-
-  // Upload file
   await uploadFile(page, "#file-input", filePath);
-
-  // Wait for file to load
   await new Promise((r) => setTimeout(r, 2000));
 
   await setField(page, "#bgrm-model", model);
@@ -359,8 +307,15 @@ async function runRemoveBg(filePath, opts = {}) {
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Background removed");
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
+  }
+
   await browser.close();
 }
 
@@ -373,10 +328,7 @@ async function runUpscale(filePath, opts = {}) {
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/enhance|\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/upscaler", "#file-input");
-
   await uploadFile(page, "#file-input", filePath);
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -386,8 +338,15 @@ async function runUpscale(filePath, opts = {}) {
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Upscaled");
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
+  }
+
   await browser.close();
 }
 
@@ -400,10 +359,7 @@ async function runEnhance(filePath, opts = {}) {
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/enhance|\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/enhance", "#file-input");
-
   await uploadFile(page, "#file-input", filePath);
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -412,8 +368,15 @@ async function runEnhance(filePath, opts = {}) {
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Enhanced");
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
+  }
+
   await browser.close();
 }
 
@@ -426,10 +389,7 @@ async function removeObject(filePath, opts = {}) {
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/object-remover", "#file-input");
-
   await uploadFile(page, "#file-input", filePath);
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -439,8 +399,15 @@ async function removeObject(filePath, opts = {}) {
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Object removed");
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
+  }
+
   await browser.close();
 }
 
@@ -453,10 +420,7 @@ async function runFaceSwap(srcFile, targetFile, opts = {}) {
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/face-swap", "#file-input-source");
-
   await uploadFile(page, "#file-input-source", srcFile);
   await new Promise((r) => setTimeout(r, 2000));
   await uploadFile(page, "#file-input-target", targetFile);
@@ -467,64 +431,57 @@ async function runFaceSwap(srcFile, targetFile, opts = {}) {
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Face swapped");
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
+  } else {
+    console.log(`\n❌ Failed — no output URL received`);
+  }
+
   await browser.close();
 }
 
-// ─── TOOL: image editor (multi-purpose) ─────────────────────────────────
+// ─── TOOL: image editor ─────────────────────────────────────────────────
 
 async function runEdit(filePath, prompt, opts = {}) {
   const { output = "edited.png", removeBg = false, swapFace = null } = opts;
   console.log(`\n✏️  Image Editor: ${filePath}`);
 
+  if (removeBg) {
+    const browser = await launchBrowser();
+    browser.close();
+    return runRemoveBg(filePath, { output });
+  }
+  if (swapFace) {
+    const browser = await launchBrowser();
+    browser.close();
+    return runFaceSwap(filePath, swapFace, { output });
+  }
+
   const browser = await launchBrowser();
   const page = await usePage(browser);
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/edit/);
-
   await navigateTo(page, "https://free.ai/image/edit", "#file-input");
-
-  if (removeBg) {
-    // Use background remover instead
-    await browser.close();
-    return runRemoveBg(filePath, { output });
-  }
-
   await uploadFile(page, "#file-input", filePath);
   await new Promise((r) => setTimeout(r, 2000));
 
   await setField(page, "#edit-prompt", prompt);
 
-  if (swapFace) {
-    console.log(`   Face swap target: ${swapFace}`);
-    // Navigate to face swap page
-    await browser.close();
-    return runFaceSwap(filePath, swapFace, { output });
-  }
-
   console.log("   ⏳ Submitting...");
   await submitForm(page, 'button[type="submit"]');
 
-  const result = await waitForResult(interceptor, 60000);
-  await handleImageResult(page, result, output, "Edited");
-  await browser.close();
-}
-
-// ─── Shared result handler ──────────────────────────────────────────────
-
-async function handleImageResult(page, result, output, label) {
-  if (result && (result.url || result.images || result.image)) {
-    const url = extractImageUrl(result);
-    if (url) {
-      await downloadImage(page, url, output);
-      console.log(`   ✅ Saved: ${output}`);
-    }
-  } else if (result && result.error) {
-    console.log(`\n❌ ${label} failed: ${result.error}`);
+  const outputData = await waitForOutputUrl(page, 60000);
+  if (outputData) {
+    await new Promise((r) => setTimeout(r, 1000));
+    await downloadImage(page, outputData.url, output);
+    console.log(`   ✅ Saved: ${output}`);
   } else {
-    console.log(`\n❌ ${label} failed — no image in response`);
+    console.log(`\n❌ Failed — no output URL received`);
   }
+
+  await browser.close();
 }
 
 // ─── Models list ────────────────────────────────────────────────────────
@@ -558,7 +515,6 @@ function listTools() {
 
 const args = process.argv.slice(2);
 
-// Aliases
 const ALIASES = {
   "remove-bg": "remove-bg",
   "remove_bg": "remove-bg",
@@ -627,31 +583,23 @@ const positional = [];
 
 for (let i = 1; i < args.length; i++) {
   const a = args[i];
-  if (a === "--model") { opts.model = args[++i]; }
-  else if (a === "--output" || a === "--out") { opts.output = args[++i]; }
-  else if (a === "--aspect" || a === "--ar") { opts.aspect = args[++i]; }
-  else if (a === "--count" || a === "--num") { opts.count = parseInt(args[++i]); }
-  else if (a === "--scale" || a === "--sx") { opts.scale = args[++i]; }
-  else if (a === "--negative") { opts.negative = args[++i]; }
-  else if (a === "--mood") { opts.mood = args[++i]; }
-  else if (!a.startsWith("--")) { positional.push(a); }
+  if (a === "--model") opts.model = args[++i];
+  else if (a === "--output" || a === "--out") opts.output = args[++i];
+  else if (a === "--aspect" || a === "--ar") opts.aspect = args[++i];
+  else if (a === "--count" || a === "--num") opts.count = parseInt(args[++i]);
+  else if (a === "--scale" || a === "--sx") opts.scale = args[++i];
+  else if (a === "--negative") opts.negative = args[++i];
+  else if (a === "--mood") opts.mood = args[++i];
+  else if (!a.startsWith("--")) positional.push(a);
 }
 
 // Dispatch
 switch (command) {
-  case "generate": {
-    const prompt = positional[0];
-    if (!prompt) {
-      console.log("❌ Missing prompt. Usage: node submit.js generate \"prompt\" [--model MODEL]");
-      process.exit(1);
-    }
-    await runAiArt(prompt, opts);
-    break;
-  }
+  case "generate":
   case "ai-art": {
     const prompt = positional[0];
     if (!prompt) {
-      console.log("❌ Missing prompt. Usage: node submit.js ai-art \"prompt\"");
+      console.log("❌ Missing prompt. Usage: node submit.js generate \"prompt\" [--model MODEL]");
       process.exit(1);
     }
     await runAiArt(prompt, opts);
@@ -706,15 +654,9 @@ switch (command) {
     await runEdit(positional[0], prompt, opts);
     break;
   }
-  case "list":
-    listTools();
-    break;
-  case "models":
-    listModels();
-    break;
-  case "help":
-    console.log("Run without arguments or with --help for usage info.");
-    break;
+  case "list": listTools(); break;
+  case "models": listModels(); break;
+  case "help": console.log("Run without arguments or with --help for usage info."); break;
   default:
     console.log(`❌ Unknown command: ${command}`);
     console.log("Run without arguments for usage.");
