@@ -60,31 +60,50 @@ async function usePage(browser) {
 
 function interceptResponse(page, pattern) {
   return new Promise((resolve) => {
-    page.on("requestfinished", (req) => {
-      if (pattern.test(req.url())) {
-        resolve({ url: req.url(), method: req.method() });
-      }
-    });
+    let resolved = false;
+
+    function tryResolve(data) {
+      if (resolved) return;
+      resolved = true;
+      resolve(data);
+    }
+
+    // Prefer response handler (has the actual response body)
     page.on("response", async (resp) => {
       try {
         if (!pattern.test(resp.url())) return;
         const status = resp.status();
         if (status >= 400) {
-          const body = await resp.text();
-          resolve({ status, error: body.substring(0, 500) });
+          try {
+            const body = await resp.text();
+            let parsed;
+            try { parsed = JSON.parse(body); } catch { parsed = {}; }
+            tryResolve({ status, error: body, detail: parsed.detail || body.substring(0, 500), ...parsed });
+          } catch {
+            tryResolve({ status, error: "could not read response body" });
+          }
           return;
         }
         const body = await resp.text();
         if (!body || body.length === 0) return;
         try {
-          resolve(JSON.parse(body));
+          const json = JSON.parse(body);
+          // Validate this looks like an image response, not an API endpoint
+          if (json.url || json.images || json.image || json.image_url) {
+            tryResolve(json);
+          }
         } catch {
-          resolve({ raw: body.substring(0, 3000), body_length: body.length });
+          tryResolve({ raw: body.substring(0, 3000), body_length: body.length });
         }
       } catch {
         // Preflight or broken response — skip
       }
     });
+
+    // Fallback: if no response arrives in 5s, use requestfinished
+    setTimeout(() => {
+      tryResolve({ fallback: true, error: "no response captured within timeout" });
+    }, 5000);
   });
 }
 
@@ -195,7 +214,13 @@ async function waitForResult(interceptorPromise, maxWait = 90000) {
 
 function extractImageUrl(result) {
   if (!result) return null;
-  if (result.url || result.image_url) return result.url || result.image_url;
+
+  // Reject API endpoint URLs — they're not image URLs
+  if (result.url && result.url.includes("/v1/image/")) return null;
+
+  if (result.image_url) return result.image_url;
+  if (result.url) return result.url;
+
   if (result.images && Array.isArray(result.images) && result.images.length > 0) {
     const img = result.images[0];
     return typeof img === "string" ? img : (img?.url || null);
@@ -206,7 +231,24 @@ function extractImageUrl(result) {
   return null;
 }
 
-// ─── TOOL: text-to-image (ai-art) ───────────────────────────────────────
+// ─── TOOL: text-to-image (ai-art) via API ───────────────────────────
+
+const MOOD_MAP = {
+  "vibrant": "vibrant",
+  "dark": "dark / moody",
+  "pastel": "pastel / soft",
+  "neon": "neon / electric",
+  "earthy": "earthy / natural",
+  "monochrome": "monochrome",
+  "golden": "golden hour",
+};
+
+const MODEL_MAP = {
+  "sdxl": "sdxl",
+  "flux2-klein": "flux2-klein",
+  "flux1-dev": "flux-schnell",
+  "flux-1.1-ultra": "flux-1.1-ultra",
+};
 
 async function runAiArt(prompt, opts = {}) {
   const {
@@ -221,57 +263,74 @@ async function runAiArt(prompt, opts = {}) {
   console.log(`\n🎨 AI Art: "${prompt}"`);
   console.log(`   ${model} | ${count}x | ${aspect} | ${mood}\n`);
 
-  const browser = await launchBrowser();
-  const page = await usePage(browser);
+  // Use free.ai's public API directly
+  const url = "https://api.free.ai/v1/image/generate/";
 
-  const interceptor = interceptResponse(page, /\/v1\/image\/generate/);
+  // Map our model names to free.ai's model names
+  const freeModel = MODEL_MAP[model] || model;
 
-  await navigateTo(page, "https://free.ai/image/ai-art", "#aiart-prompt");
+  const body = {
+    model: freeModel,
+    prompt: prompt,
+    aspect_ratio: aspect,
+    style_preset: "digital",
+    n: count,
+  };
 
-  await setField(page, "#aiart-prompt", prompt);
-  await setField(page, "#aiart-model", model);
-  await setField(page, "#aiart-aspect", aspect);
-  await setField(page, "#aiart-mood", mood);
-  await setField(page, "#aiart-count", count.toString());
-  if (negative) await setField(page, "#aiart-negative", negative);
-
-  console.log("   ⏳ Submitting...");
-  await submitForm(page, 'button[type="submit"]');
-
-  const result = await waitForResult(interceptor, 90000);
-
-  if (result && (result.url || result.images || result.image)) {
-    const imgUrls = [];
-    if (result.images) {
-      for (const img of result.images) {
-        imgUrls.push(typeof img === "string" ? img : (img?.url || ""));
-      }
-    } else {
-      const u = extractImageUrl(result);
-      if (u) imgUrls.push(u);
-    }
-
-    for (let i = 0; i < imgUrls.length; i++) {
-      const url = imgUrls[i];
-      if (!url) continue;
-      const out = imgUrls.length > 1
-        ? output.replace(/(\.\w+)$/, `_${i + 1}$1`)
-        : output;
-      await downloadImage(page, url, out);
-      console.log(`   ✅ Saved: ${out}`);
-    }
-  } else if (result && (result.error || result.status >= 400)) {
-    console.log(`\n❌ Error: ${JSON.stringify(result)}`);
-    await browser.close();
-    process.exit(1);
-  } else {
-    console.log(`\n❌ No image URL in response`);
-    console.log(JSON.stringify(result, null, 2).substring(0, 500));
-    await browser.close();
-    process.exit(1);
+  if (negative) {
+    body.negative_prompt = negative;
   }
 
-  await browser.close();
+  // Mood front-loading (add mood cue to prompt like the website does)
+  const moodText = MOOD_MAP[mood] || mood;
+  const enhancedPrompt = `${moodText} ${prompt}`;
+
+  // Also try with the enhanced prompt
+  const submitBody = { ...body, prompt: enhancedPrompt };
+
+  console.log("   ⏳ Submitting to API...");
+
+  try {
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(submitBody),
+    });
+
+    const data = await resp.json();
+
+    if (data.url || data.image_url || data.data?.[0]?.url) {
+      // Handle array response (n > 1)
+      const urls = data.data
+        ? data.data.map((d) => d.url).filter(Boolean)
+        : [data.url || data.image_url];
+
+      for (let i = 0; i < urls.length; i++) {
+        const u = urls[i];
+        const out = urls.length > 1
+          ? output.replace(/(\.\w+)$/, `_${i + 1}$1`)
+          : output;
+
+        // Direct download (no browser needed)
+        const resp = await fetch(u);
+        if (!resp.ok) {
+          throw new Error(`Failed to download image: ${resp.status}`);
+        }
+        const buffer = Buffer.from(await resp.arrayBuffer());
+        writeFileSync(out, buffer);
+        console.log(`   ✅ Saved: ${out} (${(buffer.length / 1024).toFixed(1)}KB)`);
+      }
+    } else if (data.error) {
+      console.log(`\n❌ Error: ${data.error.message || JSON.stringify(data.error)}`);
+      process.exit(1);
+    } else {
+      console.log(`\n❌ Unexpected response: ${JSON.stringify(data).substring(0, 500)}`);
+      process.exit(1);
+    }
+  } catch (err) {
+    console.log(`\n❌ API request failed: ${err.message}`);
+    process.exit(1);
+  }
 }
 
 // ─── TOOL: background remover ───────────────────────────────────────────
